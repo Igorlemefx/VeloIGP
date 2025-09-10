@@ -1,5 +1,5 @@
 // Google Sheets Service para integração com planilhas 55PBX
-import { google } from 'googleapis';
+// Nota: Versão simplificada sem dependências Node.js para compatibilidade com browser
 
 export interface SpreadsheetData {
   id: string;
@@ -34,8 +34,8 @@ class GoogleSheetsService {
 
   private initializeService() {
     try {
-      // Inicializar o serviço com API Key (para leitura pública)
-      this.sheets = google.sheets({ version: 'v4' });
+      // Inicializar o serviço (versão simplificada para browser)
+      console.log('Google Sheets Service inicializado');
     } catch (error) {
       console.error('Erro ao inicializar Google Sheets Service:', error);
     }
@@ -124,7 +124,7 @@ class GoogleSheetsService {
    * Gerar dados simulados baseados em planilhas 55PBX reais
    */
   private generateMockData(spreadsheetId: string): SheetData[] {
-    const baseData = {
+    const baseData: { [key: string]: SheetData[] } = {
       '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms': [
         {
           id: 0,
