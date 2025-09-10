@@ -1,7 +1,7 @@
 # 🔗 Configurar Planilha Real do Google Drive
 
 ## 🎯 Objetivo
-Conectar o sistema VeloIGP com a planilha real salva no Google Drive.
+Conectar o sistema VeloIGP **EXCLUSIVAMENTE** com a planilha real salva no Google Drive. O sistema não possui fallback para dados simulados.
 
 ## 📋 Pré-requisitos
 1. **Planilha no Google Drive** com dados do 55PBX
@@ -80,8 +80,8 @@ A planilha deve ter a seguinte estrutura na **primeira linha**:
 1. Reinicie o servidor: `npm start`
 2. Acesse a página de **Planilhas**
 3. Verifique no console do navegador:
-   - ✅ **Sucesso**: "Tentando conectar com planilha real do Google Drive..."
-   - ❌ **Erro**: "Erro ao conectar com planilha real, usando dados simulados"
+   - ✅ **Sucesso**: "Conectando com planilha real do Google Drive..."
+   - ❌ **Erro**: "Erro ao obter planilha real" - **Sistema não funcionará sem a planilha real!**
 
 ## 🚨 Troubleshooting
 
