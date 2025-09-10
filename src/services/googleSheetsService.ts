@@ -122,25 +122,29 @@ class GoogleSheetsService {
 
   /**
    * Gerar dados simulados baseados em planilhas 55PBX reais
+   * Estrutura otimizada para dados individuais e comparativos
    */
   private generateMockData(spreadsheetId: string): SheetData[] {
     const baseData: { [key: string]: SheetData[] } = {
       '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms': [
         {
           id: 0,
-          title: 'Chamadas por Dia',
-          headers: ['Data', 'Total Chamadas', 'Atendidas', 'Perdidas', 'Tempo Médio (min)', 'Satisfação'],
+          title: 'Dados Individuais de Chamadas',
+          headers: ['ID', 'Data/Hora', 'Duração (seg)', 'Status', 'Tempo Espera (seg)', 'Agente', 'Satisfação', 'Fila'],
           data: [
-            ['2025-01-01', '1247', '1156', '91', '2.3', '4.2'],
-            ['2025-01-02', '1189', '1102', '87', '2.1', '4.3'],
-            ['2025-01-03', '1356', '1289', '67', '1.8', '4.5'],
-            ['2025-01-04', '1423', '1345', '78', '2.0', '4.1'],
-            ['2025-01-05', '1198', '1123', '75', '2.2', '4.4'],
-            ['2025-01-06', '1089', '1023', '66', '1.9', '4.6'],
-            ['2025-01-07', '1324', '1256', '68', '2.1', '4.3']
+            ['CALL_001', '2025-01-10 08:15:30', '180', 'Atendida', '45', 'Ana Silva', '5', 'Principal'],
+            ['CALL_002', '2025-01-10 08:22:15', '240', 'Atendida', '30', 'Carlos Santos', '4', 'Principal'],
+            ['CALL_003', '2025-01-10 08:35:42', '0', 'Perdida', '120', '', '', 'Principal'],
+            ['CALL_004', '2025-01-10 08:41:20', '320', 'Atendida', '25', 'Maria Oliveira', '5', 'VIP'],
+            ['CALL_005', '2025-01-10 08:48:55', '0', 'Abandonada', '90', '', '', 'Principal'],
+            ['CALL_006', '2025-01-10 09:12:10', '195', 'Atendida', '35', 'João Costa', '4', 'Técnica'],
+            ['CALL_007', '2025-01-10 09:25:33', '280', 'Atendida', '20', 'Fernanda Lima', '5', 'VIP'],
+            ['CALL_008', '2025-01-10 09:38:17', '0', 'Perdida', '150', '', '', 'Principal'],
+            ['CALL_009', '2025-01-10 09:45:28', '220', 'Atendida', '40', 'Pedro Alves', '3', 'Principal'],
+            ['CALL_010', '2025-01-10 10:02:45', '350', 'Atendida', '15', 'Lucia Ferreira', '5', 'VIP']
           ],
-          rowCount: 7,
-          colCount: 6
+          rowCount: 10,
+          colCount: 8
         },
         {
           id: 1,
@@ -164,20 +168,46 @@ class GoogleSheetsService {
         },
         {
           id: 2,
-          title: 'Agentes Ativos',
-          headers: ['Nome', 'Chamadas Atendidas', 'Tempo Médio', 'Satisfação', 'Status'],
+          title: 'Performance por Agente',
+          headers: ['Nome', 'Chamadas Atendidas', 'Tempo Médio (min)', 'Satisfação Média', 'Status', 'Eficiência'],
           data: [
-            ['Ana Silva', '156', '1.8', '4.7', 'Ativo'],
-            ['Carlos Santos', '142', '2.1', '4.5', 'Ativo'],
-            ['Maria Oliveira', '138', '1.9', '4.6', 'Ativo'],
-            ['João Costa', '134', '2.2', '4.4', 'Ativo'],
-            ['Fernanda Lima', '129', '2.0', '4.8', 'Ativo'],
-            ['Pedro Alves', '125', '2.3', '4.3', 'Pausa'],
-            ['Lucia Ferreira', '118', '1.7', '4.9', 'Ativo'],
-            ['Roberto Souza', '112', '2.4', '4.2', 'Ativo']
+            ['Ana Silva', '156', '3.0', '4.7', 'Ativo', '95%'],
+            ['Carlos Santos', '142', '4.0', '4.5', 'Ativo', '92%'],
+            ['Maria Oliveira', '138', '3.2', '4.6', 'Ativo', '94%'],
+            ['João Costa', '134', '3.7', '4.4', 'Ativo', '89%'],
+            ['Fernanda Lima', '129', '3.3', '4.8', 'Ativo', '96%'],
+            ['Pedro Alves', '125', '3.8', '4.3', 'Pausa', '87%'],
+            ['Lucia Ferreira', '118', '2.8', '4.9', 'Ativo', '98%'],
+            ['Roberto Souza', '112', '4.0', '4.2', 'Ativo', '85%']
           ],
           rowCount: 8,
-          colCount: 5
+          colCount: 6
+        },
+        {
+          id: 3,
+          title: 'Comparativo Mensal',
+          headers: ['Mês', 'Total Chamadas', 'Atendidas', 'Perdidas', 'Taxa Atendimento', 'Tempo Médio', 'Satisfação'],
+          data: [
+            ['Janeiro 2025', '1247', '1156', '91', '92.7%', '2.3', '4.2'],
+            ['Dezembro 2024', '1189', '1102', '87', '92.7%', '2.1', '4.3'],
+            ['Novembro 2024', '1356', '1289', '67', '95.1%', '1.8', '4.5'],
+            ['Outubro 2024', '1423', '1345', '78', '94.5%', '2.0', '4.1'],
+            ['Setembro 2024', '1198', '1123', '75', '93.7%', '2.2', '4.4']
+          ],
+          rowCount: 5,
+          colCount: 7
+        },
+        {
+          id: 4,
+          title: 'Análise por Fila',
+          headers: ['Fila', 'Chamadas', 'Atendidas', 'Tempo Médio Espera', 'Satisfação', 'Prioridade'],
+          data: [
+            ['Principal', '856', '789', '2.5', '4.1', 'Normal'],
+            ['VIP', '234', '231', '0.8', '4.8', 'Alta'],
+            ['Técnica', '157', '136', '4.1', '4.3', 'Normal']
+          ],
+          rowCount: 3,
+          colCount: 6
         }
       ]
     };

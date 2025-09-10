@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { calculationEngine, CallData, TimeRange } from '../services/calculationEngine';
+import { spreadsheetDataService, DashboardData, PeriodOption } from '../services/spreadsheetDataService';
 import './VeloigpDashboard.css';
 
 interface DashboardMetrics {
@@ -13,68 +13,47 @@ interface DashboardMetrics {
 }
 
 const VeloigpDashboard: React.FC = () => {
-  const [metrics, setMetrics] = useState<DashboardMetrics>({
-    totalCalls: 0,
-    answeredCalls: 0,
-    missedCalls: 0,
-    averageWaitTime: 0,
-    peakHour: '00:00',
-    satisfactionRate: 0,
-    dailyTrend: 0
-  });
-
+  const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
+  const [selectedPeriod, setSelectedPeriod] = useState<string>('last-month');
+  const [periodOptions, setPeriodOptions] = useState<PeriodOption[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Carregar dados usando o motor de cálculo
+    // Carregar opções de período
+    const loadPeriodOptions = () => {
+      const options = spreadsheetDataService.getPeriodOptions();
+      setPeriodOptions(options);
+    };
+
+    loadPeriodOptions();
+  }, []);
+
+  useEffect(() => {
+    // Carregar dados do dashboard
     const loadDashboardData = async () => {
       setLoading(true);
+      setError(null);
       
       try {
-        // Definir período (últimas 24 horas)
-        const endTime = new Date();
-        const startTime = new Date(endTime.getTime() - 24 * 60 * 60 * 1000);
-        const timeRange: TimeRange = { start: startTime, end: endTime };
-        
-        // Gerar dados simulados usando o motor de cálculo
-        const callData: CallData[] = calculationEngine.generateMockData(timeRange);
-        
-        // Calcular métricas usando o motor
-        const calculatedMetrics = await calculationEngine.calculateMetrics(callData, timeRange);
-        
-        // Converter para formato do dashboard
-        setMetrics({
-          totalCalls: calculatedMetrics.totalCalls,
-          answeredCalls: calculatedMetrics.answeredCalls,
-          missedCalls: calculatedMetrics.missedCalls,
-          averageWaitTime: calculatedMetrics.averageWaitTime,
-          peakHour: calculatedMetrics.peakHour,
-          satisfactionRate: calculatedMetrics.averageSatisfaction,
-          dailyTrend: calculatedMetrics.dailyTrend
-        });
-        
+        const data = await spreadsheetDataService.loadDashboardData(selectedPeriod);
+        setDashboardData(data);
+      } catch (err) {
+        console.error('Erro ao carregar dados:', err);
+        setError('Erro ao carregar dados do dashboard');
+      } finally {
         setLoading(false);
-        setLastUpdate(new Date());
-        
-      } catch (error) {
-        console.error('Erro ao carregar dados:', error);
-        setLoading(false);
-        // Manter dados padrão em caso de erro
-        setMetrics({
-          totalCalls: 0,
-          answeredCalls: 0,
-          missedCalls: 0,
-          averageWaitTime: 0,
-          peakHour: '00:00',
-          satisfactionRate: 0,
-          dailyTrend: 0
-        });
       }
     };
 
-    loadDashboardData();
-  }, []);
+    if (periodOptions.length > 0) {
+      loadDashboardData();
+    }
+  }, [selectedPeriod, periodOptions]);
+
+  const handlePeriodChange = (periodId: string) => {
+    setSelectedPeriod(periodId);
+  };
 
   const answerRate = metrics.totalCalls > 0 ? (metrics.answeredCalls / metrics.totalCalls * 100).toFixed(1) : 0;
   const missRate = metrics.totalCalls > 0 ? (metrics.missedCalls / metrics.totalCalls * 100).toFixed(1) : 0;
