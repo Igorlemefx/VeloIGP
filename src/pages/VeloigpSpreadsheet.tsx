@@ -35,30 +35,34 @@ const VeloigpSpreadsheet: React.FC = () => {
 
   const initializeService = async () => {
     try {
-      // Simular configuração do serviço
+      console.log('🔧 Inicializando serviço Google Sheets...');
+      
+      // Configurar serviço para usar API key real
       googleSheetsService.configure({
         credentials: {
           type: 'service_account',
-          project_id: 'demo-project',
-          private_key_id: 'demo-key-id',
-          private_key: '-----BEGIN PRIVATE KEY-----\ndemo-key\n-----END PRIVATE KEY-----\n',
-          client_email: 'demo@demo.iam.gserviceaccount.com',
-          client_id: 'demo-client-id',
+          project_id: 'veloigp',
+          private_key_id: 'real-key-id',
+          private_key: '-----BEGIN PRIVATE KEY-----\nreal-key\n-----END PRIVATE KEY-----\n',
+          client_email: 'veloigp-sheets-service-333@veloigp.iam.gserviceaccount.com',
+          client_id: 'real-client-id',
           auth_uri: 'https://accounts.google.com/o/oauth2/auth',
           token_uri: 'https://oauth2.googleapis.com/token',
           auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
-          client_x509_cert_url: 'https://www.googleapis.com/robot/v1/metadata/x509/demo%40demo.iam.gserviceaccount.com'
+          client_x509_cert_url: 'https://www.googleapis.com/robot/v1/metadata/x509/veloigp-sheets-service-333%40veloigp.iam.gserviceaccount.com'
         },
-        spreadsheetId: 'demo-spreadsheet-id',
+        spreadsheetId: '1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp',
         scopes: [
           'https://www.googleapis.com/auth/spreadsheets.readonly',
           'https://www.googleapis.com/auth/drive.readonly'
         ]
       });
       
+      console.log('✅ Serviço configurado, carregando planilhas...');
       setIsConfigured(true);
       await loadSpreadsheets();
     } catch (err) {
+      console.error('❌ Erro ao inicializar serviço:', err);
       setError('Erro ao inicializar serviço Google Sheets');
     }
   };
