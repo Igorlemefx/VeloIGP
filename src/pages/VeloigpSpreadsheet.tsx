@@ -27,6 +27,7 @@ const VeloigpSpreadsheet: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [availableOperators, setAvailableOperators] = useState<string[]>([]);
   const [availableQueues, setAvailableQueues] = useState<string[]>([]);
+  const [loadingSheet, setLoadingSheet] = useState(false);
 
   useEffect(() => {
     initializeService();
@@ -117,8 +118,26 @@ const VeloigpSpreadsheet: React.FC = () => {
   };
 
   const selectSheet = (sheet: SheetData) => {
-    setSelectedSheet(sheet);
-    setFilteredData(sheet.data);
+    try {
+      console.log('🔍 Selecionando aba:', sheet.title);
+      console.log('📊 Dados da aba:', sheet.data.length, 'linhas');
+      
+      setLoadingSheet(true);
+      setError(null);
+      
+      // Simular um pequeno delay para mostrar o loading
+      setTimeout(() => {
+        setSelectedSheet(sheet);
+        setFilteredData(sheet.data);
+        setLoadingSheet(false);
+        console.log('✅ Aba selecionada com sucesso');
+      }, 100);
+      
+    } catch (error) {
+      console.error('❌ Erro ao selecionar aba:', error);
+      setError('Erro ao selecionar aba da planilha');
+      setLoadingSheet(false);
+    }
   };
 
   const applyFilters = () => {
@@ -463,6 +482,13 @@ const VeloigpSpreadsheet: React.FC = () => {
                   </div>
                 </div>
 
+                {loadingSheet && (
+                  <div className="loading-message">
+                    <div className="loading-spinner"></div>
+                    <p>Carregando dados da aba...</p>
+                  </div>
+                )}
+
                 <div className="data-table-container">
                   <table className="data-table">
                     <thead>
@@ -473,13 +499,20 @@ const VeloigpSpreadsheet: React.FC = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredData.map((row, rowIndex) => (
+                      {filteredData.slice(0, 100).map((row, rowIndex) => (
                         <tr key={rowIndex}>
                           {row.map((cell, cellIndex) => (
-                            <td key={cellIndex}>{cell}</td>
+                            <td key={cellIndex}>{cell || ''}</td>
                           ))}
                         </tr>
                       ))}
+                      {filteredData.length > 100 && (
+                        <tr>
+                          <td colSpan={selectedSheet.headers.length} style={{textAlign: 'center', fontStyle: 'italic'}}>
+                            ... e mais {filteredData.length - 100} linhas (use filtros para reduzir)
+                          </td>
+                        </tr>
+                      )}
                     </tbody>
                   </table>
                 </div>
