@@ -12,7 +12,7 @@
 
 1. Clique no botão **"Compartilhar"** (canto superior direito)
 2. Na janela que abrir, clique em **"Adicionar pessoas e grupos"**
-3. Digite o email do service account: `seu-service-account@seu-project.iam.gserviceaccount.com`
+3. Digite o email do service account: `veloigp-sheets-service-333@veloigp.iam.gserviceaccount.com`
 4. Defina a permissão como **"Editor"** ou **"Visualizador"**
 5. Clique em **"Enviar"**
 

@@ -12,12 +12,12 @@ REACT_APP_GOOGLE_SHEETS_TYPE=service_account
 REACT_APP_GOOGLE_SHEETS_PROJECT_ID=veloigp
 REACT_APP_GOOGLE_SHEETS_PRIVATE_KEY_ID=AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A
 REACT_APP_GOOGLE_SHEETS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nsua-private-key-aqui\n-----END PRIVATE KEY-----\n"
-REACT_APP_GOOGLE_SHEETS_CLIENT_EMAIL=seu-service-account@seu-project.iam.gserviceaccount.com
+REACT_APP_GOOGLE_SHEETS_CLIENT_EMAIL=veloigp-sheets-service-333@veloigp.iam.gserviceaccount.com
 REACT_APP_GOOGLE_SHEETS_CLIENT_ID=seu-client-id
 REACT_APP_GOOGLE_SHEETS_AUTH_URI=https://accounts.google.com/o/oauth2/auth
 REACT_APP_GOOGLE_SHEETS_TOKEN_URI=https://oauth2.googleapis.com/token
 REACT_APP_GOOGLE_SHEETS_AUTH_PROVIDER_X509_CERT_URL=https://www.googleapis.com/oauth2/v1/certs
-REACT_APP_GOOGLE_SHEETS_CLIENT_X509_CERT_URL=https://www.googleapis.com/robot/v1/metadata/x509/seu-service-account%40seu-project.iam.gserviceaccount.com
+REACT_APP_GOOGLE_SHEETS_CLIENT_X509_CERT_URL=https://www.googleapis.com/robot/v1/metadata/x509/veloigp-sheets-service-333%40veloigp.iam.gserviceaccount.com
 ```
 
 ### 2. Substituir valores reais
@@ -25,9 +25,9 @@ REACT_APP_GOOGLE_SHEETS_CLIENT_X509_CERT_URL=https://www.googleapis.com/robot/v1
 **IMPORTANTE**: Substitua os seguintes valores pelos dados reais do seu Service Account:
 
 - `sua-private-key-aqui` → Sua chave privada real (com quebras de linha)
-- `seu-service-account@seu-project.iam.gserviceaccount.com` → Email real do service account
+- `veloigp-sheets-service-333@veloigp.iam.gserviceaccount.com` → Email real do service account
 - `seu-client-id` → Client ID real do service account
-- `seu-service-account%40seu-project.iam.gserviceaccount.com` → Email codificado para URL
+- `veloigp-sheets-service-333%40veloigp.iam.gserviceaccount.com` → Email codificado para URL
 
 ### 3. Verificar estrutura do arquivo
 
