@@ -107,28 +107,43 @@ class GoogleSheetsService {
    * Obter planilhas reais do Google Drive
    */
   private async getRealSpreadsheets(): Promise<SpreadsheetData[]> {
-    // Usar a API do Google Sheets para obter dados reais
     const spreadsheetId = SPREADSHEET_IDS.MAIN_REPORTS;
+    const apiKey = process.env.REACT_APP_GOOGLE_API_KEY || 'AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A';
     
     try {
-      // Fazer requisição direta para a API do Google Sheets
-      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}?key=${process.env.REACT_APP_GOOGLE_API_KEY || 'AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A'}`);
+      console.log(`🔍 Tentando acessar planilha: ${spreadsheetId}`);
+      console.log(`🔑 Usando API Key: ${apiKey.substring(0, 10)}...`);
+      
+      // Primeiro, tentar obter informações básicas da planilha
+      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}?key=${apiKey}`);
       
       if (!response.ok) {
-        throw new Error(`Erro na API: ${response.status}`);
+        const errorText = await response.text();
+        console.error(`❌ Erro na API (${response.status}):`, errorText);
+        throw new Error(`Erro na API: ${response.status} - ${errorText}`);
       }
       
       const spreadsheet = await response.json();
+      console.log('✅ Planilha acessada com sucesso:', spreadsheet.properties?.title);
       
       // Obter dados da primeira aba
-      const sheetsResponse = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/A:AN?key=${process.env.REACT_APP_GOOGLE_API_KEY || 'AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A'}`);
+      console.log('📊 Obtendo dados da planilha...');
+      const sheetsResponse = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/A:AN?key=${apiKey}`);
       
       if (!sheetsResponse.ok) {
-        throw new Error(`Erro ao obter dados: ${sheetsResponse.status}`);
+        const errorText = await sheetsResponse.text();
+        console.error(`❌ Erro ao obter dados (${sheetsResponse.status}):`, errorText);
+        throw new Error(`Erro ao obter dados: ${sheetsResponse.status} - ${errorText}`);
       }
       
       const values = await sheetsResponse.json();
       const data = values.values || [];
+      
+      console.log(`📈 Dados obtidos: ${data.length} linhas`);
+      
+      if (data.length === 0) {
+        throw new Error('Planilha vazia ou sem dados');
+      }
       
       const sheetData: SheetData = {
         id: 0,
@@ -139,6 +154,8 @@ class GoogleSheetsService {
         colCount: data[0]?.length || 0
       };
       
+      console.log(`✅ Dados processados: ${sheetData.rowCount} linhas, ${sheetData.colCount} colunas`);
+      
       return [{
         id: spreadsheetId,
         title: spreadsheet.properties?.title || 'Planilha 55PBX',
@@ -147,7 +164,7 @@ class GoogleSheetsService {
       }];
       
     } catch (error) {
-      console.error('Erro ao obter planilha real:', error);
+      console.error('❌ Erro ao obter planilha real:', error);
       throw error;
     }
   }

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Acesso à Planilha</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        pre { background-color: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teste de Acesso à Planilha VeloIGP</h1>
+    
+    <div class="test-section info">
+        <h3>📋 Informações do Teste</h3>
+        <p><strong>ID da Planilha:</strong> 1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp</p>
+        <p><strong>API Key:</strong> AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A</p>
+        <p><strong>Status:</strong> <span id="status">Testando...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h3>🔍 Teste 1: Informações da Planilha</h3>
+        <button onclick="testSpreadsheetInfo()">Executar Teste</button>
+        <div id="test1-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>📊 Teste 2: Dados da Planilha</h3>
+        <button onclick="testSpreadsheetData()">Executar Teste</button>
+        <div id="test2-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>📈 Resultado Final</h3>
+        <div id="final-result"></div>
+    </div>
+
+    <script>
+        const SPREADSHEET_ID = '1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp';
+        const API_KEY = 'AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A';
+        
+        let test1Success = false;
+        let test2Success = false;
+
+        async function testSpreadsheetInfo() {
+            const resultDiv = document.getElementById('test1-result');
+            resultDiv.innerHTML = '<p>🔄 Testando acesso às informações da planilha...</p>';
+            
+            try {
+                const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}?key=${API_KEY}`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            <h4>✅ Sucesso!</h4>
+                            <p><strong>Título:</strong> ${data.properties?.title || 'N/A'}</p>
+                            <p><strong>Última modificação:</strong> ${data.properties?.modifiedTime || 'N/A'}</p>
+                            <p><strong>Número de abas:</strong> ${data.sheets?.length || 0}</p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                    test1Success = true;
+                } else {
+                    const errorText = await response.text();
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            <h4>❌ Erro ${response.status}</h4>
+                            <p><strong>Mensagem:</strong> ${errorText}</p>
+                        </div>
+                    `;
+                    test1Success = false;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Erro de Rede</h4>
+                        <p><strong>Mensagem:</strong> ${error.message}</p>
+                    </div>
+                `;
+                test1Success = false;
+            }
+            
+            updateFinalResult();
+        }
+
+        async function testSpreadsheetData() {
+            const resultDiv = document.getElementById('test2-result');
+            resultDiv.innerHTML = '<p>🔄 Testando acesso aos dados da planilha...</p>';
+            
+            try {
+                const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/A:AN?key=${API_KEY}`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    const values = data.values || [];
+                    
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            <h4>✅ Sucesso!</h4>
+                            <p><strong>Linhas obtidas:</strong> ${values.length}</p>
+                            <p><strong>Colunas na primeira linha:</strong> ${values[0]?.length || 0}</p>
+                            <p><strong>Primeiras 3 linhas:</strong></p>
+                            <pre>${JSON.stringify(values.slice(0, 3), null, 2)}</pre>
+                        </div>
+                    `;
+                    test2Success = true;
+                } else {
+                    const errorText = await response.text();
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            <h4>❌ Erro ${response.status}</h4>
+                            <p><strong>Mensagem:</strong> ${errorText}</p>
+                        </div>
+                    `;
+                    test2Success = false;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Erro de Rede</h4>
+                        <p><strong>Mensagem:</strong> ${error.message}</p>
+                    </div>
+                `;
+                test2Success = false;
+            }
+            
+            updateFinalResult();
+        }
+
+        function updateFinalResult() {
+            const resultDiv = document.getElementById('final-result');
+            const statusDiv = document.getElementById('status');
+            
+            if (test1Success && test2Success) {
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <h4>🎉 Todos os testes passaram!</h4>
+                        <p>A planilha está acessível e o sistema VeloIGP deve funcionar corretamente.</p>
+                        <p><strong>Próximos passos:</strong></p>
+                        <ul>
+                            <li>Acesse o sistema VeloIGP</li>
+                            <li>Vá para a página "Planilhas"</li>
+                            <li>Verifique se os dados aparecem corretamente</li>
+                        </ul>
+                    </div>
+                `;
+                statusDiv.textContent = '✅ Funcionando';
+                statusDiv.style.color = 'green';
+            } else if (test1Success || test2Success) {
+                resultDiv.innerHTML = `
+                    <div class="info">
+                        <h4>⚠️ Teste parcial</h4>
+                        <p>Alguns testes passaram, mas pode haver problemas de configuração.</p>
+                        <p><strong>Teste 1 (Informações):</strong> ${test1Success ? '✅' : '❌'}</p>
+                        <p><strong>Teste 2 (Dados):</strong> ${test2Success ? '✅' : '❌'}</p>
+                    </div>
+                `;
+                statusDiv.textContent = '⚠️ Parcial';
+                statusDiv.style.color = 'orange';
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Todos os testes falharam</h4>
+                        <p>A planilha não está acessível. Verifique:</p>
+                        <ul>
+                            <li>Se a planilha está pública</li>
+                            <li>Se a API key está correta</li>
+                            <li>Se o Google Sheets API está habilitado</li>
+                        </ul>
+                    </div>
+                `;
+                statusDiv.textContent = '❌ Erro';
+                statusDiv.style.color = 'red';
+            }
+        }
+
+        // Executar testes automaticamente ao carregar a página
+        window.onload = function() {
+            testSpreadsheetInfo();
+            setTimeout(testSpreadsheetData, 1000);
+        };
+    </script>
+</body>
+</html>
