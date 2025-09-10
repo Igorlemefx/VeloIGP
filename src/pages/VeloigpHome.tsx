@@ -35,40 +35,8 @@ const VeloigpHome: React.FC = () => {
           </p>
           <p className="description-text">
             Plataforma integrada para análise de dados, geração de relatórios e monitoramento em tempo real 
-            do sistema de telefonia empresarial, oferecendo insights valiosos para otimização operacional.
+            do sistema de telefonia empresarial.
           </p>
-        </div>
-
-        <div className="features-container">
-          <div className="feature-item">
-            <div className="feature-icon">
-              <i className="fas fa-chart-line"></i>
-            </div>
-            <div className="feature-text">
-              <h3>Análise em Tempo Real</h3>
-              <p>Monitoramento contínuo de métricas e KPIs</p>
-            </div>
-          </div>
-          
-          <div className="feature-item">
-            <div className="feature-icon">
-              <i className="fas fa-file-excel"></i>
-            </div>
-            <div className="feature-text">
-              <h3>Relatórios Avançados</h3>
-              <p>Extraction e análise de dados do Google Sheets</p>
-            </div>
-          </div>
-          
-          <div className="feature-item">
-            <div className="feature-icon">
-              <i className="fas fa-cogs"></i>
-            </div>
-            <div className="feature-text">
-              <h3>Motor de Cálculo</h3>
-              <p>Processamento robusto e confiável de dados</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
