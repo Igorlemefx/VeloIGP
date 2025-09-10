@@ -12,6 +12,7 @@ const VeloigpSpreadsheet: React.FC = () => {
 
   useEffect(() => {
     initializeService();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const initializeService = async () => {
