@@ -40,7 +40,7 @@ Crie um arquivo `.env.local` na raiz do projeto:
 REACT_APP_GOOGLE_API_KEY=sua-api-key-aqui
 
 # ID da sua planilha real
-REACT_APP_SPREADSHEET_ID=seu-id-da-planilha-aqui
+REACT_APP_SPREADSHEET_ID=1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp
 ```
 
 ### 5. Atualizar ID da Planilha
@@ -60,12 +60,12 @@ export const SPREADSHEET_IDS = {
 O ID da planilha está na URL do Google Sheets:
 
 ```
-https://docs.google.com/spreadsheets/d/ID_DA_PLANILHA_AQUI/edit
+https://docs.google.com/spreadsheets/d/1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp/edit?gid=444264412#gid=444264412
 ```
 
 Exemplo:
-- URL: `https://docs.google.com/spreadsheets/d/13bZBY4PDqUc8TtHE9ztBLo1XIsZ7yjJw/edit`
-- ID: `13bZBY4PDqUc8TtHE9ztBLo1XIsZ7yjJw`
+- URL: `https://docs.google.com/spreadsheets/d/1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp/edit?gid=444264412#gid=444264412`
+- ID: `1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp`
 
 ## 📊 Estrutura da Planilha
 
