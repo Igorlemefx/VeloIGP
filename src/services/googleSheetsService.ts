@@ -123,15 +123,111 @@ class GoogleSheetsService {
         id: SPREADSHEET_IDS.MAIN_REPORTS,
         title: 'Relatórios 55PBX - Janeiro 2025',
         sheets: [
-          { id: 0, title: 'Dados Individuais de Chamadas', data: [], headers: [], rowCount: 0, colCount: 0 },
-          { id: 1, title: 'Métricas por Hora', data: [], headers: [], rowCount: 0, colCount: 0 },
-          { id: 2, title: 'Performance por Agente', data: [], headers: [], rowCount: 0, colCount: 0 },
-          { id: 3, title: 'Comparativo Mensal', data: [], headers: [], rowCount: 0, colCount: 0 },
-          { id: 4, title: 'Análise por Fila', data: [], headers: [], rowCount: 0, colCount: 0 }
+          { 
+            id: 0, 
+            title: 'Dados 55PBX', 
+            data: this.generateMockCallData(), 
+            headers: this.getRealHeaders(), 
+            rowCount: 100, 
+            colCount: 40 
+          }
         ],
         lastModified: new Date('2025-01-10T14:30:00Z')
       }
     ];
+  }
+
+  /**
+   * Obter cabeçalhos reais da planilha
+   */
+  private getRealHeaders(): string[] {
+    return [
+      'Chamada', 'Audio E Transcrições', 'Operador', 'Data', 'Hora', 'Data Atendimento', 'Hora Atendimento',
+      'País', 'DDD', 'Numero', 'Fila', 'Tempo Na Ura', 'Tempo De Espera', 'Tempo Falado', 'Tempo Total',
+      'Desconexão', 'Telefone Entrada', 'Caminho U R A', 'Cpf/Cnpj', 'Pedido', 'Id Ligação', 'Id Ligação De Origem',
+      'I D Do Ticket', 'Fluxo De Filas', 'Wh_quality_reason', 'Wh_humor_reason', 'Questionário De Qualidade',
+      'Pergunta2 1 PERGUNTA ATENDENTE', 'Pergunta2 2 PERGUNTA SOLUCAO', 'Dia', 'qtde', 'Até 20 Seg', 'Faixa',
+      'Mês', 'TMA (FALADO', 'Tempo URA (seg', 'TME (seg)', 'TMA (seg)', 'Pergunta 1', 'Pergunta 2'
+    ];
+  }
+
+  /**
+   * Gerar dados simulados baseados na estrutura real
+   */
+  private generateMockCallData(): any[][] {
+    const data: any[][] = [];
+    const operators = ['João Silva', 'Maria Santos', 'Pedro Costa', 'Ana Oliveira', 'Carlos Lima'];
+    const queues = ['Vendas', 'Suporte', 'Financeiro', 'Técnico', 'Atendimento'];
+    const countries = ['Brasil', 'Argentina', 'Chile', 'Uruguai'];
+    const dddCodes = ['11', '21', '31', '41', '51', '61', '71', '81', '85'];
+    
+    for (let i = 1; i <= 100; i++) {
+      const date = new Date(2025, 0, Math.floor(Math.random() * 31) + 1);
+      const hour = Math.floor(Math.random() * 24);
+      const minute = Math.floor(Math.random() * 60);
+      const duration = Math.floor(Math.random() * 300) + 30; // 30s a 5min
+      const waitTime = Math.floor(Math.random() * 120) + 10; // 10s a 2min
+      const operator = operators[Math.floor(Math.random() * operators.length)];
+      const queue = queues[Math.floor(Math.random() * queues.length)];
+      const country = countries[Math.floor(Math.random() * countries.length)];
+      const ddd = dddCodes[Math.floor(Math.random() * dddCodes.length)];
+      const phone = `${ddd}9${Math.floor(Math.random() * 90000000) + 10000000}`;
+      
+      data.push([
+        i, // Chamada
+        `Audio_${i}.mp3`, // Audio E Transcrições
+        operator, // Operador
+        date.toISOString().split('T')[0], // Data
+        `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`, // Hora
+        date.toISOString().split('T')[0], // Data Atendimento
+        `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`, // Hora Atendimento
+        country, // País
+        ddd, // DDD
+        phone, // Numero
+        queue, // Fila
+        Math.floor(Math.random() * 60) + 10, // Tempo Na Ura
+        waitTime, // Tempo De Espera
+        duration, // Tempo Falado
+        duration + waitTime, // Tempo Total
+        Math.random() > 0.8 ? 'Cliente' : 'Operador', // Desconexão
+        phone, // Telefone Entrada
+        'URA_Padrão', // Caminho U R A
+        Math.floor(Math.random() * 90000000000) + 10000000000, // Cpf/Cnpj
+        `PED${i.toString().padStart(6, '0')}`, // Pedido
+        `LIG${i.toString().padStart(8, '0')}`, // Id Ligação
+        `LIG${(i-1).toString().padStart(8, '0')}`, // Id Ligação De Origem
+        `TKT${i.toString().padStart(6, '0')}`, // I D Do Ticket
+        'Fluxo_Padrão', // Fluxo De Filas
+        Math.random() > 0.7 ? 'Qualidade_Boa' : '', // Wh_quality_reason
+        Math.random() > 0.8 ? 'Humor_Positivo' : '', // Wh_humor_reason
+        Math.random() > 0.6 ? 'Satisfatório' : '', // Questionário De Qualidade
+        Math.floor(Math.random() * 5) + 1, // Pergunta2 1 PERGUNTA ATENDENTE
+        Math.floor(Math.random() * 5) + 1, // Pergunta2 2 PERGUNTA SOLUCAO
+        date.getDate(), // Dia
+        1, // qtde
+        waitTime <= 20 ? 'Sim' : 'Não', // Até 20 Seg
+        this.getTimeRange(waitTime), // Faixa
+        date.getMonth() + 1, // Mês
+        duration, // TMA (FALADO
+        Math.floor(Math.random() * 60) + 10, // Tempo URA (seg
+        waitTime, // TME (seg)
+        duration, // TMA (seg)
+        Math.floor(Math.random() * 5) + 1, // Pergunta 1
+        Math.floor(Math.random() * 5) + 1 // Pergunta 2
+      ]);
+    }
+    
+    return data;
+  }
+
+  /**
+   * Obter faixa de tempo baseada no tempo de espera
+   */
+  private getTimeRange(waitTime: number): string {
+    if (waitTime <= 20) return '0-20s';
+    if (waitTime <= 60) return '21-60s';
+    if (waitTime <= 120) return '1-2min';
+    return '2min+';
   }
 
   /**

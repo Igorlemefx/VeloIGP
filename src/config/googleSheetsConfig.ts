@@ -35,13 +35,58 @@ export const SPREADSHEET_IDS = {
   AGENT_PERFORMANCE: '13bZBY4PDqUc8TtHE9ztBLo1XIsZ7yjJw' // Usando mesmo ID por enquanto
 };
 
-// Configuração de ranges padrão
+// Configuração de ranges padrão baseada na estrutura real da planilha
 export const DEFAULT_RANGES = {
-  CALLS_DATA: 'Dados Individuais de Chamadas!A:H',
-  HOURLY_METRICS: 'Métricas por Hora!A:E',
-  AGENT_PERFORMANCE: 'Performance por Agente!A:F',
-  MONTHLY_COMPARISON: 'Comparativo Mensal!A:G',
-  QUEUE_ANALYSIS: 'Análise por Fila!A:F'
+  CALLS_DATA: 'A:AM', // Todas as colunas da planilha principal
+  HOURLY_METRICS: 'A:AM', // Usar mesma planilha com filtros por hora
+  AGENT_PERFORMANCE: 'A:AM', // Usar mesma planilha com filtros por operador
+  MONTHLY_COMPARISON: 'A:AM', // Usar mesma planilha com filtros por mês
+  QUEUE_ANALYSIS: 'A:AM' // Usar mesma planilha com filtros por fila
+};
+
+// Mapeamento das colunas da planilha real
+export const COLUMN_MAPPING = {
+  // Colunas principais
+  CHAMADA: 'A', // Chamada
+  AUDIO_TRANSCRICOES: 'B', // Audio E Transcrições
+  OPERADOR: 'C', // Operador
+  DATA: 'D', // Data
+  HORA: 'E', // Hora
+  DATA_ATENDIMENTO: 'F', // Data Atendimento
+  HORA_ATENDIMENTO: 'G', // Hora Atendimento
+  PAIS: 'H', // País
+  DDD: 'I', // DDD
+  NUMERO: 'J', // Numero
+  FILA: 'K', // Fila
+  TEMPO_URA: 'L', // Tempo Na Ura
+  TEMPO_ESPERA: 'M', // Tempo De Espera
+  TEMPO_FALADO: 'N', // Tempo Falado
+  TEMPO_TOTAL: 'O', // Tempo Total
+  DESCONEXAO: 'P', // Desconexão
+  TELEFONE_ENTRADA: 'Q', // Telefone Entrada
+  CAMINHO_URA: 'R', // Caminho U R A
+  CPF_CNPJ: 'S', // Cpf/Cnpj
+  PEDIDO: 'T', // Pedido
+  ID_LIGACAO: 'U', // Id Ligação
+  ID_LIGACAO_ORIGEM: 'V', // Id Ligação De Origem
+  ID_TICKET: 'W', // I D Do Ticket
+  FLUXO_FILAS: 'X', // Fluxo De Filas
+  WH_QUALITY_REASON: 'Y', // Wh_quality_reason
+  WH_HUMOR_REASON: 'Z', // Wh_humor_reason
+  QUESTIONARIO_QUALIDADE: 'AA', // Questionário De Qualidade
+  PERGUNTA_ATENDENTE: 'AB', // Pergunta2 1 PERGUNTA ATENDENTE
+  PERGUNTA_SOLUCAO: 'AC', // Pergunta2 2 PERGUNTA SOLUCAO
+  DIA: 'AD', // Dia
+  QTDE: 'AE', // qtde
+  ATE_20_SEG: 'AF', // Até 20 Seg
+  FAIXA: 'AG', // Faixa
+  MES: 'AH', // Mês
+  TMA_FALADO: 'AI', // TMA (FALADO
+  TEMPO_URA_SEG: 'AJ', // Tempo URA (seg
+  TME_SEG: 'AK', // TME (seg)
+  TMA_SEG: 'AL', // TMA (seg)
+  PERGUNTA_1: 'AM', // Pergunta 1
+  PERGUNTA_2: 'AN' // Pergunta 2
 };
 
 // Validação de configuração

@@ -24,59 +24,59 @@
 
 ### 4. Estrutura da Planilha
 
-Para o sistema funcionar corretamente, a planilha deve ter as seguintes abas:
+A planilha deve ter a seguinte estrutura na **primeira linha** (cabeçalhos):
 
-#### Aba 1: "Dados Individuais de Chamadas"
 ```
-A: Data/Hora
-B: Número do Cliente
-C: Agente
-D: Duração (min)
-E: Status
-F: Fila
-G: Satisfação
-H: Observações
+A: Chamada
+B: Audio E Transcrições
+C: Operador
+D: Data
+E: Hora
+F: Data Atendimento
+G: Hora Atendimento
+H: País
+I: DDD
+J: Numero
+K: Fila
+L: Tempo Na Ura
+M: Tempo De Espera
+N: Tempo Falado
+O: Tempo Total
+P: Desconexão
+Q: Telefone Entrada
+R: Caminho U R A
+S: Cpf/Cnpj
+T: Pedido
+U: Id Ligação
+V: Id Ligação De Origem
+W: I D Do Ticket
+X: Fluxo De Filas
+Y: Wh_quality_reason
+Z: Wh_humor_reason
+AA: Questionário De Qualidade
+AB: Pergunta2 1 PERGUNTA ATENDENTE
+AC: Pergunta2 2 PERGUNTA SOLUCAO
+AD: Dia
+AE: qtde
+AF: Até 20 Seg
+AG: Faixa
+AH: Mês
+AI: TMA (FALADO
+AJ: Tempo URA (seg
+AK: TME (seg)
+AL: TMA (seg)
+AM: Pergunta 1
+AN: Pergunta 2
 ```
 
-#### Aba 2: "Métricas por Hora"
-```
-A: Hora
-B: Total de Chamadas
-C: Chamadas Atendidas
-D: Tempo Médio de Espera
-E: Taxa de Atendimento
-```
+### 5. Dados de Exemplo
 
-#### Aba 3: "Performance por Agente"
-```
-A: Nome do Agente
-B: Total de Chamadas
-C: Chamadas Atendidas
-D: Tempo Médio de Atendimento
-E: Taxa de Satisfação
-F: Observações
-```
+A partir da **segunda linha**, os dados devem seguir esta estrutura:
 
-#### Aba 4: "Comparativo Mensal"
-```
-A: Mês
-B: Total de Chamadas
-C: Taxa de Atendimento
-D: Tempo Médio de Espera
-E: Satisfação Média
-F: Agentes Ativos
-G: Observações
-```
-
-#### Aba 5: "Análise por Fila"
-```
-A: Nome da Fila
-B: Total de Chamadas
-C: Chamadas Atendidas
-D: Tempo Médio de Espera
-E: Taxa de Abandono
-F: Observações
-```
+| Chamada | Operador | Data | Hora | Fila | Tempo De Espera | Tempo Falado | ... |
+|---------|----------|------|------|------|-----------------|--------------|-----|
+| 1 | João Silva | 2025-01-10 | 09:00 | Vendas | 15 | 120 | ... |
+| 2 | Maria Santos | 2025-01-10 | 09:15 | Suporte | 30 | 180 | ... |
 
 ### 5. Testar Acesso
 
