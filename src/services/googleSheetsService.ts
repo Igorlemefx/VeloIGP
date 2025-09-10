@@ -99,18 +99,62 @@ class GoogleSheetsService {
    * Listar planilhas disponíveis (real ou simulado)
    */
   async listSpreadsheets(): Promise<SpreadsheetData[]> {
-    if (!this.isConfigured()) {
-      console.warn('Google Sheets não configurado, usando dados simulados');
+    // Sempre tentar usar a planilha real primeiro
+    try {
+      console.log('Tentando conectar com planilha real do Google Drive...');
+      return await this.getRealSpreadsheets();
+    } catch (error) {
+      console.warn('Erro ao conectar com planilha real, usando dados simulados:', error);
       return this.getMockSpreadsheets();
     }
+  }
 
+  /**
+   * Obter planilhas reais do Google Drive
+   */
+  private async getRealSpreadsheets(): Promise<SpreadsheetData[]> {
+    // Usar a API do Google Sheets para obter dados reais
+    const spreadsheetId = SPREADSHEET_IDS.MAIN_REPORTS;
+    
     try {
-      // Implementação futura para API real
-      console.log('Usando API real do Google Sheets (implementação futura)');
-      return this.getMockSpreadsheets();
+      // Fazer requisição direta para a API do Google Sheets
+      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}?key=${process.env.REACT_APP_GOOGLE_API_KEY || 'AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A'}`);
+      
+      if (!response.ok) {
+        throw new Error(`Erro na API: ${response.status}`);
+      }
+      
+      const spreadsheet = await response.json();
+      
+      // Obter dados da primeira aba
+      const sheetsResponse = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/A:AN?key=${process.env.REACT_APP_GOOGLE_API_KEY || 'AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A'}`);
+      
+      if (!sheetsResponse.ok) {
+        throw new Error(`Erro ao obter dados: ${sheetsResponse.status}`);
+      }
+      
+      const values = await sheetsResponse.json();
+      const data = values.values || [];
+      
+      const sheetData: SheetData = {
+        id: 0,
+        title: 'Dados 55PBX',
+        data: data.slice(1), // Remover cabeçalho
+        headers: data[0] || [],
+        rowCount: data.length - 1,
+        colCount: data[0]?.length || 0
+      };
+      
+      return [{
+        id: spreadsheetId,
+        title: spreadsheet.properties?.title || 'Planilha 55PBX',
+        sheets: [sheetData],
+        lastModified: new Date(spreadsheet.properties?.modifiedTime || new Date())
+      }];
+      
     } catch (error) {
-      console.error('Erro ao listar planilhas:', error);
-      return this.getMockSpreadsheets();
+      console.error('Erro ao obter planilha real:', error);
+      throw error;
     }
   }
 
@@ -234,18 +278,51 @@ class GoogleSheetsService {
    * Obter dados de uma planilha específica
    */
   async getSpreadsheetData(spreadsheetId: string, range?: string): Promise<SheetData[]> {
-    if (!this.isConfigured()) {
-      console.warn('Google Sheets não configurado, usando dados simulados');
+    try {
+      console.log('Tentando obter dados reais da planilha...');
+      return await this.getRealSpreadsheetData(spreadsheetId, range);
+    } catch (error) {
+      console.warn('Erro ao obter dados reais, usando dados simulados:', error);
       return this.generateMockData(spreadsheetId);
     }
+  }
 
+  /**
+   * Obter dados reais da planilha
+   */
+  private async getRealSpreadsheetData(spreadsheetId: string, range?: string): Promise<SheetData[]> {
+    const apiKey = process.env.REACT_APP_GOOGLE_API_KEY || 'AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A';
+    const rangeToUse = range || 'A:AN';
+    
     try {
-      // Implementação futura para API real
-      console.log('Usando API real do Google Sheets (implementação futura)');
-      return this.generateMockData(spreadsheetId);
+      // Obter dados da planilha
+      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${rangeToUse}?key=${apiKey}`);
+      
+      if (!response.ok) {
+        throw new Error(`Erro na API: ${response.status} - ${response.statusText}`);
+      }
+      
+      const values = await response.json();
+      const data = values.values || [];
+      
+      if (data.length === 0) {
+        throw new Error('Planilha vazia ou sem dados');
+      }
+      
+      const sheetData: SheetData = {
+        id: 0,
+        title: 'Dados 55PBX',
+        data: data.slice(1), // Remover cabeçalho
+        headers: data[0] || [],
+        rowCount: data.length - 1,
+        colCount: data[0]?.length || 0
+      };
+      
+      return [sheetData];
+      
     } catch (error) {
-      console.error('Erro ao obter dados da planilha:', error);
-      return this.generateMockData(spreadsheetId);
+      console.error('Erro ao obter dados reais da planilha:', error);
+      throw error;
     }
   }
 
