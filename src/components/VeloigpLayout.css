@@ -1,0 +1,27 @@
+.veloigp-app {
+  min-height: 100vh;
+  background-color: var(--gray-50);
+  transition: all 0.3s ease;
+}
+
+.veloigp-app[data-theme="dark"] {
+  background-color: var(--gray-900);
+  color: var(--gray-100);
+}
+
+.main-content {
+  padding-top: 80px;
+  min-height: calc(100vh - 80px);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem 0.5rem;
+  }
+}
