@@ -88,7 +88,16 @@ const VeloigpSpreadsheet: React.FC = () => {
         }
       }
     } catch (err) {
-      setError('Erro ao carregar planilhas');
+      console.error('Erro ao carregar planilhas:', err);
+      
+      // Verificar se é erro de permissão específico
+      if (err instanceof Error && err.message.includes('FAILED_PRECONDITION')) {
+        setError('Planilha não está configurada para acesso via API. Verifique as permissões da planilha no Google Drive.');
+      } else if (err instanceof Error && err.message.includes('Planilha não está configurada')) {
+        setError(err.message);
+      } else {
+        setError('Erro ao carregar planilhas');
+      }
     } finally {
       setLoading(false);
     }
@@ -331,6 +340,20 @@ const VeloigpSpreadsheet: React.FC = () => {
         <div className="error-message">
           <i className="fas fa-exclamation-triangle"></i>
           {error}
+          
+          {error.includes('permissões') && (
+            <div className="error-help">
+              <h4>🔧 Como Resolver:</h4>
+              <ol>
+                <li>Acesse sua planilha: <a href="https://docs.google.com/spreadsheets/d/1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp/edit" target="_blank" rel="noopener noreferrer">Abrir Planilha</a></li>
+                <li>Clique em "Compartilhar" (canto superior direito)</li>
+                <li>Selecione "Qualquer pessoa com o link pode visualizar"</li>
+                <li>Clique em "Concluído"</li>
+                <li>Clique em "Atualizar" acima</li>
+              </ol>
+              <p><strong>📖 Guia Completo:</strong> <a href="/SOLUCAO_ERRO_400.md" target="_blank">Ver Solução Detalhada</a></p>
+            </div>
+          )}
         </div>
       )}
 

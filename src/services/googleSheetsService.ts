@@ -165,6 +165,12 @@ class GoogleSheetsService {
       
     } catch (error) {
       console.error('❌ Erro ao obter planilha real:', error);
+      
+      // Verificar se é erro de permissão específico
+      if (error instanceof Error && error.message.includes('FAILED_PRECONDITION')) {
+        throw new Error('Planilha não está configurada para acesso via API. Verifique as permissões da planilha.');
+      }
+      
       throw error;
     }
   }
