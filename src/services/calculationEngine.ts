@@ -364,7 +364,7 @@ class CalculationEngine {
   /**
    * Converter dados de planilha para formato CallData
    */
-  private convertSpreadsheetToCallData(spreadsheetData: any[][]): CallData[] {
+  convertSpreadsheetToCallData(spreadsheetData: any[][]): CallData[] {
     if (spreadsheetData.length < 2) {
       throw new Error('Planilha deve ter pelo menos cabeçalho e uma linha de dados');
     }

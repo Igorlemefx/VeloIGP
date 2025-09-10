@@ -140,8 +140,8 @@ class SpreadsheetDataService {
     
     try {
       // Carregar dados da planilha
-      const spreadsheet = await googleSheetsService.getSpreadsheetData(spreadsheetId);
-      const sheet = spreadsheet.sheets.find(s => s.id === sheetId);
+      const sheets = await googleSheetsService.getSpreadsheetData(spreadsheetId);
+      const sheet = sheets.find(s => s.id.toString() === sheetId);
       
       if (!sheet) {
         throw new Error('Aba não encontrada');
