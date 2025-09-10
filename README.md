@@ -1,46 +1,105 @@
-# Getting Started with Create React App
+# Dashboard 55PBX - React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dashboard em React para visualização de relatórios e métricas do sistema 55PBX.
 
-## Available Scripts
+## 🚀 Funcionalidades
 
-In the project directory, you can run:
+- Dashboard responsivo para métricas PBX
+- Integração com API 55PBX
+- Busca automática de dados dos últimos 3 meses
+- Tratamento de estados de carregamento e erro
+- Interface limpa e moderna
 
-### `npm start`
+## 🛠️ Tecnologias
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React 18** - Biblioteca para interfaces de usuário
+- **Axios** - Cliente HTTP para requisições à API
+- **CSS3** - Estilização moderna e responsiva
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 📋 Pré-requisitos
 
-### `npm test`
+- Node.js (versão 14 ou superior)
+- npm ou yarn
+- Token de acesso à API 55PBX
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔧 Instalação
 
-### `npm run build`
+1. Clone o repositório:
+```bash
+git clone https://github.com/SEU_USUARIO/meu-projeto-react.git
+cd meu-projeto-react
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Instale as dependências:
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Configure o token da API:
+   - Abra o arquivo `src/services/api55pbx.js`
+   - Substitua `SEU_TOKEN_AQUI` pelo seu token real da API 55PBX
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Execute o projeto:
+```bash
+npm start
+```
 
-### `npm run eject`
+O projeto estará disponível em `http://localhost:3000`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 📁 Estrutura do Projeto
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+src/
+├── components/
+│   └── Dashboard.jsx      # Componente principal do dashboard
+├── services/
+│   └── api55pbx.js       # Serviços de comunicação com a API
+├── App.js                 # Componente raiz da aplicação
+├── index.js              # Ponto de entrada da aplicação
+└── index.css             # Estilos globais
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🔌 Configuração da API
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+O projeto está configurado para consumir a API 55PBX:
+- **URL Base**: `https://reportapi02.55pbx.com:50500/api/pbx/reports/metrics`
+- **Endpoint**: `/report_01` para métricas gerais
+- **Autenticação**: Bearer Token
 
-## Learn More
+## 📊 Uso
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Após a configuração, o dashboard irá:
+1. Carregar automaticamente ao ser aberto
+2. Buscar dados dos últimos 3 meses
+3. Exibir métricas e relatórios em tempo real
+4. Mostrar indicadores de carregamento e tratamento de erros
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🚀 Deploy
+
+Para fazer o build de produção:
+
+```bash
+npm run build
+```
+
+Os arquivos otimizados estarão na pasta `build/`.
+
+## 🤝 Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 📞 Suporte
+
+Para dúvidas ou suporte, entre em contato através das issues do GitHub.
+
+---
+
+**Desenvolvido com ❤️ usando React**
