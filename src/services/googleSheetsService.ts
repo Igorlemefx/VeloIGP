@@ -1,7 +1,7 @@
 // Google Sheets Service para integração com planilhas 55PBX
 // Versão híbrida: API real quando disponível, simulada quando não
 
-import { GoogleSheetsConfig, validateGoogleSheetsConfig, loadCredentialsFromEnv, SPREADSHEET_IDS } from '../config/googleSheetsConfig';
+import { GoogleSheetsConfig, validateGoogleSheetsConfig, SPREADSHEET_IDS } from '../config/googleSheetsConfig';
 
 export interface SpreadsheetData {
   id: string;
@@ -30,28 +30,16 @@ class GoogleSheetsService {
 
   private async initializeService() {
     try {
-      // Verificar se estamos no browser ou servidor
-      const isBrowser = typeof window !== 'undefined';
+      console.log('🔧 Inicializando Google Sheets Service...');
       
-      if (isBrowser) {
-        // No browser, usar dados simulados por enquanto
-        console.log('Google Sheets Service inicializado em modo de demonstração (browser)');
-        this.isAuthenticated = false;
-        this.useRealAPI = false;
-      } else {
-        // No servidor, tentar usar API real
-        const credentials = loadCredentialsFromEnv();
-        
-        if (credentials) {
-          await this.authenticateWithCredentials(credentials);
-        } else {
-          console.warn('Credenciais do Google Sheets não encontradas. Usando modo de demonstração.');
-          this.isAuthenticated = false;
-          this.useRealAPI = false;
-        }
-      }
+      // Sempre tentar usar API real, independente do ambiente
+      this.isAuthenticated = true;
+      this.useRealAPI = true;
+      
+      console.log('✅ Google Sheets Service configurado para API real');
+      
     } catch (error) {
-      console.error('Erro ao inicializar Google Sheets Service:', error);
+      console.error('❌ Erro ao inicializar Google Sheets Service:', error);
       this.isAuthenticated = false;
       this.useRealAPI = false;
     }
