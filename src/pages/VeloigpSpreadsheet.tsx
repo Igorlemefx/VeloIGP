@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { googleSheetsService, SpreadsheetData, SheetData } from '../services/googleSheetsService';
 import { calculationEngine } from '../services/calculationEngine';
 import './VeloigpSpreadsheet.css';
+import '../styles/filters.css';
+
+interface SpreadsheetFilters {
+  operador?: string[];
+  fila?: string[];
+  dataInicio?: string;
+  dataFim?: string;
+  status?: string[];
+  qualidadeMinima?: number;
+}
 
 const VeloigpSpreadsheet: React.FC = () => {
   const [spreadsheets, setSpreadsheets] = useState<SpreadsheetData[]>([]);
@@ -12,6 +22,11 @@ const VeloigpSpreadsheet: React.FC = () => {
   const [isConfigured, setIsConfigured] = useState(false);
   const [analysisData, setAnalysisData] = useState<any>(null);
   const [showAnalysis, setShowAnalysis] = useState(false);
+  const [filters, setFilters] = useState<SpreadsheetFilters>({});
+  const [filteredData, setFilteredData] = useState<any[][]>([]);
+  const [showFilters, setShowFilters] = useState(false);
+  const [availableOperators, setAvailableOperators] = useState<string[]>([]);
+  const [availableQueues, setAvailableQueues] = useState<string[]>([]);
 
   useEffect(() => {
     initializeService();
@@ -57,6 +72,17 @@ const VeloigpSpreadsheet: React.FC = () => {
     try {
       const data = await googleSheetsService.listSpreadsheets();
       setSpreadsheets(data);
+      
+      // Extrair operadores e filas únicos dos dados
+      if (data.length > 0 && data[0].sheets.length > 0) {
+        const sheetData = data[0].sheets[0];
+        if (sheetData.data.length > 0) {
+          const operators = Array.from(new Set(sheetData.data.map(row => row[2]).filter(Boolean))) as string[];
+          const queues = Array.from(new Set(sheetData.data.map(row => row[10]).filter(Boolean))) as string[];
+          setAvailableOperators(operators);
+          setAvailableQueues(queues);
+        }
+      }
     } catch (err) {
       setError('Erro ao carregar planilhas');
     } finally {
@@ -79,6 +105,62 @@ const VeloigpSpreadsheet: React.FC = () => {
 
   const selectSheet = (sheet: SheetData) => {
     setSelectedSheet(sheet);
+    setFilteredData(sheet.data);
+  };
+
+  const applyFilters = () => {
+    if (!selectedSheet?.data) return;
+    
+    let filtered = selectedSheet.data;
+    
+    // Filtro por operador
+    if (filters.operador && filters.operador.length > 0) {
+      filtered = filtered.filter(row => filters.operador!.includes(row[2]));
+    }
+    
+    // Filtro por fila
+    if (filters.fila && filters.fila.length > 0) {
+      filtered = filtered.filter(row => filters.fila!.includes(row[10]));
+    }
+    
+    // Filtro por data
+    if (filters.dataInicio) {
+      filtered = filtered.filter(row => {
+        const rowDate = new Date(row[3]);
+        const startDate = new Date(filters.dataInicio!);
+        return rowDate >= startDate;
+      });
+    }
+    
+    if (filters.dataFim) {
+      filtered = filtered.filter(row => {
+        const rowDate = new Date(row[3]);
+        const endDate = new Date(filters.dataFim!);
+        return rowDate <= endDate;
+      });
+    }
+    
+    // Filtro por qualidade mínima
+    if (filters.qualidadeMinima) {
+      filtered = filtered.filter(row => {
+        const qualidade = parseFloat(row[27]) || 0; // Pergunta 1
+        return qualidade >= filters.qualidadeMinima!;
+      });
+    }
+    
+    setFilteredData(filtered);
+  };
+
+  const clearFilters = () => {
+    setFilters({});
+    setFilteredData(selectedSheet?.data || []);
+  };
+
+  const handleFilterChange = (key: keyof SpreadsheetFilters, value: any) => {
+    setFilters(prev => ({
+      ...prev,
+      [key]: value
+    }));
   };
 
   const exportData = (format: 'csv' | 'excel') => {
@@ -128,6 +210,15 @@ const VeloigpSpreadsheet: React.FC = () => {
       <div className="spreadsheet-header">
         <h1>Planilhas 55PBX</h1>
         <div className="header-actions">
+          {selectedSheet && (
+            <button 
+              className="btn-filters" 
+              onClick={() => setShowFilters(!showFilters)}
+            >
+              <i className="fas fa-filter"></i>
+              Filtros
+            </button>
+          )}
           <button 
             className="btn-refresh" 
             onClick={loadSpreadsheets}
@@ -138,6 +229,99 @@ const VeloigpSpreadsheet: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* Seção de Filtros */}
+      {showFilters && selectedSheet && (
+        <div className="filters-section">
+          <div className="filters-header">
+            <h3>Filtros Avançados</h3>
+            <button className="btn-clear" onClick={clearFilters}>
+              <i className="fas fa-times"></i>
+              Limpar
+            </button>
+          </div>
+          
+          <div className="filters-grid">
+            {/* Filtro por Operador */}
+            <div className="filter-group">
+              <label>Operador:</label>
+              <select 
+                multiple
+                value={filters.operador || []}
+                onChange={(e) => {
+                  const values = Array.from(e.target.selectedOptions, option => option.value);
+                  handleFilterChange('operador', values);
+                }}
+              >
+                {availableOperators.map(op => (
+                  <option key={op} value={op}>{op}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Filtro por Fila */}
+            <div className="filter-group">
+              <label>Fila:</label>
+              <select 
+                multiple
+                value={filters.fila || []}
+                onChange={(e) => {
+                  const values = Array.from(e.target.selectedOptions, option => option.value);
+                  handleFilterChange('fila', values);
+                }}
+              >
+                {availableQueues.map(queue => (
+                  <option key={queue} value={queue}>{queue}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Filtro por Data Início */}
+            <div className="filter-group">
+              <label>Data Início:</label>
+              <input 
+                type="date"
+                value={filters.dataInicio || ''}
+                onChange={(e) => handleFilterChange('dataInicio', e.target.value)}
+              />
+            </div>
+
+            {/* Filtro por Data Fim */}
+            <div className="filter-group">
+              <label>Data Fim:</label>
+              <input 
+                type="date"
+                value={filters.dataFim || ''}
+                onChange={(e) => handleFilterChange('dataFim', e.target.value)}
+              />
+            </div>
+
+            {/* Filtro por Qualidade Mínima */}
+            <div className="filter-group">
+              <label>Qualidade Mínima:</label>
+              <input 
+                type="number"
+                min="1"
+                max="5"
+                step="0.1"
+                value={filters.qualidadeMinima || ''}
+                onChange={(e) => handleFilterChange('qualidadeMinima', parseFloat(e.target.value) || undefined)}
+                placeholder="1-5"
+              />
+            </div>
+          </div>
+
+          <div className="filters-actions">
+            <button className="btn-apply" onClick={applyFilters}>
+              <i className="fas fa-search"></i>
+              Aplicar Filtros
+            </button>
+            <span className="filter-results">
+              {filteredData.length} de {selectedSheet.data.length} registros
+            </span>
+          </div>
+        </div>
+      )}
 
       {error && (
         <div className="error-message">
@@ -247,7 +431,7 @@ const VeloigpSpreadsheet: React.FC = () => {
                 <div className="data-header">
                   <h3>{selectedSheet.title}</h3>
                   <div className="data-stats">
-                    <span>{selectedSheet.rowCount} linhas</span>
+                    <span>{filteredData.length} de {selectedSheet.rowCount} linhas</span>
                     <span>{selectedSheet.colCount} colunas</span>
                   </div>
                 </div>
@@ -262,7 +446,7 @@ const VeloigpSpreadsheet: React.FC = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {selectedSheet.data.map((row, rowIndex) => (
+                      {filteredData.map((row, rowIndex) => (
                         <tr key={rowIndex}>
                           {row.map((cell, cellIndex) => (
                             <td key={cellIndex}>{cell}</td>
