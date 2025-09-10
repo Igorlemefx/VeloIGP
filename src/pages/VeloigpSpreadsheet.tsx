@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { googleSheetsService, SpreadsheetData, SheetData } from '../services/googleSheetsService';
+import { calculationEngine } from '../services/calculationEngine';
 import './VeloigpSpreadsheet.css';
 
 const VeloigpSpreadsheet: React.FC = () => {
@@ -9,6 +10,8 @@ const VeloigpSpreadsheet: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isConfigured, setIsConfigured] = useState(false);
+  const [analysisData, setAnalysisData] = useState<any>(null);
+  const [showAnalysis, setShowAnalysis] = useState(false);
 
   useEffect(() => {
     initializeService();
@@ -72,6 +75,25 @@ const VeloigpSpreadsheet: React.FC = () => {
       googleSheetsService.exportToCSV(selectedSheet.data, filename);
     } else {
       googleSheetsService.exportToExcel(selectedSheet.data, filename);
+    }
+  };
+
+  const analyzeData = async () => {
+    if (!selectedSheet) return;
+    
+    setLoading(true);
+    setError(null);
+    
+    try {
+      // Processar dados da planilha usando o motor de cálculo
+      const report = await calculationEngine.generateSpreadsheetReport(selectedSheet.data);
+      setAnalysisData(report);
+      setShowAnalysis(true);
+    } catch (err) {
+      setError('Erro ao analisar dados da planilha');
+      console.error('Erro na análise:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -154,6 +176,14 @@ const VeloigpSpreadsheet: React.FC = () => {
               <h2>{selectedSpreadsheet.title}</h2>
               <div className="details-actions">
                 <button 
+                  className="btn-analyze"
+                  onClick={analyzeData}
+                  disabled={!selectedSheet || loading}
+                >
+                  <i className="fas fa-chart-line"></i>
+                  {loading ? 'Analisando...' : 'Analisar Dados'}
+                </button>
+                <button 
                   className="btn-export"
                   onClick={() => exportData('csv')}
                   disabled={!selectedSheet}
@@ -226,6 +256,83 @@ const VeloigpSpreadsheet: React.FC = () => {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              </div>
+            )}
+
+            {/* Análise de Dados */}
+            {showAnalysis && analysisData && (
+              <div className="analysis-section">
+                <div className="analysis-header">
+                  <h3>Análise de Dados - {selectedSheet?.title}</h3>
+                  <button 
+                    className="btn-close-analysis"
+                    onClick={() => setShowAnalysis(false)}
+                  >
+                    <i className="fas fa-times"></i>
+                  </button>
+                </div>
+
+                <div className="analysis-content">
+                  {/* Métricas Principais */}
+                  <div className="analysis-metrics">
+                    <h4>Métricas Principais</h4>
+                    <div className="metrics-grid">
+                      <div className="metric-item">
+                        <span className="metric-label">Total de Chamadas:</span>
+                        <span className="metric-value">{analysisData.summary.totalCalls}</span>
+                      </div>
+                      <div className="metric-item">
+                        <span className="metric-label">Taxa de Atendimento:</span>
+                        <span className="metric-value">{analysisData.summary.answerRate.toFixed(1)}%</span>
+                      </div>
+                      <div className="metric-item">
+                        <span className="metric-label">Tempo Médio de Espera:</span>
+                        <span className="metric-value">{analysisData.summary.averageWaitTime.toFixed(1)} min</span>
+                      </div>
+                      <div className="metric-item">
+                        <span className="metric-label">Satisfação Média:</span>
+                        <span className="metric-value">{analysisData.summary.averageSatisfaction.toFixed(1)}/5</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Qualidade dos Dados */}
+                  <div className="data-quality">
+                    <h4>Qualidade dos Dados</h4>
+                    <div className="quality-indicator">
+                      <div className="quality-bar">
+                        <div 
+                          className="quality-fill" 
+                          style={{ width: `${analysisData.dataQuality.dataQuality}%` }}
+                        ></div>
+                      </div>
+                      <span className="quality-percentage">{analysisData.dataQuality.dataQuality.toFixed(1)}%</span>
+                    </div>
+                    {analysisData.dataQuality.warnings.length > 0 && (
+                      <div className="quality-warnings">
+                        <h5>Avisos:</h5>
+                        <ul>
+                          {analysisData.dataQuality.warnings.map((warning: string, index: number) => (
+                            <li key={index}>{warning}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Recomendações */}
+                  <div className="recommendations">
+                    <h4>Recomendações</h4>
+                    <div className="recommendations-list">
+                      {analysisData.recommendations.map((recommendation: string, index: number) => (
+                        <div key={index} className="recommendation-item">
+                          <i className="fas fa-lightbulb"></i>
+                          <span>{recommendation}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             )}

@@ -252,6 +252,32 @@
   cursor: not-allowed;
 }
 
+.btn-analyze {
+  background: linear-gradient(135deg, #6f42c1, #5a32a3);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-analyze:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5a32a3, #4c2a8a);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(111, 66, 193, 0.3);
+}
+
+.btn-analyze:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Lista de Abas */
 .sheets-list {
   margin-bottom: 25px;
@@ -472,5 +498,217 @@
   .data-table th,
   .data-table td {
     padding: 8px 10px;
+  }
+}
+
+/* Análise de Dados */
+.analysis-section {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.analysis-header h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.btn-close-analysis {
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-close-analysis:hover {
+  background: #5a6268;
+  transform: scale(1.1);
+}
+
+.analysis-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.analysis-metrics h4,
+.data-quality h4,
+.recommendations h4 {
+  color: #495057;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.metric-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.metric-label {
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.metric-value {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Qualidade dos Dados */
+.quality-indicator {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quality-bar {
+  flex: 1;
+  height: 20px;
+  background: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.quality-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #dc3545 0%, #ffc107 50%, #28a745 100%);
+  transition: width 0.5s ease;
+}
+
+.quality-percentage {
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 1.1rem;
+  min-width: 50px;
+  text-align: right;
+}
+
+.quality-warnings {
+  margin-top: 15px;
+  padding: 15px;
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+}
+
+.quality-warnings h5 {
+  color: #856404;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+}
+
+.quality-warnings ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.quality-warnings li {
+  color: #856404;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+/* Recomendações */
+.recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recommendation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px;
+  background: #e7f3ff;
+  border: 1px solid #b3d9ff;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.recommendation-item:hover {
+  background: #d1ecf1;
+  border-color: #bee5eb;
+  transform: translateY(-1px);
+}
+
+.recommendation-item i {
+  color: #007bff;
+  font-size: 1.1rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.recommendation-item span {
+  color: #004085;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Responsividade para Análise */
+@media (max-width: 768px) {
+  .analysis-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .metric-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .quality-indicator {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .quality-percentage {
+    text-align: center;
   }
 }

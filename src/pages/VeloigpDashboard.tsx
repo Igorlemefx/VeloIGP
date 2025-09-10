@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { calculationEngine, CallData, TimeRange } from '../services/calculationEngine';
 import './VeloigpDashboard.css';
 
 interface DashboardMetrics {
@@ -26,26 +27,50 @@ const VeloigpDashboard: React.FC = () => {
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
 
   useEffect(() => {
-    // Simular carregamento de dados da planilha
+    // Carregar dados usando o motor de cálculo
     const loadDashboardData = async () => {
       setLoading(true);
       
-      // Simular delay de API
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Dados simulados baseados em planilha 55PBX
-      setMetrics({
-        totalCalls: 1247,
-        answeredCalls: 1156,
-        missedCalls: 91,
-        averageWaitTime: 2.3,
-        peakHour: '14:30',
-        satisfactionRate: 4.2,
-        dailyTrend: 12.5
-      });
-      
-      setLoading(false);
-      setLastUpdate(new Date());
+      try {
+        // Definir período (últimas 24 horas)
+        const endTime = new Date();
+        const startTime = new Date(endTime.getTime() - 24 * 60 * 60 * 1000);
+        const timeRange: TimeRange = { start: startTime, end: endTime };
+        
+        // Gerar dados simulados usando o motor de cálculo
+        const callData: CallData[] = calculationEngine.generateMockData(timeRange);
+        
+        // Calcular métricas usando o motor
+        const calculatedMetrics = await calculationEngine.calculateMetrics(callData, timeRange);
+        
+        // Converter para formato do dashboard
+        setMetrics({
+          totalCalls: calculatedMetrics.totalCalls,
+          answeredCalls: calculatedMetrics.answeredCalls,
+          missedCalls: calculatedMetrics.missedCalls,
+          averageWaitTime: calculatedMetrics.averageWaitTime,
+          peakHour: calculatedMetrics.peakHour,
+          satisfactionRate: calculatedMetrics.averageSatisfaction,
+          dailyTrend: calculatedMetrics.dailyTrend
+        });
+        
+        setLoading(false);
+        setLastUpdate(new Date());
+        
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+        setLoading(false);
+        // Manter dados padrão em caso de erro
+        setMetrics({
+          totalCalls: 0,
+          answeredCalls: 0,
+          missedCalls: 0,
+          averageWaitTime: 0,
+          peakHour: '00:00',
+          satisfactionRate: 0,
+          dailyTrend: 0
+        });
+      }
     };
 
     loadDashboardData();
