@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { calculationEngine } from '../services/calculationEngine';
 import './VeloigpRealTime.css';
 
 const VeloigpRealTime: React.FC = () => {
@@ -38,8 +37,18 @@ const VeloigpRealTime: React.FC = () => {
 
   const loadRealTimeData = async () => {
     try {
-      const metrics = await calculationEngine.getRealTimeMetrics();
-      setRealTimeData(metrics);
+      // Simular dados em tempo real para demonstração
+      // Em produção, isso virá da API 55PBX
+      const mockData = {
+        totalCalls: Math.floor(Math.random() * 50) + 20,
+        answeredCalls: Math.floor(Math.random() * 40) + 15,
+        missedCalls: Math.floor(Math.random() * 10) + 2,
+        answerRate: Math.floor(Math.random() * 20) + 75,
+        averageWaitTime: Math.floor(Math.random() * 3) + 1,
+        averageSatisfaction: Math.floor(Math.random() * 2) + 3
+      };
+      
+      setRealTimeData(mockData);
       setLastUpdate(new Date());
     } catch (error) {
       console.error('Erro ao carregar dados em tempo real:', error);
