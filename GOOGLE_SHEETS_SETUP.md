@@ -48,8 +48,8 @@ Crie um arquivo `.env.local` na raiz do projeto com:
 ```env
 # Google Sheets API Configuration
 REACT_APP_GOOGLE_SHEETS_TYPE=service_account
-REACT_APP_GOOGLE_SHEETS_PROJECT_ID=seu-project-id
-REACT_APP_GOOGLE_SHEETS_PRIVATE_KEY_ID=sua-private-key-id
+REACT_APP_GOOGLE_SHEETS_PROJECT_ID=veloigp
+REACT_APP_GOOGLE_SHEETS_PRIVATE_KEY_ID=AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A
 REACT_APP_GOOGLE_SHEETS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nsua-private-key-aqui\n-----END PRIVATE KEY-----\n"
 REACT_APP_GOOGLE_SHEETS_CLIENT_EMAIL=seu-service-account@seu-project.iam.gserviceaccount.com
 REACT_APP_GOOGLE_SHEETS_CLIENT_ID=seu-client-id
