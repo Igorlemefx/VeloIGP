@@ -22,8 +22,23 @@ const VeloigpSpreadsheet: React.FC = () => {
     try {
       // Simular configuração do serviço
       googleSheetsService.configure({
-        apiKey: 'demo-api-key',
-        spreadsheetId: 'demo-spreadsheet-id'
+        credentials: {
+          type: 'service_account',
+          project_id: 'demo-project',
+          private_key_id: 'demo-key-id',
+          private_key: '-----BEGIN PRIVATE KEY-----\ndemo-key\n-----END PRIVATE KEY-----\n',
+          client_email: 'demo@demo.iam.gserviceaccount.com',
+          client_id: 'demo-client-id',
+          auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+          token_uri: 'https://oauth2.googleapis.com/token',
+          auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+          client_x509_cert_url: 'https://www.googleapis.com/robot/v1/metadata/x509/demo%40demo.iam.gserviceaccount.com'
+        },
+        spreadsheetId: 'demo-spreadsheet-id',
+        scopes: [
+          'https://www.googleapis.com/auth/spreadsheets.readonly',
+          'https://www.googleapis.com/auth/drive.readonly'
+        ]
       });
       
       setIsConfigured(true);
