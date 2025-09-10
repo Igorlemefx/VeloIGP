@@ -30,9 +30,9 @@ export const defaultGoogleSheetsConfig: Partial<GoogleSheetsConfig> = {
 
 // IDs das planilhas 55PBX (configurar com os IDs reais)
 export const SPREADSHEET_IDS = {
-  MAIN_REPORTS: '1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp', // ID real da planilha principal
-  MONTHLY_DATA: '1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp', // Usando mesmo ID por enquanto
-  AGENT_PERFORMANCE: '1Ksc8TwB6FG_Vn-xLbxMMOHqh61Vu60Jp' // Usando mesmo ID por enquanto
+  MAIN_REPORTS: '1IBT4S1_saLE6XbalxWV-FjzPsTFuAaSknbdgKI1FMhM', // ID real da planilha principal
+  MONTHLY_DATA: '1IBT4S1_saLE6XbalxWV-FjzPsTFuAaSknbdgKI1FMhM', // Usando mesmo ID por enquanto
+  AGENT_PERFORMANCE: '1IBT4S1_saLE6XbalxWV-FjzPsTFuAaSknbdgKI1FMhM' // Usando mesmo ID por enquanto
 };
 
 // Configuração de ranges padrão baseada na estrutura real da planilha
