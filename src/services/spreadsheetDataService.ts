@@ -136,7 +136,7 @@ class SpreadsheetDataService {
     sheetId: string, 
     period?: TimeRange
   ): Promise<SpreadsheetAnalysis> {
-    const cacheKey = `spreadsheet_${spreadsheetId}_${sheetId}`;
+    // const cacheKey = `spreadsheet_${spreadsheetId}_${sheetId}`; // Cache implementado futuramente
     
     try {
       // Carregar dados da planilha

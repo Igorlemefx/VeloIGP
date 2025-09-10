@@ -2,15 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { spreadsheetDataService, DashboardData, PeriodOption } from '../services/spreadsheetDataService';
 import './VeloigpDashboard.css';
 
-interface DashboardMetrics {
-  totalCalls: number;
-  answeredCalls: number;
-  missedCalls: number;
-  averageWaitTime: number;
-  peakHour: string;
-  satisfactionRate: number;
-  dailyTrend: number;
-}
+// Interface removida - usando DashboardData do serviço
 
 const VeloigpDashboard: React.FC = () => {
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
