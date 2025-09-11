@@ -5,14 +5,14 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+  background: var(--gray-50);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 2rem;
   margin: 0;
 }
 
 .veloigp-app[data-theme="dark"] .veloigp-home {
-  background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%);
+  background: var(--gray-800);
 }
 
 /* Background Animado Sutil */
@@ -115,7 +115,7 @@
 .title-veloigp {
   color: var(--primary-blue);
   display: block;
-  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+  color: var(--primary-blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -136,7 +136,7 @@
 .title-underline {
   width: 80px;
   height: 5px;
-  background: linear-gradient(90deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+  background: var(--primary-blue);
   margin: 1.5rem auto 0;
   border-radius: 3px;
   animation: underlineExpand 1s ease-out 1s both;
@@ -187,7 +187,7 @@
 .highlight-55pbx {
   color: var(--primary-blue);
   font-weight: 700;
-  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+  color: var(--primary-blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
