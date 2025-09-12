@@ -30,7 +30,7 @@
 .bg-circle {
   position: absolute;
   border-radius: 50%;
-  background: rgba(59, 130, 246, 0.03);
+  background: rgba(37, 99, 235, 0.03);
   animation: subtleFloat 20s ease-in-out infinite;
 }
 
@@ -124,10 +124,10 @@
 
 @keyframes titleGlow {
   0% {
-    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
+    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.3));
   }
   100% {
-    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+    filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.6));
   }
 }
 
@@ -140,7 +140,7 @@
   margin: 1.5rem auto 0;
   border-radius: 3px;
   animation: underlineExpand 1s ease-out 1s both;
-  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
 }
 
 @keyframes underlineExpand {
@@ -196,10 +196,10 @@
 
 @keyframes highlightGlow {
   0% {
-    filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3));
+    filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.3));
   }
   100% {
-    filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.6));
+    filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.6));
   }
 }
 

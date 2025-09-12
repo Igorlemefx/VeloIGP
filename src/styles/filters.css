@@ -1,7 +1,7 @@
 /* Filtros Avançados */
 .filters-section {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background: var(--surface-light);
+  border: 1px solid var(--border-light);
   border-radius: 8px;
   padding: 20px;
   margin: 20px 0;
@@ -16,12 +16,12 @@
 
 .filters-header h3 {
   margin: 0;
-  color: #495057;
+  color: var(--text-primary-light);
   font-size: 1.2rem;
 }
 
 .btn-filters {
-  background: #6c757d;
+  background: var(--text-secondary-light);
   color: white;
   border: none;
   padding: 8px 16px;
@@ -35,11 +35,11 @@
 }
 
 .btn-filters:hover {
-  background: #5a6268;
+  background: var(--text-secondary-light);
 }
 
 .btn-clear {
-  background: #dc3545;
+  background: var(--error);
   color: white;
   border: none;
   padding: 6px 12px;
@@ -53,7 +53,7 @@
 }
 
 .btn-clear:hover {
-  background: #c82333;
+  background: var(--error);
 }
 
 .filters-grid {
@@ -71,14 +71,14 @@
 
 .filter-group label {
   font-weight: 600;
-  color: #495057;
+  color: var(--text-primary-light);
   font-size: 0.9rem;
 }
 
 .filter-group select,
 .filter-group input {
   padding: 8px 12px;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border-light);
   border-radius: 4px;
   font-size: 0.9rem;
   background: white;
@@ -98,11 +98,11 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid var(--border-light);
 }
 
 .btn-apply {
-  background: #007bff;
+  background: var(--primary-blue);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -116,11 +116,11 @@
 }
 
 .btn-apply:hover {
-  background: #0056b3;
+  background: var(--primary-blue-hover);
 }
 
 .filter-results {
-  color: #6c757d;
+  color: var(--text-secondary-light);
   font-size: 0.9rem;
   font-weight: 500;
 }

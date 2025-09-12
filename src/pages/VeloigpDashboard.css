@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   min-height: 400px;
-  color: #666;
+  color: var(--text-secondary-light);
 }
 
 .loading-spinner {
@@ -67,7 +67,7 @@
 .period-select:focus {
   outline: none;
   border-color: var(--primary-blue);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .period-select:hover {
@@ -134,7 +134,7 @@
 .dashboard-error button:hover {
   background: var(--error);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
 }
 
 .last-update i {
@@ -180,7 +180,7 @@
 }
 
 .metric-card.info {
-  border-left-color: #17a2b8;
+  border-left-color: var(--info);
 }
 
 .metric-card.secondary {
@@ -188,7 +188,7 @@
 }
 
 .metric-card.accent {
-  border-left-color: #fd7e14;
+  border-left-color: var(--warning);
 }
 
 .metric-icon {
@@ -216,7 +216,7 @@
 }
 
 .metric-card.info .metric-icon {
-  background: #17a2b8;
+  background: var(--info);
 }
 
 .metric-card.secondary .metric-icon {
@@ -224,7 +224,7 @@
 }
 
 .metric-card.accent .metric-icon {
-  background: #fd7e14;
+  background: var(--warning);
 }
 
 .metric-content {
@@ -264,7 +264,7 @@
 }
 
 .metric-trend.positive {
-  color: #28a745;
+  color: var(--success);
 }
 
 .metric-trend.negative {
@@ -369,7 +369,7 @@
 .action-btn:hover {
   background: var(--primary-blue-dark);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
 }
 
 .action-btn i {
