@@ -64,12 +64,19 @@ const VeloigpManualReports: React.FC = () => {
   useEffect(() => {
     const initializeSystem = async () => {
       console.log('🚀 Iniciando sistema VeloIGP...');
+      console.log('📊 Estado atual:', { isInitialized, isLoading, error, processedData: processedData?.length });
       
       try {
         // Inicializar MCP Service se não estiver inicializado
         if (!isInitialized && !isLoading) {
           console.log('🔄 Inicializando MCP Google Sheets Service...');
           await processDataForAnalysis();
+        } else if (isInitialized && processedData && processedData.length > 0) {
+          console.log('✅ MCP já inicializado e dados disponíveis');
+        } else if (isLoading) {
+          console.log('⏳ Aguardando carregamento...');
+        } else if (error) {
+          console.log('❌ Erro no sistema:', error);
         }
       } catch (err) {
         console.error('❌ Erro na inicialização:', err);
@@ -78,20 +85,24 @@ const VeloigpManualReports: React.FC = () => {
     };
 
     initializeSystem();
-  }, [isInitialized, isLoading, processDataForAnalysis]);
+  }, [isInitialized, isLoading, error, processedData, processDataForAnalysis]);
 
   const processRawData = useCallback(async () => {
-    if (!processedData) return;
+    if (!processedData) {
+      console.log('⚠️ Nenhum dado processado disponível');
+      return;
+    }
+
+    console.log('🔄 Processando dados brutos da planilha...');
+    console.log('📊 Dados recebidos:', processedData.length, 'linhas');
+    console.log('📋 Primeira linha de exemplo:', processedData[0]);
+    console.log('🔍 Chaves disponíveis na primeira linha:', Object.keys(processedData[0] || {}));
 
     setIsProcessing(true);
     try {
-      console.log('🔄 Processando dados brutos da planilha...');
-      console.log('📊 Dados recebidos:', processedData.length, 'linhas');
-      console.log('📋 Primeira linha de exemplo:', processedData[0]);
-      console.log('🔍 Chaves disponíveis na primeira linha:', Object.keys(processedData[0] || {}));
-
       // Usar o processador aprimorado com motores de cálculo
       const processed = processor.processRawData(processedData);
+      console.log('📈 Dados processados pelo processor:', processed.length, 'chamadas');
 
       setRawData(processed);
 
@@ -101,7 +112,13 @@ const VeloigpManualReports: React.FC = () => {
       setFiltroSelecionado(periodFilters[0]); // Selecionar "Ontem" por padrão
 
       console.log('✅ Dados processados conforme manual:', processed.length, 'chamadas atendidas');
-      showSuccess('Dados Processados', `Sistema carregado com ${processed.length} chamadas atendidas!`);
+      console.log('📅 Filtros gerados:', periodFilters.length);
+      
+      if (processed.length > 0) {
+        showSuccess('Dados Processados', `Sistema carregado com ${processed.length} chamadas atendidas!`);
+      } else {
+        showError('Nenhum Dado', 'Nenhuma chamada atendida encontrada na planilha');
+      }
     } catch (err: any) {
       console.error('❌ Erro ao processar dados:', err);
       showError('Erro no Processamento', `Erro: ${err.message}`);
