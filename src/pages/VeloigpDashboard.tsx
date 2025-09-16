@@ -1,67 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import { spreadsheetDataService, DashboardData, PeriodOption } from '../services/spreadsheetDataService';
+import SimpleFunctionalLoading from '../components/ui/SimpleFunctionalLoading';
+import { useInstantData } from '../hooks/useInstantData';
 import './VeloigpDashboard.css';
 
-// Interface removida - usando DashboardData do serviço
+interface DashboardStats {
+  totalChamadas: number;
+  chamadasAtendidas: number;
+  chamadasPerdidas: number;
+  taxaAtendimento: number;
+  tempoMedioAtendimento: number;
+  tempoMedioEspera: number;
+  satisfacaoMedia: number;
+  periodo: {
+    inicio: string;
+    fim: string;
+  };
+}
 
 const VeloigpDashboard: React.FC = () => {
-  const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [selectedPeriod, setSelectedPeriod] = useState<string>('last-month');
-  const [periodOptions, setPeriodOptions] = useState<PeriodOption[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [operadores, setOperadores] = useState<any[]>([]);
+  const [periodos, setPeriodos] = useState<any[]>([]);
+  const [filas, setFilas] = useState<any[]>([]);
+
+  // Hook de dados instantâneos
+  const {
+    data: cachedData,
+    isLoading,
+    error,
+    isLoaded,
+    reload,
+    clearError
+  } = useInstantData();
 
   useEffect(() => {
-    // Carregar opções de período
-    const loadPeriodOptions = () => {
-      const options = spreadsheetDataService.getPeriodOptions();
-      setPeriodOptions(options);
-    };
-
-    loadPeriodOptions();
-  }, []);
-
-  useEffect(() => {
-    // Carregar dados do dashboard
-    const loadDashboardData = async () => {
-      setLoading(true);
-      setError(null);
-      
-      try {
-        const data = await spreadsheetDataService.loadDashboardData(selectedPeriod);
-        setDashboardData(data);
-      } catch (err) {
-        console.error('Erro ao carregar dados:', err);
-        setError('Erro ao carregar dados do dashboard');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (periodOptions.length > 0) {
-      loadDashboardData();
+    if (cachedData) {
+      setStats(cachedData.analysisData);
+      setOperadores(cachedData.operatorProfiles);
+      setPeriodos(cachedData.periodComparisons);
+      setFilas(cachedData.queueAnalysis);
+      console.log('✅ Dados do dashboard carregados com sucesso');
     }
-  }, [selectedPeriod, periodOptions]);
+  }, [cachedData]);
 
-  const handlePeriodChange = (periodId: string) => {
-    setSelectedPeriod(periodId);
+  const formatTime = (seconds: number): string => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+    
+    if (hours > 0) {
+      return `${hours}h ${minutes}m ${secs}s`;
+    } else if (minutes > 0) {
+      return `${minutes}m ${secs}s`;
+    } else {
+      return `${secs}s`;
+    }
   };
 
-  const answerRate = dashboardData?.metrics?.totalCalls && dashboardData.metrics.totalCalls > 0 
-    ? (dashboardData.metrics.answeredCalls / dashboardData.metrics.totalCalls * 100).toFixed(1) 
-    : 0;
-  const missRate = dashboardData?.metrics?.totalCalls && dashboardData.metrics.totalCalls > 0 
-    ? (dashboardData.metrics.missedCalls / dashboardData.metrics.totalCalls * 100).toFixed(1) 
-    : 0;
 
-  if (loading) {
+  // Loading real
+  if (isLoading && !isLoaded) {
     return (
-      <div className="container-main">
-        <div className="dashboard-loading">
-          <div className="loading-spinner"></div>
-          <p>Carregando dados da planilha...</p>
-        </div>
-      </div>
+      <SimpleFunctionalLoading
+        message="Carregando dados do dashboard..."
+        showProgress={true}
+        progress={95}
+      />
     );
   }
 
@@ -72,7 +76,7 @@ const VeloigpDashboard: React.FC = () => {
           <i className="fas fa-exclamation-triangle"></i>
           <h3>Erro ao Carregar Dados</h3>
           <p>{error}</p>
-          <button onClick={() => window.location.reload()}>
+          <button onClick={reload}>
             <i className="fas fa-sync-alt"></i>
             Tentar Novamente
           </button>
@@ -86,153 +90,186 @@ const VeloigpDashboard: React.FC = () => {
       <div className="dashboard-header">
         <h1>Dashboard Geral - 55PBX</h1>
         <div className="header-controls">
-          <div className="period-selector">
-            <label htmlFor="period-select">Período:</label>
-            <select 
-              id="period-select"
-              value={selectedPeriod} 
-              onChange={(e) => handlePeriodChange(e.target.value)}
-              className="period-select"
-            >
-              {periodOptions.map(option => (
-                <option key={option.id} value={option.id}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+          <div className="period-info">
+            <span>Período: {stats?.periodo.inicio} até {stats?.periodo.fim}</span>
           </div>
-          <div className="last-update">
-            <i className="fas fa-clock"></i>
-            <span>Última atualização: {dashboardData?.lastUpdate.toLocaleTimeString() || 'N/A'}</span>
-          </div>
+          <button onClick={reload}>
+            <i className="fas fa-sync-alt"></i>
+            Atualizar
+          </button>
         </div>
       </div>
 
+      {/* Métricas Principais */}
       <div className="metrics-grid">
-        {/* Total de Chamadas */}
         <div className="metric-card primary">
           <div className="metric-icon">
             <i className="fas fa-phone"></i>
           </div>
           <div className="metric-content">
             <h3>Total de Chamadas</h3>
-            <div className="metric-value">{dashboardData?.metrics.totalCalls.toLocaleString() || 0}</div>
-            <div className="metric-trend positive">
-              <i className="fas fa-arrow-up"></i>
-              +{dashboardData?.metrics.dailyTrend || 0}% vs ontem
-            </div>
+            <div className="metric-value">{stats?.totalChamadas.toLocaleString() || 0}</div>
+            <div className="metric-subtitle">Período completo</div>
           </div>
         </div>
 
-        {/* Chamadas Atendidas */}
         <div className="metric-card success">
           <div className="metric-icon">
             <i className="fas fa-phone-volume"></i>
           </div>
           <div className="metric-content">
             <h3>Chamadas Atendidas</h3>
-            <div className="metric-value">{dashboardData?.metrics.answeredCalls.toLocaleString() || 0}</div>
-            <div className="metric-rate">{answerRate}% de atendimento</div>
+            <div className="metric-value">{stats?.chamadasAtendidas.toLocaleString() || 0}</div>
+            <div className="metric-rate">{stats?.taxaAtendimento.toFixed(1)}% de atendimento</div>
           </div>
         </div>
 
-        {/* Chamadas Perdidas */}
         <div className="metric-card warning">
           <div className="metric-icon">
             <i className="fas fa-phone-slash"></i>
           </div>
           <div className="metric-content">
             <h3>Chamadas Perdidas</h3>
-            <div className="metric-value">{dashboardData?.metrics.missedCalls.toLocaleString() || 0}</div>
-            <div className="metric-rate">{missRate}% de perda</div>
+            <div className="metric-value">{stats?.chamadasPerdidas.toLocaleString() || 0}</div>
+            <div className="metric-rate">{(100 - (stats?.taxaAtendimento || 0)).toFixed(1)}% de perda</div>
           </div>
         </div>
 
-        {/* Tempo Médio de Espera */}
         <div className="metric-card info">
           <div className="metric-icon">
             <i className="fas fa-clock"></i>
           </div>
           <div className="metric-content">
             <h3>Tempo Médio de Espera</h3>
-            <div className="metric-value">{dashboardData?.metrics.averageWaitTime || 0} min</div>
+            <div className="metric-value">{formatTime(stats?.tempoMedioEspera || 0)}</div>
             <div className="metric-subtitle">Tempo médio na fila</div>
           </div>
         </div>
 
-        {/* Hora Pico */}
         <div className="metric-card secondary">
           <div className="metric-icon">
-            <i className="fas fa-chart-line"></i>
+            <i className="fas fa-microphone"></i>
           </div>
           <div className="metric-content">
-            <h3>Hora Pico</h3>
-            <div className="metric-value">{dashboardData?.metrics.peakHour || '00:00'}</div>
-            <div className="metric-subtitle">Maior volume de chamadas</div>
+            <h3>Tempo Médio de Atendimento</h3>
+            <div className="metric-value">{formatTime(stats?.tempoMedioAtendimento || 0)}</div>
+            <div className="metric-subtitle">Tempo médio de conversa</div>
           </div>
         </div>
 
-        {/* Taxa de Satisfação */}
         <div className="metric-card accent">
           <div className="metric-icon">
             <i className="fas fa-star"></i>
           </div>
           <div className="metric-content">
-            <h3>Satisfação</h3>
-            <div className="metric-value">{dashboardData?.metrics.averageSatisfaction || 0}/5</div>
-            <div className="metric-subtitle">Avaliação média</div>
+            <h3>Satisfação Média</h3>
+            <div className="metric-value">{stats?.satisfacaoMedia.toFixed(1) || 0}</div>
+            <div className="metric-subtitle">Avaliação de 1 a 5</div>
           </div>
         </div>
       </div>
 
-      {/* Resumo Executivo */}
-      <div className="executive-summary">
-        <h2>Resumo Executivo</h2>
-        <div className="summary-grid">
-          <div className="summary-item">
-            <h4>Performance Geral</h4>
-            <p>
-              O sistema apresentou <strong>{answerRate}% de taxa de atendimento</strong>, 
-              com <strong>{dashboardData?.metrics.totalCalls || 0} chamadas</strong> processadas hoje.
-            </p>
-          </div>
-          <div className="summary-item">
-            <h4>Eficiência Operacional</h4>
-            <p>
-              Tempo médio de espera de <strong>{dashboardData?.metrics.averageWaitTime || 0} minutos</strong>, 
-              com pico de atividade às <strong>{dashboardData?.metrics.peakHour || '00:00'}</strong>.
-            </p>
-          </div>
-          <div className="summary-item">
-            <h4>Qualidade do Atendimento</h4>
-            <p>
-              Taxa de satisfação de <strong>{dashboardData?.metrics.averageSatisfaction || 0}/5</strong>, 
-              com <strong>{dashboardData?.metrics.missedCalls || 0} chamadas perdidas</strong>.
-            </p>
-          </div>
+      {/* Operadores */}
+      <div className="dashboard-section">
+        <h2>Performance dos Operadores</h2>
+        <div className="operators-grid">
+          {operadores.slice(0, 6).map((operador, index) => (
+            <div key={index} className="operator-card">
+              <div className="operator-header">
+                <h4>{operador.nome}</h4>
+                <div className="operator-status">
+                  <span className={`status-badge ${operador.taxaAtendimento >= 90 ? 'excellent' : operador.taxaAtendimento >= 70 ? 'good' : 'regular'}`}>
+                    {operador.taxaAtendimento.toFixed(1)}%
+                  </span>
+                </div>
+              </div>
+              <div className="operator-stats">
+                <div className="stat">
+                  <span className="stat-label">Chamadas:</span>
+                  <span className="stat-value">{operador.totalChamadas}</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-label">Atendidas:</span>
+                  <span className="stat-value">{operador.chamadasAtendidas}</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-label">Satisfação:</span>
+                  <span className="stat-value">{operador.satisfacaoMedia.toFixed(1)}</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-label">Filas:</span>
+                  <span className="stat-value">{operador.filas.join(', ')}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Ações Rápidas */}
-      <div className="quick-actions">
-        <h3>Ações Rápidas</h3>
-        <div className="actions-grid">
-          <button className="action-btn">
-            <i className="fas fa-download"></i>
-            Exportar Relatório
-          </button>
-          <button className="action-btn">
-            <i className="fas fa-chart-bar"></i>
-            Ver Detalhes
-          </button>
-          <button className="action-btn">
-            <i className="fas fa-cog"></i>
-            Configurar Alertas
-          </button>
-          <button className="action-btn">
-            <i className="fas fa-sync"></i>
-            Atualizar Dados
-          </button>
+      {/* Análise por Períodos */}
+      <div className="dashboard-section">
+        <h2>Comparativo por Períodos</h2>
+        <div className="periods-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Período</th>
+                <th>Total Chamadas</th>
+                <th>Atendidas</th>
+                <th>Taxa Atendimento</th>
+                <th>Tempo Médio</th>
+                <th>Satisfação</th>
+              </tr>
+            </thead>
+            <tbody>
+              {periodos.map((periodo, index) => (
+                <tr key={index}>
+                  <td>{periodo.periodo}</td>
+                  <td>{periodo.totalChamadas}</td>
+                  <td>{periodo.chamadasAtendidas}</td>
+                  <td>{periodo.taxaAtendimento.toFixed(1)}%</td>
+                  <td>{formatTime(periodo.tempoMedioAtendimento)}</td>
+                  <td>{periodo.satisfacaoMedia.toFixed(1)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Análise por Filas */}
+      <div className="dashboard-section">
+        <h2>Performance por Filas</h2>
+        <div className="queues-grid">
+          {filas.map((fila, index) => (
+            <div key={index} className="queue-card">
+              <div className="queue-header">
+                <h4>{fila.fila}</h4>
+                <div className="queue-stats">
+                  <span className="queue-calls">{fila.totalChamadas} chamadas</span>
+                  <span className="queue-rate">{fila.taxaAtendimento.toFixed(1)}%</span>
+                </div>
+              </div>
+              <div className="queue-details">
+                <div className="detail">
+                  <span>Atendidas:</span>
+                  <span>{fila.chamadasAtendidas}</span>
+                </div>
+                <div className="detail">
+                  <span>Tempo Espera:</span>
+                  <span>{formatTime(fila.tempoMedioEspera)}</span>
+                </div>
+                <div className="detail">
+                  <span>Satisfação:</span>
+                  <span>{fila.satisfacaoMedia.toFixed(1)}</span>
+                </div>
+                <div className="detail">
+                  <span>Operadores:</span>
+                  <span>{fila.operadores.length}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

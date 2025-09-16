@@ -1,0 +1,479 @@
+/* Relatórios Inteligentes - Manual de Identidade Visual */
+
+.intelligent-reports {
+  padding: var(--velotax-space-6);
+  background: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-xl);
+  box-shadow: var(--velotax-shadow-lg);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header */
+.reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--velotax-space-8);
+  padding-bottom: var(--velotax-space-6);
+  border-bottom: 2px solid var(--velotax-light-gray);
+}
+
+.header-content {
+  flex: 1;
+}
+
+.reports-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-2) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+}
+
+.title-icon {
+  font-size: 1.5rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.reports-subtitle {
+  font-size: 1rem;
+  color: var(--velotax-text-secondary);
+  margin: 0;
+  font-weight: 400;
+}
+
+.header-actions {
+  display: flex;
+  gap: var(--velotax-space-3);
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  background: var(--velotax-blue);
+  color: white;
+  border: none;
+  border-radius: var(--velotax-radius-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  font-family: 'Poppins', sans-serif;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background: var(--velotax-navy);
+  transform: translateY(-1px);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Estatísticas */
+.insights-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--velotax-space-4);
+  margin-bottom: var(--velotax-space-8);
+}
+
+.stat-card {
+  background: var(--velotax-bg-tertiary);
+  padding: var(--velotax-space-4);
+  border-radius: var(--velotax-radius-lg);
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all var(--velotax-transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.stat-card.critical {
+  border-color: var(--velotax-error);
+  background: rgba(255, 0, 215, 0.05);
+}
+
+.stat-card.high {
+  border-color: var(--velotax-warning);
+  background: rgba(255, 132, 0, 0.05);
+}
+
+.stat-card.medium {
+  border-color: var(--velotax-info);
+  background: rgba(22, 52, 255, 0.05);
+}
+
+.stat-card.low {
+  border-color: var(--velotax-success);
+  background: rgba(29, 253, 185, 0.05);
+}
+
+.stat-card.actionable {
+  border-color: var(--velotax-purple);
+  background: rgba(121, 29, 208, 0.05);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  margin-bottom: var(--velotax-space-1);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  font-weight: 500;
+}
+
+/* Filtros */
+.insights-filters {
+  display: flex;
+  gap: var(--velotax-space-6);
+  margin-bottom: var(--velotax-space-6);
+  padding: var(--velotax-space-4);
+  background: var(--velotax-bg-tertiary);
+  border-radius: var(--velotax-radius-lg);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-2);
+}
+
+.filter-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+}
+
+.filter-select {
+  padding: var(--velotax-space-2) var(--velotax-space-3);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-md);
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+/* Lista de Insights */
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-4);
+}
+
+/* Estados de Loading e Vazio */
+.loading-state, .empty-state {
+  text-align: center;
+  padding: var(--velotax-space-12) var(--velotax-space-6);
+  color: var(--velotax-text-secondary);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--velotax-light-gray);
+  border-top: 4px solid var(--velotax-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--velotax-space-4) auto;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: var(--velotax-space-4);
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-2) 0;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Cards de Insight */
+.insight-card {
+  background: var(--velotax-bg-secondary);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-6);
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--velotax-shadow-lg);
+  border-color: var(--velotax-blue);
+}
+
+.insight-card.actionable {
+  border-left: 4px solid var(--velotax-purple);
+}
+
+.insight-card.critical {
+  border-color: var(--velotax-error);
+  background: rgba(255, 0, 215, 0.02);
+}
+
+.insight-card.high {
+  border-color: var(--velotax-warning);
+  background: rgba(255, 132, 0, 0.02);
+}
+
+.insight-card.medium {
+  border-color: var(--velotax-info);
+  background: rgba(22, 52, 255, 0.02);
+}
+
+.insight-card.low {
+  border-color: var(--velotax-success);
+  background: rgba(29, 253, 185, 0.02);
+}
+
+/* Header do Card */
+.insight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--velotax-space-4);
+}
+
+.insight-type {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+}
+
+.type-icon {
+  font-size: 1.25rem;
+}
+
+.type-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--velotax-text-secondary);
+  text-transform: capitalize;
+}
+
+.insight-severity {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+}
+
+.severity-icon {
+  font-size: 1rem;
+}
+
+.severity-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Conteúdo do Card */
+.insight-content {
+  margin-bottom: var(--velotax-space-4);
+}
+
+.insight-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-2) 0;
+  line-height: 1.4;
+}
+
+.insight-description {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  margin: 0 0 var(--velotax-space-3) 0;
+  line-height: 1.6;
+}
+
+.insight-action {
+  background: rgba(121, 29, 208, 0.1);
+  padding: var(--velotax-space-3);
+  border-radius: var(--velotax-radius-md);
+  border-left: 3px solid var(--velotax-purple);
+}
+
+.action-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--velotax-purple);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: var(--velotax-space-1);
+}
+
+.action-text {
+  font-size: 0.875rem;
+  color: var(--velotax-text-primary);
+  font-weight: 500;
+}
+
+/* Footer do Card */
+.insight-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--velotax-space-4);
+}
+
+.insight-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-2);
+  flex: 1;
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--velotax-text-secondary);
+  min-width: 60px;
+}
+
+.metric-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-full);
+  overflow: hidden;
+}
+
+.metric-fill {
+  height: 100%;
+  background: var(--velotax-blue);
+  border-radius: var(--velotax-radius-full);
+  transition: width 0.3s ease;
+}
+
+.metric-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  min-width: 35px;
+  text-align: right;
+}
+
+.insight-timestamp {
+  font-size: 0.75rem;
+  color: var(--velotax-text-tertiary);
+  white-space: nowrap;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .intelligent-reports {
+    padding: var(--velotax-space-4);
+  }
+  
+  .reports-header {
+    flex-direction: column;
+    gap: var(--velotax-space-4);
+  }
+  
+  .insights-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .insights-filters {
+    flex-direction: column;
+    gap: var(--velotax-space-4);
+  }
+  
+  .insight-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--velotax-space-3);
+  }
+  
+  .insight-metrics {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .insights-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .insight-card {
+    padding: var(--velotax-space-4);
+  }
+  
+  .insight-title {
+    font-size: 1.125rem;
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .intelligent-reports {
+  background: var(--velotax-bg-secondary);
+}
+
+[data-theme="dark"] .stat-card {
+  background: var(--velotax-bg-tertiary);
+}
+
+[data-theme="dark"] .insights-filters {
+  background: var(--velotax-bg-tertiary);
+}
+
+[data-theme="dark"] .filter-select {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-charcoal);
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .insight-card {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .metric-bar {
+  background: var(--velotax-charcoal);
+}

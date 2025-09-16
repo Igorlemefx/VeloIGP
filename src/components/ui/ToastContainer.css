@@ -1,0 +1,48 @@
+/* Toast Container - VeloIGP */
+
+.toast-container {
+  position: fixed;
+  top: var(--velotax-space-4);
+  right: var(--velotax-space-4);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-2);
+  max-height: calc(100vh - var(--velotax-space-8));
+  overflow-y: auto;
+  pointer-events: none;
+}
+
+.toast-container > * {
+  pointer-events: auto;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .toast-container {
+    top: var(--velotax-space-2);
+    right: var(--velotax-space-2);
+    left: var(--velotax-space-2);
+    max-height: calc(100vh - var(--velotax-space-4));
+  }
+}
+
+/* Scrollbar styling */
+.toast-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toast-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toast-container::-webkit-scrollbar-thumb {
+  background: var(--velotax-light-gray);
+  border-radius: 2px;
+}
+
+[data-theme="dark"] .toast-container::-webkit-scrollbar-thumb {
+  background: var(--velotax-charcoal);
+}
+
+

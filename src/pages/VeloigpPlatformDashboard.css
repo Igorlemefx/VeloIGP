@@ -1,0 +1,831 @@
+/* Platform Dashboard - Padrão VeloAcademy */
+
+.platform-dashboard {
+  min-height: 100vh;
+  background: var(--velotax-bg-primary);
+  padding: 20px 0;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .platform-dashboard {
+    padding: var(--velotax-space-3) 0;
+  }
+  
+  .dashboard-header {
+    margin-bottom: var(--velotax-space-6);
+    padding: var(--velotax-space-3);
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.75rem;
+    margin-bottom: var(--velotax-space-3);
+  }
+  
+  .dashboard-header p {
+    font-size: 1rem;
+    margin-bottom: var(--velotax-space-2);
+  }
+  
+  .header-actions {
+    flex-direction: column;
+    gap: var(--velotax-space-2);
+    margin-top: var(--velotax-space-3);
+  }
+  
+  .btn-reports, .btn-connection-test {
+    padding: var(--velotax-space-3) var(--velotax-space-4);
+    font-size: 0.875rem;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .system-info {
+    grid-template-columns: 1fr !important;
+    gap: var(--velotax-space-4) !important;
+    padding: 0 var(--velotax-space-3);
+  }
+  
+  .info-card {
+    margin-bottom: 0 !important;
+  }
+  
+  .info-card .card-body {
+    padding: var(--velotax-space-4);
+  }
+  
+  .info-icon {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.25rem !important;
+  }
+  
+  .info-content h3 {
+    font-size: 1.125rem !important;
+    margin-bottom: var(--velotax-space-2) !important;
+  }
+  
+  .info-content p {
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  .dashboard-welcome {
+    margin-top: var(--velotax-space-6);
+    padding: 0 var(--velotax-space-3);
+  }
+  
+  .welcome-card .card-body {
+    padding: var(--velotax-space-4);
+  }
+  
+  .welcome-content h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: var(--velotax-space-3) !important;
+  }
+  
+  .welcome-content p {
+    font-size: 1rem !important;
+    margin-bottom: var(--velotax-space-4) !important;
+  }
+  
+  .welcome-actions .btn {
+    width: 100%;
+    padding: var(--velotax-space-3) var(--velotax-space-4);
+    font-size: 0.875rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .platform-dashboard {
+    padding: var(--velotax-space-2) 0;
+  }
+  
+  .dashboard-header {
+    padding: var(--velotax-space-2);
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .dashboard-header p {
+    font-size: 0.875rem;
+  }
+  
+  .system-info {
+    padding: 0 var(--velotax-space-2);
+  }
+  
+  .dashboard-welcome {
+    padding: 0 var(--velotax-space-2);
+  }
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--velotax-text-primary);
+  padding: 20px;
+}
+
+.dashboard-header h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: var(--velotax-text-primary);
+}
+
+.dashboard-header p {
+  color: var(--velotax-text-secondary);
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-reports, .btn-connection-test {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-reports {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-reports:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.btn-connection-test {
+  background: #f8f9fa;
+  color: #333;
+  border: 2px solid #e9ecef;
+}
+
+.btn-connection-test:hover {
+  background: #e9ecef;
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.operators-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.btn-close-section {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-close-section:hover {
+  background: rgba(255, 0, 0, 0.3);
+  transform: scale(1.1);
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  background: var(--velotax-gradient-primary);
+  color: var(--velotax-text-inverse);
+  padding: var(--velotax-space-16) var(--velotax-space-8);
+  margin-bottom: var(--velotax-space-12);
+  border-radius: var(--velotax-radius-3xl);
+  box-shadow: var(--velotax-shadow-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--velotax-gradient-glass);
+  pointer-events: none;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-6);
+  margin-bottom: var(--velotax-space-8);
+  position: relative;
+  z-index: 1;
+}
+
+.header-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--velotax-radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header-text h1 {
+  font-size: var(--velotax-text-5xl);
+  font-weight: var(--velotax-font-black);
+  margin: 0;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-text p {
+  font-size: var(--velotax-text-xl);
+  font-weight: var(--velotax-font-medium);
+  margin: var(--velotax-space-2) 0;
+  opacity: 0.9;
+}
+
+.header-subtitle {
+  font-size: var(--velotax-text-base);
+  opacity: 0.8;
+  font-weight: var(--velotax-font-normal);
+}
+
+.header-actions {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dashboard Welcome */
+.dashboard-welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: var(--velotax-space-8);
+}
+
+.welcome-card {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.welcome-content h2 {
+  font-size: var(--velotax-text-4xl);
+  font-weight: var(--velotax-font-bold);
+  color: var(--velotax-primary);
+  margin-bottom: var(--velotax-space-4);
+  background: var(--velotax-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.welcome-content p {
+  font-size: var(--velotax-text-lg);
+  color: var(--velotax-text-secondary);
+  margin-bottom: var(--velotax-space-8);
+  line-height: 1.7;
+}
+
+.welcome-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--velotax-space-4);
+  flex-wrap: wrap;
+}
+
+/* System Info Cards */
+.system-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.info-card {
+  background: var(--veloacademy-bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--veloacademy-shadow-md);
+  border: 1px solid var(--veloacademy-border-light);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--veloacademy-gradient-primary);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--veloacademy-shadow-xl);
+}
+
+.info-icon {
+  background: var(--veloacademy-gradient-primary);
+  color: var(--veloacademy-text-inverse);
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  box-shadow: var(--veloacademy-shadow-sm);
+}
+
+.info-content h3 {
+  margin: 0 0 0.75rem 0;
+  color: var(--veloacademy-primary);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.info-content p {
+  margin: 0;
+  color: var(--veloacademy-text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.dashboard-content {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+/* Cards de Métricas - Padrão VeloAcademy */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.metric-card {
+  background: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-lg);
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--velotax-light-gray);
+  transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.metric-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.metric-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--velotax-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.metric-card-icon.primary {
+  background: var(--velotax-blue);
+}
+
+.metric-card-icon.success {
+  background: var(--velotax-success);
+}
+
+.metric-card-icon.warning {
+  background: var(--velotax-warning);
+}
+
+.metric-card-icon.info {
+  background: var(--velotax-info);
+}
+
+.metric-card-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--velotax-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-card-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  margin: 8px 0;
+  line-height: 1;
+}
+
+.metric-card-subtitle {
+  font-size: 0.9rem;
+  color: var(--velotax-text-secondary);
+  margin: 0;
+}
+
+/* Status do Sistema - Padrão VeloAcademy */
+.status-section {
+  background: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-lg);
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--velotax-light-gray);
+  margin: 20px 0;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.status-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0;
+}
+
+.status-timestamp {
+  font-size: 0.9rem;
+  color: var(--velotax-text-secondary);
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--velotax-bg-tertiary);
+  border-radius: var(--velotax-radius-md);
+  border: 1px solid var(--velotax-light-gray);
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--velotax-success);
+}
+
+.status-indicator.offline {
+  background: var(--velotax-error);
+}
+
+.status-indicator.degraded {
+  background: var(--velotax-warning);
+}
+
+.status-label {
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+}
+
+.status-value {
+  font-weight: 600;
+  color: var(--velotax-success);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.status-value.offline {
+  color: var(--velotax-error);
+}
+
+.status-value.degraded {
+  color: var(--velotax-warning);
+}
+
+/* Atividade da Plataforma - Padrão VeloAcademy */
+.activity-section {
+  background: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-lg);
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--velotax-light-gray);
+  margin: 20px 0;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.activity-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.activity-column {
+  background: var(--velotax-bg-tertiary);
+  border-radius: var(--velotax-radius-md);
+  padding: 20px;
+  border: 1px solid var(--velotax-light-gray);
+}
+
+.activity-column-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--velotax-light-gray);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.activity-icon.success {
+  background: var(--velotax-success);
+}
+
+.activity-icon.info {
+  background: var(--velotax-info);
+}
+
+.activity-icon.warning {
+  background: var(--velotax-warning);
+}
+
+.activity-icon.error {
+  background: var(--velotax-error);
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-text {
+  font-size: 0.9rem;
+  color: var(--velotax-text-primary);
+  margin: 0 0 4px 0;
+}
+
+.activity-time {
+  font-size: 0.8rem;
+  color: var(--velotax-text-secondary);
+  margin: 0;
+}
+
+/* Informações da Plataforma - Padrão VeloAcademy */
+.platform-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.info-card {
+  background: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-lg);
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--velotax-light-gray);
+}
+
+.info-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-card h3 i {
+  color: var(--velotax-blue);
+}
+
+.info-card p {
+  color: var(--velotax-text-secondary);
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.info-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--velotax-bg-tertiary);
+  border-radius: var(--velotax-radius-sm);
+  border: 1px solid var(--velotax-light-gray);
+}
+
+.feature i {
+  color: var(--velotax-blue);
+  font-size: 0.9rem;
+}
+
+.feature span {
+  font-size: 0.9rem;
+  color: var(--velotax-text-primary);
+}
+
+.config-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.config-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--velotax-light-gray);
+}
+
+.config-item:last-child {
+  border-bottom: none;
+}
+
+.config-item span:first-child {
+  color: var(--velotax-text-secondary);
+  font-size: 0.9rem;
+}
+
+.config-value {
+  color: var(--velotax-text-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Loading - Padrão VeloAcademy */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--velotax-light-gray);
+  border-top: 4px solid var(--velotax-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container h3 {
+  color: var(--velotax-text-primary);
+  margin: 0 0 8px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.loading-container p {
+  color: var(--velotax-text-secondary);
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .dashboard-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .platform-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-features {
+    grid-template-columns: 1fr;
+  }
+}

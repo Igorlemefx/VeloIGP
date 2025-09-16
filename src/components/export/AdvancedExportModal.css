@@ -1,0 +1,394 @@
+/* Modal de Exportação Avançada - VeloIGP */
+
+.export-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--velotax-space-4);
+}
+
+.export-modal {
+  background: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-xl);
+  box-shadow: var(--velotax-shadow-2xl);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.export-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--velotax-space-6);
+  border-bottom: 1px solid var(--velotax-light-gray);
+  background: var(--velotax-blue);
+  color: white;
+}
+
+.export-modal-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.export-modal-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: var(--velotax-space-2);
+  border-radius: var(--velotax-radius-md);
+  transition: all var(--velotax-transition-fast);
+}
+
+.export-modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.export-modal-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.export-modal-content {
+  padding: var(--velotax-space-6);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.export-section {
+  margin-bottom: var(--velotax-space-8);
+}
+
+.export-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin-bottom: var(--velotax-space-4);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Opções de Formato */
+.format-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--velotax-space-4);
+}
+
+.format-option {
+  display: flex;
+  align-items: center;
+  padding: var(--velotax-space-4);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  background: var(--velotax-bg-secondary);
+}
+
+.format-option:hover {
+  border-color: var(--velotax-blue);
+  transform: translateY(-2px);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.format-option.active {
+  border-color: var(--velotax-blue);
+  background: rgba(22, 52, 255, 0.05);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.format-option input[type="radio"] {
+  display: none;
+}
+
+.format-icon {
+  font-size: 2rem;
+  margin-right: var(--velotax-space-3);
+}
+
+.format-info {
+  flex: 1;
+}
+
+.format-name {
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin-bottom: var(--velotax-space-1);
+  font-family: 'Poppins', sans-serif;
+}
+
+.format-desc {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+}
+
+/* Opções de Template */
+.template-options {
+  display: flex;
+  gap: var(--velotax-space-4);
+}
+
+.template-select {
+  flex: 1;
+  padding: var(--velotax-space-3);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-md);
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  transition: all var(--velotax-transition-fast);
+}
+
+.template-select:focus {
+  outline: none;
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+/* Opções de Conteúdo */
+.content-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-3);
+}
+
+.content-option {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+  padding: var(--velotax-space-3);
+  border-radius: var(--velotax-radius-md);
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+}
+
+.content-option:hover {
+  background: var(--velotax-bg-tertiary);
+}
+
+.content-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--velotax-blue);
+}
+
+.content-option span {
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Informações do Arquivo */
+.export-info {
+  background: var(--velotax-bg-tertiary);
+  padding: var(--velotax-space-4);
+  border-radius: var(--velotax-radius-lg);
+  border: 1px solid var(--velotax-light-gray);
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--velotax-space-2);
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  font-weight: 500;
+  color: var(--velotax-text-secondary);
+  font-family: 'Poppins', sans-serif;
+}
+
+.info-value {
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Barra de Progresso */
+.export-progress {
+  padding: var(--velotax-space-4) var(--velotax-space-6);
+  background: var(--velotax-bg-tertiary);
+  border-top: 1px solid var(--velotax-light-gray);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-full);
+  overflow: hidden;
+  margin-bottom: var(--velotax-space-2);
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--velotax-blue);
+  border-radius: var(--velotax-radius-full);
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  text-align: center;
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+}
+
+/* Rodapé do Modal */
+.export-modal-footer {
+  display: flex;
+  gap: var(--velotax-space-3);
+  padding: var(--velotax-space-6);
+  border-top: 1px solid var(--velotax-light-gray);
+  background: var(--velotax-bg-secondary);
+}
+
+.btn-primary, .btn-secondary {
+  flex: 1;
+  padding: var(--velotax-space-3) var(--velotax-space-6);
+  border-radius: var(--velotax-radius-lg);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  border: none;
+}
+
+.btn-primary {
+  background: var(--velotax-blue);
+  color: white;
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--velotax-shadow-lg);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--velotax-text-primary);
+  border: 2px solid var(--velotax-light-gray);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-blue);
+  color: var(--velotax-blue);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .export-modal {
+    margin: var(--velotax-space-4);
+    max-height: calc(100vh - 2rem);
+  }
+
+  .export-modal-header,
+  .export-modal-content,
+  .export-modal-footer {
+    padding: var(--velotax-space-4);
+  }
+
+  .format-options {
+    grid-template-columns: 1fr;
+  }
+
+  .export-modal-footer {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .export-modal-overlay {
+    padding: var(--velotax-space-2);
+  }
+
+  .export-modal {
+    margin: 0;
+    max-height: calc(100vh - 1rem);
+  }
+}
+
+/* Tema Escuro */
+[data-theme="dark"] .export-modal {
+  background: var(--velotax-charcoal);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .export-modal-header {
+  background: var(--velotax-blue);
+}
+
+[data-theme="dark"] .format-option {
+  background: var(--velotax-charcoal);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .format-option:hover {
+  border-color: var(--velotax-teal);
+}
+
+[data-theme="dark"] .format-option.active {
+  background: rgba(29, 253, 185, 0.1);
+  border-color: var(--velotax-teal);
+}
+
+[data-theme="dark"] .template-select {
+  background: var(--velotax-charcoal);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--velotax-text-inverse);
+}
+
+[data-theme="dark"] .content-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .export-info {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .export-progress {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .export-modal-footer {
+  background: var(--velotax-charcoal);
+  border-color: rgba(255, 255, 255, 0.1);
+}

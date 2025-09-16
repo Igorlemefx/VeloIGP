@@ -1,0 +1,464 @@
+/* Exportação Avançada - Manual de Identidade Visual */
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  background: var(--velotax-blue);
+  color: white;
+  border: none;
+  border-radius: var(--velotax-radius-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+}
+
+.export-btn:hover:not(:disabled) {
+  background: var(--velotax-navy);
+  transform: translateY(-1px);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.export-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Modal de Exportação */
+.export-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--velotax-z-modal);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.export-modal {
+  background: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-xl);
+  box-shadow: var(--velotax-shadow-xl);
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px) scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+/* Header do Modal */
+.export-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--velotax-space-6);
+  border-bottom: 2px solid var(--velotax-light-gray);
+  background: var(--velotax-blue);
+  color: white;
+}
+
+.export-modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: var(--velotax-space-2);
+  border-radius: var(--velotax-radius-md);
+  transition: all var(--velotax-transition-fast);
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Conteúdo do Modal */
+.export-modal-content {
+  padding: var(--velotax-space-6);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.export-section {
+  margin-bottom: var(--velotax-space-6);
+}
+
+.export-section h3 {
+  margin: 0 0 var(--velotax-space-4) 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+}
+
+.export-section h3::before {
+  content: '';
+  width: 4px;
+  height: 20px;
+  background: var(--velotax-blue);
+  border-radius: var(--velotax-radius-full);
+}
+
+/* Opções de Formato */
+.format-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--velotax-space-3);
+}
+
+.format-option {
+  position: relative;
+  cursor: pointer;
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-4);
+  transition: all var(--velotax-transition-fast);
+  background: var(--velotax-bg-tertiary);
+}
+
+.format-option:hover {
+  border-color: var(--velotax-blue);
+  transform: translateY(-2px);
+  box-shadow: var(--velotax-shadow-sm);
+}
+
+.format-option.selected {
+  border-color: var(--velotax-blue);
+  background: rgba(22, 52, 255, 0.1);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.format-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.format-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  text-align: center;
+}
+
+.format-icon {
+  font-size: 2rem;
+  margin-bottom: var(--velotax-space-1);
+}
+
+.format-label {
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+  font-size: 0.875rem;
+}
+
+/* Input de Nome do Arquivo */
+.filename-input {
+  display: flex;
+  gap: var(--velotax-space-2);
+  align-items: center;
+}
+
+.filename-field {
+  flex: 1;
+  padding: var(--velotax-space-3);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  transition: all var(--velotax-transition-fast);
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+}
+
+.filename-field:focus {
+  outline: none;
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+.generate-filename-btn {
+  padding: var(--velotax-space-3);
+  background: var(--velotax-teal);
+  color: white;
+  border: none;
+  border-radius: var(--velotax-radius-lg);
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  font-size: 0.875rem;
+}
+
+.generate-filename-btn:hover {
+  background: var(--velotax-blue);
+  transform: scale(1.05);
+}
+
+/* Opções de Exportação */
+.export-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-3);
+}
+
+.option-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+  cursor: pointer;
+  padding: var(--velotax-space-3);
+  border-radius: var(--velotax-radius-lg);
+  transition: all var(--velotax-transition-fast);
+  background: var(--velotax-bg-tertiary);
+}
+
+.option-checkbox:hover {
+  background: rgba(22, 52, 255, 0.05);
+}
+
+.option-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--velotax-blue);
+  cursor: pointer;
+}
+
+.option-checkbox span {
+  font-size: 0.875rem;
+  color: var(--velotax-text-primary);
+  font-weight: 500;
+}
+
+/* Informações dos Dados */
+.data-info {
+  background: var(--velotax-bg-tertiary);
+  padding: var(--velotax-space-4);
+  border-radius: var(--velotax-radius-lg);
+  border-left: 4px solid var(--velotax-teal);
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--velotax-space-2) 0;
+  border-bottom: 1px solid var(--velotax-light-gray);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--velotax-text-secondary);
+  font-size: 0.875rem;
+}
+
+.info-value {
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+  font-size: 0.875rem;
+}
+
+/* Erros de Validação */
+.validation-errors {
+  background: rgba(255, 0, 215, 0.1);
+  border: 2px solid var(--velotax-error);
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-4);
+  margin-top: var(--velotax-space-4);
+}
+
+.validation-errors h4 {
+  margin: 0 0 var(--velotax-space-2) 0;
+  color: var(--velotax-error);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.validation-errors ul {
+  margin: 0;
+  padding-left: var(--velotax-space-4);
+}
+
+.validation-errors li {
+  color: var(--velotax-error);
+  font-size: 0.875rem;
+  margin-bottom: var(--velotax-space-1);
+}
+
+/* Footer do Modal */
+.export-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--velotax-space-3);
+  padding: var(--velotax-space-6);
+  border-top: 2px solid var(--velotax-light-gray);
+  background: var(--velotax-bg-tertiary);
+}
+
+.cancel-btn {
+  padding: var(--velotax-space-3) var(--velotax-space-6);
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-secondary);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  font-family: 'Poppins', sans-serif;
+}
+
+.cancel-btn:hover {
+  background: var(--velotax-light-gray);
+  color: var(--velotax-text-primary);
+}
+
+.export-confirm-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-3) var(--velotax-space-6);
+  background: var(--velotax-blue);
+  color: white;
+  border: none;
+  border-radius: var(--velotax-radius-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  font-family: 'Poppins', sans-serif;
+}
+
+.export-confirm-btn:hover:not(:disabled) {
+  background: var(--velotax-navy);
+  transform: translateY(-1px);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.export-confirm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .export-modal {
+    width: 95%;
+    margin: var(--velotax-space-4);
+  }
+  
+  .export-modal-content {
+    padding: var(--velotax-space-4);
+  }
+  
+  .format-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .filename-input {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .export-modal-footer {
+    flex-direction: column;
+  }
+  
+  .cancel-btn,
+  .export-confirm-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .format-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .export-modal-header {
+    padding: var(--velotax-space-4);
+  }
+  
+  .export-modal-header h2 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .export-modal {
+  background: var(--velotax-bg-secondary);
+}
+
+[data-theme="dark"] .format-option {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .format-option:hover {
+  border-color: var(--velotax-blue);
+}
+
+[data-theme="dark"] .filename-field {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-charcoal);
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .option-checkbox {
+  background: var(--velotax-bg-tertiary);
+}
+
+[data-theme="dark"] .data-info {
+  background: var(--velotax-bg-tertiary);
+}
+
+[data-theme="dark"] .export-modal-footer {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .cancel-btn {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-charcoal);
+  color: var(--velotax-text-secondary);
+}

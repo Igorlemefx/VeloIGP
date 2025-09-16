@@ -1,0 +1,51 @@
+{
+  "rules": {
+    "enabled": true,
+    "path": ".cursor/rules/",
+    "language": "pt-BR",
+    "strictMode": true,
+    "autoApply": true
+  },
+  "codeStyle": {
+    "typescript": "strict",
+    "react": "functional",
+    "naming": "camelCase",
+    "components": "PascalCase",
+    "files": "kebab-case"
+  },
+  "security": {
+    "validateInputs": true,
+    "sanitizeData": true,
+    "noSecrets": true,
+    "noAny": true,
+    "strictTypes": true
+  },
+  "performance": {
+    "lazyLoading": true,
+    "memoization": true,
+    "optimization": true
+  },
+  "testing": {
+    "unitTests": true,
+    "coverage": 80,
+    "framework": "jest"
+  },
+  "accessibility": {
+    "ariaLabels": true,
+    "contrast": true,
+    "keyboard": true
+  },
+  "mobile": {
+    "responsive": true,
+    "touch": true,
+    "pwa": true
+  },
+  "project": {
+    "name": "VeloIGP Dashboard",
+    "version": "1.0.0",
+    "framework": "React + TypeScript",
+    "deployment": "Vercel"
+  }
+}
+
+

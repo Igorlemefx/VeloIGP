@@ -1,0 +1,29 @@
+/* Touch Optimized Component */
+.touch-optimized {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.touch-optimized--pressed {
+  transform: scale(0.98);
+  opacity: 0.8;
+}
+
+.touch-optimized--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Melhorar responsividade touch */
+@media (hover: none) and (pointer: coarse) {
+  .touch-optimized {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+

@@ -1,0 +1,200 @@
+/* Spreadsheet Exporter */
+
+.spreadsheet-exporter {
+  background: var(--velotax-bg-secondary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.exporter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--velotax-bg-primary);
+  border-bottom: 1px solid var(--velotax-light-gray);
+}
+
+.exporter-header h3 {
+  margin: 0;
+  color: var(--velotax-text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exporter-header h3 i {
+  color: var(--velotax-blue);
+}
+
+.data-count {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-text-secondary);
+  padding: 4px 8px;
+  border-radius: var(--velotax-radius-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.exporter-content {
+  padding: 20px;
+}
+
+.format-selector {
+  margin-bottom: 20px;
+}
+
+.format-selector label {
+  display: block;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.format-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.format-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--velotax-bg-tertiary);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.format-option:hover {
+  border-color: var(--velotax-blue);
+  background: var(--velotax-bg-primary);
+}
+
+.format-option input[type="radio"] {
+  margin: 0;
+  cursor: pointer;
+}
+
+.format-option input[type="radio"]:checked + .format-label {
+  color: var(--velotax-blue);
+  font-weight: 600;
+}
+
+.format-option:has(input[type="radio"]:checked) {
+  border-color: var(--velotax-blue);
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.format-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--velotax-text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  flex: 1;
+}
+
+.format-label i {
+  font-size: 1.1rem;
+}
+
+.exporter-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--velotax-blue);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--velotax-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 160px;
+  justify-content: center;
+}
+
+.export-btn:hover:not(:disabled) {
+  background: var(--velotax-blue-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.export-btn:disabled {
+  background: var(--velotax-light-gray);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.export-btn i {
+  font-size: 1rem;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .spreadsheet-exporter {
+  background: var(--velotax-bg-primary);
+  border-color: var(--velotax-text-secondary);
+}
+
+[data-theme="dark"] .exporter-header {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-text-secondary);
+}
+
+[data-theme="dark"] .format-option {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-text-secondary);
+}
+
+[data-theme="dark"] .format-option:hover {
+  background: var(--velotax-bg-primary);
+}
+
+[data-theme="dark"] .format-option:has(input[type="radio"]:checked) {
+  background: rgba(0, 123, 255, 0.15);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .format-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .exporter-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  
+  .exporter-header h3 {
+    justify-content: center;
+  }
+  
+  .data-count {
+    text-align: center;
+  }
+  
+  .export-btn {
+    width: 100%;
+  }
+}
+
+
+

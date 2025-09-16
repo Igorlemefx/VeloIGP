@@ -1,0 +1,43 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1616ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a99;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="phoneGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f0f0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="96" cy="96" r="96" fill="url(#bgGradient)"/>
+  
+  <!-- Main phone icon -->
+  <rect x="48" y="36" width="96" height="120" rx="12" fill="url(#phoneGradient)" stroke="#1616ff" stroke-width="2"/>
+  
+  <!-- Phone screen -->
+  <rect x="56" y="48" width="80" height="60" rx="6" fill="#1616ff"/>
+  
+  <!-- Screen content lines -->
+  <rect x="64" y="56" width="64" height="4" fill="white" rx="2"/>
+  <rect x="64" y="64" width="48" height="4" fill="white" rx="2"/>
+  <rect x="64" y="72" width="56" height="4" fill="white" rx="2"/>
+  <rect x="64" y="80" width="40" height="4" fill="white" rx="2"/>
+  
+  <!-- Phone details -->
+  <rect x="72" y="120" width="48" height="6" fill="#1616ff" rx="3"/>
+  <rect x="84" y="132" width="24" height="4" fill="#1616ff" rx="2"/>
+  
+  <!-- VeloIGP text -->
+  <text x="96" y="160" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">VeloIGP</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="36" cy="36" r="4" fill="white" opacity="0.3"/>
+  <circle cx="156" cy="36" r="4" fill="white" opacity="0.3"/>
+  <circle cx="36" cy="156" r="4" fill="white" opacity="0.3"/>
+  <circle cx="156" cy="156" r="4" fill="white" opacity="0.3"/>
+</svg>
+
+

@@ -1,0 +1,251 @@
+/* Listbox VeloIGP - Manual de Identidade Visual */
+
+.velotax-listbox {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.velotax-listbox-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  background: var(--velotax-bg-tertiary);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  outline: none;
+  text-align: left;
+}
+
+.velotax-listbox-button:hover {
+  border-color: var(--velotax-blue);
+}
+
+.velotax-listbox-button:focus {
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+.velotax-listbox-button--open {
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+.velotax-listbox-button::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid var(--velotax-text-secondary);
+  transition: transform var(--velotax-transition-fast);
+}
+
+.velotax-listbox-button--open::after {
+  transform: rotate(180deg);
+}
+
+.velotax-listbox-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: white;
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  box-shadow: var(--velotax-shadow-xl);
+  margin-top: var(--velotax-space-2);
+  max-height: 16rem;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all var(--velotax-transition-fast);
+  pointer-events: none;
+}
+
+.velotax-listbox-options:not(:empty) {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.velotax-listbox-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  background: transparent;
+  color: var(--velotax-text-primary);
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  text-align: left;
+  outline: none;
+}
+
+.velotax-listbox-option:hover:not(.velotax-listbox-option--disabled) {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+}
+
+.velotax-listbox-option:focus:not(.velotax-listbox-option--disabled) {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+  box-shadow: 0 0 0 2px rgba(22, 52, 255, 0.1);
+}
+
+.velotax-listbox-option--selected {
+  background: var(--velotax-blue);
+  color: white;
+}
+
+.velotax-listbox-option--selected:hover {
+  background: var(--velotax-navy);
+  color: white;
+}
+
+.velotax-listbox-option--disabled {
+  color: var(--velotax-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.velotax-listbox-label {
+  flex: 1;
+  font-weight: 500;
+}
+
+/* Animações */
+.velotax-listbox-options {
+  animation: listboxFadeIn 0.2s ease-out;
+}
+
+@keyframes listboxFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.velotax-listbox-option {
+  animation: optionFadeIn 0.15s ease-out;
+}
+
+@keyframes optionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scrollbar personalizada */
+.velotax-listbox-options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.velotax-listbox-options::-webkit-scrollbar-track {
+  background: var(--velotax-bg-tertiary);
+  border-radius: 3px;
+}
+
+.velotax-listbox-options::-webkit-scrollbar-thumb {
+  background: var(--velotax-light-gray);
+  border-radius: 3px;
+}
+
+.velotax-listbox-options::-webkit-scrollbar-thumb:hover {
+  background: var(--velotax-text-secondary);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .velotax-listbox-button {
+    padding: var(--velotax-space-2) var(--velotax-space-3);
+    font-size: 0.8125rem;
+  }
+  
+  .velotax-listbox-option {
+    padding: var(--velotax-space-2) var(--velotax-space-3);
+    font-size: 0.8125rem;
+  }
+  
+  .velotax-listbox-options {
+    max-height: 12rem;
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .velotax-listbox-button {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-charcoal);
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .velotax-listbox-button:hover {
+  border-color: var(--velotax-blue);
+}
+
+[data-theme="dark"] .velotax-listbox-button:focus {
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+[data-theme="dark"] .velotax-listbox-options {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-charcoal);
+  box-shadow: var(--velotax-shadow-xl);
+}
+
+[data-theme="dark"] .velotax-listbox-option {
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .velotax-listbox-option:hover:not(.velotax-listbox-option--disabled) {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+}
+
+[data-theme="dark"] .velotax-listbox-option:focus:not(.velotax-listbox-option--disabled) {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+  box-shadow: 0 0 0 2px rgba(22, 52, 255, 0.1);
+}
+
+[data-theme="dark"] .velotax-listbox-option--disabled {
+  color: var(--velotax-text-secondary);
+}
+
+[data-theme="dark"] .velotax-listbox-options::-webkit-scrollbar-track {
+  background: var(--velotax-bg-tertiary);
+}
+
+[data-theme="dark"] .velotax-listbox-options::-webkit-scrollbar-thumb {
+  background: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .velotax-listbox-options::-webkit-scrollbar-thumb:hover {
+  background: var(--velotax-text-secondary);
+}
+
+
+

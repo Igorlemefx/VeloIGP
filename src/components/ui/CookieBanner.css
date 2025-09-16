@@ -1,0 +1,270 @@
+/* Cookie Banner VeloIGP - Manual de Identidade Visual */
+
+.velotax-cookie-banner {
+  position: fixed;
+  bottom: var(--velotax-space-4);
+  right: var(--velotax-space-4);
+  left: var(--velotax-space-4);
+  max-width: 400px;
+  margin: 0 auto;
+  background: var(--velotax-bg-secondary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-xl);
+  box-shadow: var(--velotax-shadow-lg);
+  padding: var(--velotax-space-6);
+  z-index: 1000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all var(--velotax-transition-fast);
+  font-family: 'Poppins', sans-serif;
+}
+
+.velotax-cookie-banner--visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.velotax-cookie-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-4);
+}
+
+.velotax-cookie-banner__header {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+}
+
+.velotax-cookie-banner__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+}
+
+.velotax-cookie-banner__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.velotax-cookie-banner__description {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--velotax-text-secondary);
+}
+
+.velotax-cookie-banner__link {
+  color: var(--velotax-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--velotax-transition-fast);
+}
+
+.velotax-cookie-banner__link:hover {
+  color: var(--velotax-navy);
+  text-decoration: underline;
+}
+
+.velotax-cookie-banner__actions {
+  display: flex;
+  gap: var(--velotax-space-3);
+  justify-content: flex-end;
+}
+
+.velotax-cookie-banner__button {
+  padding: var(--velotax-space-2) var(--velotax-space-4);
+  border: none;
+  border-radius: var(--velotax-radius-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  min-width: 100px;
+}
+
+.velotax-cookie-banner__button--secondary {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-text-secondary);
+  border: 1px solid var(--velotax-light-gray);
+}
+
+.velotax-cookie-banner__button--secondary:hover {
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+  border-color: var(--velotax-text-secondary);
+  transform: translateY(-1px);
+}
+
+.velotax-cookie-banner__button--primary {
+  background: var(--velotax-blue);
+  color: white;
+  border: 1px solid var(--velotax-blue);
+}
+
+.velotax-cookie-banner__button--primary:hover {
+  background: var(--velotax-navy);
+  border-color: var(--velotax-navy);
+  transform: translateY(-1px);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.velotax-cookie-banner__button--primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.2);
+}
+
+.velotax-cookie-banner__learn-more {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--velotax-space-2);
+  border-top: 1px solid var(--velotax-light-gray);
+}
+
+.velotax-cookie-banner__learn-more-button {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  background: none;
+  border: none;
+  color: var(--velotax-blue);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--velotax-transition-fast);
+  padding: var(--velotax-space-1);
+}
+
+.velotax-cookie-banner__learn-more-button:hover {
+  color: var(--velotax-navy);
+}
+
+.velotax-cookie-banner__learn-more-button i {
+  font-size: 0.875rem;
+}
+
+/* Animações */
+.velotax-cookie-banner {
+  animation: cookieBannerSlideIn 0.4s ease-out;
+}
+
+@keyframes cookieBannerSlideIn {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .velotax-cookie-banner {
+    bottom: var(--velotax-space-3);
+    right: var(--velotax-space-3);
+    left: var(--velotax-space-3);
+    padding: var(--velotax-space-4);
+  }
+  
+  .velotax-cookie-banner__title {
+    font-size: 1rem;
+  }
+  
+  .velotax-cookie-banner__description {
+    font-size: 0.8125rem;
+  }
+  
+  .velotax-cookie-banner__actions {
+    flex-direction: column;
+    gap: var(--velotax-space-2);
+  }
+  
+  .velotax-cookie-banner__button {
+    width: 100%;
+    padding: var(--velotax-space-3) var(--velotax-space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .velotax-cookie-banner {
+    bottom: var(--velotax-space-2);
+    right: var(--velotax-space-2);
+    left: var(--velotax-space-2);
+    padding: var(--velotax-space-3);
+  }
+  
+  .velotax-cookie-banner__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--velotax-space-1);
+  }
+  
+  .velotax-cookie-banner__title {
+    font-size: 0.9375rem;
+  }
+  
+  .velotax-cookie-banner__description {
+    font-size: 0.75rem;
+  }
+  
+  .velotax-cookie-banner__button {
+    font-size: 0.8125rem;
+    padding: var(--velotax-space-2) var(--velotax-space-3);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .velotax-cookie-banner {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .velotax-cookie-banner__button--secondary {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-text-secondary);
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .velotax-cookie-banner__button--secondary:hover {
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+  border-color: var(--velotax-text-secondary);
+}
+
+[data-theme="dark"] .velotax-cookie-banner__learn-more {
+  border-color: var(--velotax-charcoal);
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .velotax-cookie-banner {
+    animation: none;
+    transition: none;
+  }
+  
+  .velotax-cookie-banner__button {
+    transition: none;
+  }
+  
+  .velotax-cookie-banner__button:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .velotax-cookie-banner {
+    border-width: 2px;
+  }
+  
+  .velotax-cookie-banner__button {
+    border-width: 2px;
+  }
+}
+
+
+

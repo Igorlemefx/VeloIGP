@@ -1,0 +1,163 @@
+/* Sistema de Cores VeloAcademy */
+/* Baseado na identidade visual da VeloAcademy */
+
+:root {
+  /* Cores Primárias VeloAcademy */
+  --veloacademy-primary: #2563eb;
+  --veloacademy-primary-dark: #1d4ed8;
+  --veloacademy-primary-light: #3b82f6;
+  --veloacademy-primary-50: #eff6ff;
+  --veloacademy-primary-100: #dbeafe;
+  --veloacademy-primary-500: #3b82f6;
+  --veloacademy-primary-600: #2563eb;
+  --veloacademy-primary-700: #1d4ed8;
+  --veloacademy-primary-800: #1e40af;
+  --veloacademy-primary-900: #1e3a8a;
+
+  /* Cores Secundárias */
+  --veloacademy-secondary: #64748b;
+  --veloacademy-secondary-dark: #475569;
+  --veloacademy-secondary-light: #94a3b8;
+
+  /* Cores de Sucesso */
+  --veloacademy-success: #10b981;
+  --veloacademy-success-dark: #059669;
+  --veloacademy-success-light: #34d399;
+
+  /* Cores de Aviso */
+  --veloacademy-warning: #f59e0b;
+  --veloacademy-warning-dark: #d97706;
+  --veloacademy-warning-light: #fbbf24;
+
+  /* Cores de Erro */
+  --veloacademy-error: #ef4444;
+  --veloacademy-error-dark: #dc2626;
+  --veloacademy-error-light: #f87171;
+
+  /* Cores de Informação */
+  --veloacademy-info: #06b6d4;
+  --veloacademy-info-dark: #0891b2;
+  --veloacademy-info-light: #22d3ee;
+
+  /* Cores Neutras */
+  --veloacademy-gray-50: #f8fafc;
+  --veloacademy-gray-100: #f1f5f9;
+  --veloacademy-gray-200: #e2e8f0;
+  --veloacademy-gray-300: #cbd5e1;
+  --veloacademy-gray-400: #94a3b8;
+  --veloacademy-gray-500: #64748b;
+  --veloacademy-gray-600: #475569;
+  --veloacademy-gray-700: #334155;
+  --veloacademy-gray-800: #1e293b;
+  --veloacademy-gray-900: #0f172a;
+
+  /* Cores de Texto */
+  --veloacademy-text-primary: #0f172a;
+  --veloacademy-text-secondary: #475569;
+  --veloacademy-text-tertiary: #64748b;
+  --veloacademy-text-inverse: #ffffff;
+
+  /* Cores de Fundo */
+  --veloacademy-bg-primary: #ffffff;
+  --veloacademy-bg-secondary: #f8fafc;
+  --veloacademy-bg-tertiary: #f1f5f9;
+  --veloacademy-bg-dark: #0f172a;
+  --veloacademy-bg-card: #ffffff;
+  --veloacademy-bg-overlay: rgba(15, 23, 42, 0.5);
+
+  /* Cores de Borda */
+  --veloacademy-border-light: #e2e8f0;
+  --veloacademy-border-medium: #cbd5e1;
+  --veloacademy-border-dark: #94a3b8;
+
+  /* Cores de Sombra */
+  --veloacademy-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --veloacademy-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --veloacademy-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --veloacademy-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Cores de Status */
+  --veloacademy-status-online: #10b981;
+  --veloacademy-status-offline: #6b7280;
+  --veloacademy-status-busy: #f59e0b;
+  --veloacademy-status-away: #8b5cf6;
+
+  /* Cores de Performance */
+  --veloacademy-performance-excellent: #10b981;
+  --veloacademy-performance-good: #3b82f6;
+  --veloacademy-performance-average: #f59e0b;
+  --veloacademy-performance-poor: #ef4444;
+
+  /* Cores de Gráficos */
+  --veloacademy-chart-1: #2563eb;
+  --veloacademy-chart-2: #10b981;
+  --veloacademy-chart-3: #f59e0b;
+  --veloacademy-chart-4: #ef4444;
+  --veloacademy-chart-5: #8b5cf6;
+  --veloacademy-chart-6: #06b6d4;
+  --veloacademy-chart-7: #f97316;
+  --veloacademy-chart-8: #84cc16;
+
+  /* Gradientes VeloAcademy */
+  --veloacademy-gradient-primary: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  --veloacademy-gradient-secondary: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+  --veloacademy-gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  --veloacademy-gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  --veloacademy-gradient-error: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+
+  /* Cores de Hover */
+  --veloacademy-hover-primary: #1d4ed8;
+  --veloacademy-hover-secondary: #475569;
+  --veloacademy-hover-success: #059669;
+  --veloacademy-hover-warning: #d97706;
+  --veloacademy-hover-error: #dc2626;
+
+  /* Cores de Focus */
+  --veloacademy-focus-primary: #3b82f6;
+  --veloacademy-focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.1);
+
+  /* Cores de Disabled */
+  --veloacademy-disabled-bg: #f1f5f9;
+  --veloacademy-disabled-text: #94a3b8;
+  --veloacademy-disabled-border: #e2e8f0;
+}
+
+/* Aplicação das cores VeloAcademy */
+.veloacademy-theme {
+  --velotax-primary: var(--veloacademy-primary);
+  --velotax-primary-dark: var(--veloacademy-primary-dark);
+  --velotax-primary-light: var(--veloacademy-primary-light);
+  --velotax-secondary: var(--veloacademy-secondary);
+  --velotax-text-primary: var(--veloacademy-text-primary);
+  --velotax-text-secondary: var(--veloacademy-text-secondary);
+  --velotax-bg-primary: var(--veloacademy-bg-primary);
+  --velotax-bg-secondary: var(--veloacademy-bg-secondary);
+  --velotax-border-light: var(--veloacademy-border-light);
+  --velotax-shadow-md: var(--veloacademy-shadow-md);
+  --velotax-shadow-lg: var(--veloacademy-shadow-lg);
+}
+
+/* Classes utilitárias VeloAcademy */
+.text-veloacademy-primary { color: var(--veloacademy-primary); }
+.text-veloacademy-secondary { color: var(--veloacademy-secondary); }
+.text-veloacademy-success { color: var(--veloacademy-success); }
+.text-veloacademy-warning { color: var(--veloacademy-warning); }
+.text-veloacademy-error { color: var(--veloacademy-error); }
+
+.bg-veloacademy-primary { background-color: var(--veloacademy-primary); }
+.bg-veloacademy-secondary { background-color: var(--veloacademy-secondary); }
+.bg-veloacademy-success { background-color: var(--veloacademy-success); }
+.bg-veloacademy-warning { background-color: var(--veloacademy-warning); }
+.bg-veloacademy-error { background-color: var(--veloacademy-error); }
+
+.border-veloacademy-primary { border-color: var(--veloacademy-primary); }
+.border-veloacademy-secondary { border-color: var(--veloacademy-secondary); }
+.border-veloacademy-light { border-color: var(--veloacademy-border-light); }
+
+.shadow-veloacademy-sm { box-shadow: var(--veloacademy-shadow-sm); }
+.shadow-veloacademy-md { box-shadow: var(--veloacademy-shadow-md); }
+.shadow-veloacademy-lg { box-shadow: var(--veloacademy-shadow-lg); }
+.shadow-veloacademy-xl { box-shadow: var(--veloacademy-shadow-xl); }
+
+
+

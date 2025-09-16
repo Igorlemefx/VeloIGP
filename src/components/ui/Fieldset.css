@@ -1,0 +1,48 @@
+/* Fieldset VeloIGP - Manual de Identidade Visual */
+
+.velotax-fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.velotax-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-2);
+  margin-bottom: var(--velotax-space-4);
+}
+
+.velotax-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin-bottom: var(--velotax-space-1);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.4;
+}
+
+.velotax-label[for] {
+  cursor: pointer;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .velotax-label {
+  color: var(--velotax-text-primary);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .velotax-field {
+    margin-bottom: var(--velotax-space-3);
+  }
+  
+  .velotax-label {
+    font-size: 0.8125rem;
+  }
+}
+
+
+

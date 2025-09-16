@@ -1,0 +1,414 @@
+/* Análise Preditiva - VeloIGP */
+
+.predictive-analytics {
+  background: var(--velotax-bg-secondary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-xl);
+  padding: var(--velotax-space-6);
+  margin-bottom: var(--velotax-space-6);
+  box-shadow: var(--velotax-shadow-sm);
+  font-family: 'Poppins', sans-serif;
+}
+
+.analytics-header {
+  text-align: center;
+  margin-bottom: var(--velotax-space-6);
+  padding-bottom: var(--velotax-space-4);
+  border-bottom: 2px solid var(--velotax-light-gray);
+}
+
+.analytics-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-2) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--velotax-space-2);
+}
+
+.analytics-header h2 i {
+  color: var(--velotax-purple);
+  font-size: 1.25rem;
+}
+
+.analytics-header p {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  margin: 0;
+}
+
+.analytics-tabs {
+  display: flex;
+  gap: var(--velotax-space-2);
+  margin-bottom: var(--velotax-space-6);
+  padding: var(--velotax-space-2);
+  background: var(--velotax-bg-primary);
+  border-radius: var(--velotax-radius-xl);
+  box-shadow: var(--velotax-shadow-xs);
+}
+
+.tab-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  background: transparent;
+  border: none;
+  border-radius: var(--velotax-radius-lg);
+  color: var(--velotax-text-secondary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+}
+
+.tab-button:hover {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-text-primary);
+  transform: translateY(-1px);
+}
+
+.tab-button.active {
+  background: var(--velotax-purple);
+  color: white;
+  box-shadow: var(--velotax-shadow-sm);
+}
+
+.tab-button i {
+  font-size: 1rem;
+}
+
+.analytics-content {
+  min-height: 400px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Seção de Previsões */
+.predictions-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-4) 0;
+}
+
+.predictions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--velotax-space-4);
+}
+
+.prediction-card {
+  background: var(--velotax-bg-primary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-xl);
+  padding: var(--velotax-space-4);
+  box-shadow: var(--velotax-shadow-sm);
+  transition: all var(--velotax-transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.prediction-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--velotax-shadow-lg);
+  border-color: var(--velotax-purple);
+}
+
+.prediction-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--velotax-gradient-primary);
+}
+
+.prediction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--velotax-space-4);
+  padding-bottom: var(--velotax-space-3);
+  border-bottom: 1px solid var(--velotax-light-gray);
+}
+
+.prediction-header h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0;
+}
+
+.confidence-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-1);
+  padding: var(--velotax-space-1) var(--velotax-space-2);
+  background: var(--velotax-bg-tertiary);
+  border-radius: var(--velotax-radius-md);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.confidence-badge i {
+  font-size: 0.625rem;
+  color: var(--velotax-purple);
+}
+
+.prediction-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-3);
+}
+
+.metric-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  font-weight: 500;
+}
+
+.metric-value {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-1);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  font-family: 'Courier New', monospace;
+}
+
+.metric-value i {
+  font-size: 0.75rem;
+}
+
+/* Seção de Tendências */
+.trends-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-4) 0;
+}
+
+.trends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--velotax-space-4);
+}
+
+.trend-card {
+  background: var(--velotax-bg-primary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-xl);
+  padding: var(--velotax-space-4);
+  box-shadow: var(--velotax-shadow-sm);
+  transition: all var(--velotax-transition-fast);
+}
+
+.trend-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--velotax-shadow-md);
+  border-color: var(--velotax-blue);
+}
+
+.trend-header {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  margin-bottom: var(--velotax-space-3);
+  padding-bottom: var(--velotax-space-2);
+  border-bottom: 1px solid var(--velotax-light-gray);
+}
+
+.trend-header i {
+  font-size: 1.25rem;
+  color: var(--velotax-blue);
+}
+
+.trend-header h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0;
+}
+
+.trend-content {
+  text-align: center;
+}
+
+.current-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  margin-bottom: var(--velotax-space-2);
+  font-family: 'Courier New', monospace;
+}
+
+.change-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--velotax-space-1);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--velotax-space-2);
+}
+
+.change-value i {
+  font-size: 0.875rem;
+}
+
+.previous-value {
+  font-size: 0.75rem;
+  color: var(--velotax-text-secondary);
+}
+
+/* Seção de Insights */
+.insights-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-4) 0;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--velotax-space-4);
+}
+
+.insights-card,
+.recommendations-card {
+  background: var(--velotax-bg-primary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-xl);
+  padding: var(--velotax-space-4);
+  box-shadow: var(--velotax-shadow-sm);
+}
+
+.insights-card h3,
+.recommendations-card h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-3) 0;
+  padding-bottom: var(--velotax-space-2);
+  border-bottom: 1px solid var(--velotax-light-gray);
+}
+
+.insights-card h3 i {
+  color: var(--velotax-yellow);
+}
+
+.recommendations-card h3 i {
+  color: var(--velotax-teal);
+}
+
+.insights-list,
+.recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-2);
+}
+
+.insight-item,
+.recommendation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-2);
+  background: var(--velotax-bg-tertiary);
+  border-radius: var(--velotax-radius-md);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.insight-item i {
+  color: var(--velotax-blue);
+  font-size: 0.75rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.recommendation-item i {
+  color: var(--velotax-teal);
+  font-size: 0.75rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Classes de cor para tendências */
+.text-green-500 { color: #4CAF50 !important; }
+.text-red-500 { color: #F44336 !important; }
+.text-yellow-500 { color: #FF9800 !important; }
+.text-gray-500 { color: #9E9E9E !important; }
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .predictive-analytics {
+    padding: var(--velotax-space-4);
+  }
+
+  .analytics-tabs {
+    flex-direction: column;
+    gap: var(--velotax-space-1);
+  }
+
+  .tab-button {
+    justify-content: flex-start;
+  }
+
+  .predictions-grid,
+  .trends-grid,
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .current-value {
+    font-size: 1.5rem;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animações */
+.prediction-card,
+.trend-card,
+.insights-card,
+.recommendations-card {
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

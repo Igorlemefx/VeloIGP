@@ -1,0 +1,400 @@
+/* Metrics Charts Component */
+.chart-container {
+  background: var(--velotax-bg-primary);
+  border: 1px solid var(--velotax-border-light);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--velotax-shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.chart-container:hover {
+  box-shadow: var(--velotax-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chart-title::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(135deg, var(--velotax-primary), var(--velotax-teal));
+  border-radius: 2px;
+}
+
+/* Bar Chart */
+.chart-container--bar .chart-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bar-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bar-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px;
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+}
+
+.bar-label i {
+  color: var(--velotax-primary);
+  width: 16px;
+}
+
+.bar-track {
+  flex: 1;
+  height: 32px;
+  background: var(--velotax-bg-tertiary);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 1rem;
+  transition: width 0.8s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bar-fill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.bar-value {
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Donut Chart */
+.chart-container--donut {
+  text-align: center;
+}
+
+.donut-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+.donut-chart {
+  width: 200px;
+  height: 200px;
+  transform: rotate(-90deg);
+}
+
+.donut-segment {
+  transition: stroke-dasharray 0.8s ease;
+}
+
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.donut-total {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--velotax-primary);
+  line-height: 1;
+}
+
+.donut-label {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  font-weight: 500;
+}
+
+.donut-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--velotax-bg-secondary);
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-label {
+  color: var(--velotax-text-primary);
+  font-weight: 500;
+}
+
+.legend-value {
+  color: var(--velotax-text-secondary);
+  font-weight: 600;
+}
+
+/* Progress Chart */
+.chart-container--progress .progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+}
+
+.progress-header i {
+  color: var(--velotax-primary);
+  width: 16px;
+}
+
+.progress-track {
+  height: 24px;
+  background: var(--velotax-bg-tertiary);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.8s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.progress-value {
+  color: white;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.progress-percentage {
+  text-align: right;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--velotax-primary);
+}
+
+/* Line Chart */
+.chart-container--line {
+  overflow: hidden;
+}
+
+.line-chart {
+  position: relative;
+  height: 200px;
+}
+
+.line-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.line-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 2s ease-in-out forwards;
+}
+
+.line-point {
+  transition: all 0.3s ease;
+}
+
+.line-point:hover {
+  r: 8;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.line-labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.line-label {
+  position: absolute;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.line-label:nth-child(1) { animation-delay: 0.2s; }
+.line-label:nth-child(2) { animation-delay: 0.4s; }
+.line-label:nth-child(3) { animation-delay: 0.6s; }
+.line-label:nth-child(4) { animation-delay: 0.8s; }
+
+.line-label-value {
+  font-weight: 700;
+  color: var(--velotax-primary);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.line-label-text {
+  font-size: 0.75rem;
+  color: var(--velotax-text-secondary);
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .chart-container {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  
+  .chart-title {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+  
+  .bar-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .bar-label {
+    min-width: auto;
+  }
+  
+  .bar-track {
+    width: 100%;
+  }
+  
+  .donut-chart {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .donut-total {
+    font-size: 1.5rem;
+  }
+  
+  .donut-legend {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .progress-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .line-chart {
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-container {
+    padding: 0.75rem;
+  }
+  
+  .donut-chart {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .donut-total {
+    font-size: 1.25rem;
+  }
+  
+  .line-chart {
+    height: 120px;
+  }
+}
+
+

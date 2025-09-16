@@ -1,0 +1,211 @@
+/* Performance Monitor - VeloIGP */
+
+.performance-monitor {
+  background: var(--velotax-bg-secondary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-xl);
+  padding: var(--velotax-space-4);
+  margin-bottom: var(--velotax-space-4);
+  box-shadow: var(--velotax-shadow-sm);
+  font-family: 'Poppins', sans-serif;
+}
+
+.monitor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--velotax-space-4);
+  padding-bottom: var(--velotax-space-3);
+  border-bottom: 1px solid var(--velotax-light-gray);
+}
+
+.monitor-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0;
+}
+
+.clear-cache-btn {
+  background: var(--velotax-orange);
+  color: white;
+  border: none;
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-2) var(--velotax-space-3);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+}
+
+.clear-cache-btn:hover {
+  background: #e65100;
+  transform: translateY(-1px);
+  box-shadow: var(--velotax-shadow-sm);
+}
+
+.loading {
+  color: var(--velotax-text-secondary);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--velotax-space-3);
+  margin-bottom: var(--velotax-space-4);
+}
+
+.stat-card {
+  background: var(--velotax-bg-tertiary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+  transition: all var(--velotax-transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--velotax-shadow-md);
+  border-color: var(--velotax-blue);
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--velotax-gradient-primary);
+  border-radius: var(--velotax-radius-md);
+  color: white;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--velotax-text-secondary);
+  font-weight: 500;
+  margin-bottom: var(--velotax-space-1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  font-family: 'Courier New', monospace;
+}
+
+.cache-breakdown {
+  background: var(--velotax-bg-tertiary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-3);
+  margin-bottom: var(--velotax-space-4);
+}
+
+.cache-breakdown h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-3) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-2);
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--velotax-space-2);
+  background: var(--velotax-bg-primary);
+  border-radius: var(--velotax-radius-md);
+  border: 1px solid var(--velotax-light-gray);
+}
+
+.type-name {
+  font-size: 0.875rem;
+  color: var(--velotax-text-primary);
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.type-count {
+  font-size: 0.875rem;
+  color: var(--velotax-blue);
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.performance-tips {
+  background: var(--velotax-bg-tertiary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-3);
+}
+
+.performance-tips h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-3) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.performance-tips ul {
+  margin: 0;
+  padding-left: var(--velotax-space-4);
+  color: var(--velotax-text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.performance-tips li {
+  margin-bottom: var(--velotax-space-1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .monitor-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--velotax-space-2);
+  }
+
+  .clear-cache-btn {
+    align-self: center;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--velotax-space-2);
+  }
+
+  .stat-card {
+    padding: var(--velotax-space-2);
+  }
+
+  .stat-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1.25rem;
+  }
+}

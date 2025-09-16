@@ -1,0 +1,257 @@
+/* Velotax Loading Component - Design Profissional */
+.velotax-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  background: var(--velotax-bg-primary);
+  border-radius: 16px;
+  box-shadow: var(--velotax-shadow-lg);
+  margin: 1rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.velotax-loading--small {
+  padding: 1rem;
+  min-height: 120px;
+}
+
+.velotax-loading--medium {
+  padding: 2rem;
+  min-height: 200px;
+}
+
+.velotax-loading--large {
+  padding: 3rem;
+  min-height: 300px;
+}
+
+.velotax-loading--minimal {
+  background: transparent;
+  box-shadow: none;
+  padding: 1rem;
+  min-height: auto;
+}
+
+/* Spinner Principal */
+.velotax-spinner {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.velotax-loading--small .velotax-spinner {
+  width: 50px;
+  height: 50px;
+}
+
+.velotax-loading--medium .velotax-spinner {
+  width: 70px;
+  height: 70px;
+}
+
+.velotax-loading--large .velotax-spinner {
+  width: 90px;
+  height: 90px;
+}
+
+/* Anéis do Spinner */
+.spinner-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+.spinner-ring--1 {
+  border-top: 3px solid var(--velotax-primary);
+  animation-duration: 1.5s;
+}
+
+.spinner-ring--2 {
+  border-right: 3px solid var(--velotax-teal);
+  animation-duration: 2s;
+  animation-delay: -0.5s;
+}
+
+.spinner-ring--3 {
+  border-bottom: 3px solid var(--velotax-warning);
+  animation-duration: 2.5s;
+  animation-delay: -1s;
+}
+
+/* Centro do Spinner com Logo Velotax */
+.spinner-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.velotax-logo {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.logo-circle {
+  width: 16px;
+  height: 16px;
+  background: var(--velotax-primary);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.logo-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--velotax-teal);
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 2px;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+/* Mensagem de Loading */
+.velotax-loading-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.loading-text {
+  color: var(--velotax-text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.velotax-loading--small .loading-text {
+  font-size: 0.9rem;
+}
+
+.velotax-loading--large .loading-text {
+  font-size: 1.2rem;
+}
+
+/* Dots Animados */
+.loading-dots {
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.loading-dots span {
+  width: 6px;
+  height: 6px;
+  background: var(--velotax-primary);
+  border-radius: 50%;
+  animation: bounce 1.4s ease-in-out infinite both;
+}
+
+.loading-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* Animações */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes blink {
+  0%, 50% { 
+    opacity: 1;
+  }
+  51%, 100% { 
+    opacity: 0.3;
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Variantes */
+.velotax-loading--secondary {
+  background: var(--velotax-bg-secondary);
+  border: 1px solid var(--velotax-border-light);
+}
+
+.velotax-loading--minimal .velotax-spinner {
+  margin-bottom: 0.5rem;
+}
+
+.velotax-loading--minimal .velotax-loading-message {
+  margin-top: 0.5rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .velotax-loading {
+    padding: 1.5rem;
+    margin: 0.5rem 0;
+  }
+  
+  .velotax-loading--small {
+    padding: 1rem;
+  }
+  
+  .velotax-loading--large {
+    padding: 2rem;
+  }
+  
+  .loading-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .velotax-loading {
+    background: var(--velotax-bg-primary);
+    color: var(--velotax-text-primary);
+  }
+}
+
+

@@ -1,0 +1,212 @@
+/* Toast Notifications - VeloIGP */
+
+.toast {
+  position: relative;
+  background: var(--velotax-bg-primary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  box-shadow: var(--velotax-shadow-lg);
+  margin-bottom: var(--velotax-space-2);
+  max-width: 400px;
+  min-width: 300px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.toast--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast--leaving {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.toast__content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--velotax-space-3);
+  padding: var(--velotax-space-4);
+}
+
+.toast__icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.toast__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-1) 0;
+  line-height: 1.4;
+}
+
+.toast__message {
+  font-size: 0.75rem;
+  color: var(--velotax-text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.toast__close {
+  background: none;
+  border: none;
+  color: var(--velotax-text-secondary);
+  cursor: pointer;
+  padding: var(--velotax-space-1);
+  border-radius: var(--velotax-radius-sm);
+  transition: all var(--velotax-transition-fast);
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast__close:hover {
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+}
+
+.toast__action {
+  padding: 0 var(--velotax-space-4) var(--velotax-space-4) var(--velotax-space-4);
+  border-top: 1px solid var(--velotax-light-gray);
+}
+
+.toast__action-button {
+  background: var(--velotax-blue);
+  color: white;
+  border: none;
+  border-radius: var(--velotax-radius-md);
+  padding: var(--velotax-space-2) var(--velotax-space-3);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  width: 100%;
+}
+
+.toast__action-button:hover {
+  background: var(--velotax-navy);
+  transform: translateY(-1px);
+}
+
+/* Toast Types */
+.toast--success {
+  border-left: 4px solid var(--velotax-teal);
+}
+
+.toast--success .toast__icon {
+  color: var(--velotax-teal);
+}
+
+.toast--error {
+  border-left: 4px solid #ef4444;
+}
+
+.toast--error .toast__icon {
+  color: #ef4444;
+}
+
+.toast--warning {
+  border-left: 4px solid var(--velotax-orange);
+}
+
+.toast--warning .toast__icon {
+  color: var(--velotax-orange);
+}
+
+.toast--info {
+  border-left: 4px solid var(--velotax-blue);
+}
+
+.toast--info .toast__icon {
+  color: var(--velotax-blue);
+}
+
+/* Dark theme */
+[data-theme="dark"] .toast {
+  background: var(--velotax-bg-primary);
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .toast__action {
+  border-top-color: var(--velotax-charcoal);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .toast {
+    max-width: calc(100vw - var(--velotax-space-4));
+    min-width: 280px;
+    margin: 0 var(--velotax-space-2) var(--velotax-space-2) var(--velotax-space-2);
+  }
+  
+  .toast__content {
+    padding: var(--velotax-space-3);
+    gap: var(--velotax-space-2);
+  }
+  
+  .toast__icon {
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+  }
+  
+  .toast__title {
+    font-size: 0.75rem;
+  }
+  
+  .toast__message {
+    font-size: 0.625rem;
+  }
+  
+  .toast__close {
+    width: 20px;
+    height: 20px;
+    font-size: 0.75rem;
+  }
+  
+  .toast__action {
+    padding: 0 var(--velotax-space-3) var(--velotax-space-3) var(--velotax-space-3);
+  }
+  
+  .toast__action-button {
+    padding: var(--velotax-space-2);
+    font-size: 0.625rem;
+  }
+}
+
+/* Accessibility */
+.toast:focus {
+  outline: 2px solid var(--velotax-blue);
+  outline-offset: 2px;
+}
+
+.toast__close:focus {
+  outline: 2px solid var(--velotax-blue);
+  outline-offset: 1px;
+}
+
+.toast__action-button:focus {
+  outline: 2px solid white;
+  outline-offset: 1px;
+}
+
+

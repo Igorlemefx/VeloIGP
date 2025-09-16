@@ -1,0 +1,793 @@
+/* Estilos Globais VeloIGP - Manual de Identidade Visual */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Reset e Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #272A30;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(22, 22, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 152, 0, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Paleta Oficial VeloIGP - Manual de Identidade */
+:root {
+  /* Cores Primárias - Padrão VeloAcademy */
+  --velotax-navy: #000058;
+  --velotax-blue: #007bff;
+  --velotax-teal: #1DFDB9;
+  --velotax-orange: #FF8400;
+  --velotax-charcoal: #272A30;
+  --velotax-light-gray: #E2E8F0;
+  --velotax-magenta: #FF00D7;
+  --velotax-purple: #791DD0;
+
+  /* Cores de Fundo - Padrão VeloAcademy */
+  --velotax-bg-primary: #f0f4f8;
+  --velotax-bg-secondary: #ffffff;
+  --velotax-bg-tertiary: #f1f5f9;
+
+  /* Cores de Texto - Padrão VeloAcademy */
+  --velotax-text-primary: #071a2f;
+  --velotax-text-secondary: #5a677e;
+  --velotax-text-tertiary: #9CA3AF;
+  --velotax-text-inverse: #FFFFFF;
+
+  /* Cores de Status */
+  --velotax-success: #1DFDB9;
+  --velotax-warning: #FF8400;
+  --velotax-error: #FF00D7;
+  --velotax-info: #1634FF;
+
+  /* Cores de Acento */
+  --velotax-accent-1: #1634FF;
+  --velotax-accent-2: #1DFDB9;
+  --velotax-accent-3: #FF8400;
+  --velotax-accent-4: #FF00D7;
+  --velotax-accent-5: #791DD0;
+
+  /* Espaçamentos */
+  --velotax-space-px: 1px;
+  --velotax-space-0: 0;
+  --velotax-space-1: 0.25rem;
+  --velotax-space-2: 0.5rem;
+  --velotax-space-3: 0.75rem;
+  --velotax-space-4: 1rem;
+  --velotax-space-5: 1.25rem;
+  --velotax-space-6: 1.5rem;
+  --velotax-space-8: 2rem;
+  --velotax-space-10: 2.5rem;
+  --velotax-space-12: 3rem;
+  --velotax-space-16: 4rem;
+  --velotax-space-20: 5rem;
+  --velotax-space-24: 6rem;
+
+  /* Bordas */
+  --velotax-radius-none: 0;
+  --velotax-radius-sm: 0.125rem;
+  --velotax-radius-base: 0.25rem;
+  --velotax-radius-md: 0.375rem;
+  --velotax-radius-lg: 0.5rem;
+  --velotax-radius-xl: 0.75rem;
+  --velotax-radius-2xl: 1rem;
+  --velotax-radius-3xl: 1.5rem;
+  --velotax-radius-full: 9999px;
+
+  /* Sombras */
+  --velotax-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --velotax-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --velotax-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --velotax-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --velotax-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --velotax-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Transições */
+  --velotax-transition-fast: 150ms ease-in-out;
+  --velotax-transition-normal: 250ms ease-in-out;
+  --velotax-transition-slow: 350ms ease-in-out;
+
+  /* Z-Index */
+  --velotax-z-dropdown: 1000;
+  --velotax-z-sticky: 1100;
+  --velotax-z-fixed: 1200;
+  --velotax-z-modal: 1300;
+  --velotax-z-popover: 1400;
+  --velotax-z-tooltip: 1500;
+}
+
+/* Dark Theme - Padrão VeloAcademy */
+[data-theme="dark"] {
+  /* Cores de Fundo - Padrão VeloAcademy */
+  --velotax-bg-primary: #0a1929;
+  --velotax-bg-secondary: #112240;
+  --velotax-bg-tertiary: #1d3557;
+
+  /* Cores de Texto - Padrão VeloAcademy */
+  --velotax-text-primary: #e6f1ff;
+  --velotax-text-secondary: #a8b2d1;
+  --velotax-text-tertiary: #9CA3AF;
+  --velotax-text-inverse: #0a1929;
+
+  /* Background do body */
+  --velotax-bg-body: #0a1929;
+}
+
+/* Aplicar tema ao body */
+body {
+  background: var(--velotax-bg-body, #f0f4f8);
+  color: var(--velotax-text-primary);
+}
+
+/* Classes VeloAcademy */
+.container {
+  max-width: none;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.main-container {
+  min-height: calc(100vh - 80px);
+  padding: 20px 0;
+}
+
+.dashboard-card {
+  background-color: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--velotax-light-gray);
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: var(--velotax-radius-md);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--velotax-blue);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--velotax-blue);
+  border: 1px solid var(--velotax-blue);
+}
+
+.btn-secondary:hover {
+  background-color: var(--velotax-blue);
+  color: white;
+}
+
+.section {
+  margin: 40px 0;
+  padding: 20px;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  color: var(--velotax-text-primary);
+  font-weight: 600;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+/* Animações Keyframes Nítidas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-30%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(22, 52, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(22, 52, 255, 0.7);
+  }
+}
+
+@keyframes sweep {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Classes Utilitárias */
+.velotax-fade-in {
+  animation: fadeIn var(--velotax-transition-normal);
+}
+
+.velotax-slide-in {
+  animation: slideIn var(--velotax-transition-normal);
+}
+
+.velotax-scale-in {
+  animation: scaleIn var(--velotax-transition-normal);
+}
+
+.velotax-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.velotax-spin {
+  animation: spin 1s linear infinite;
+}
+
+.velotax-bounce {
+  animation: bounce 1s infinite;
+}
+
+.velotax-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.velotax-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Hover Effects Nítidos */
+.velotax-hover-lift {
+  transition: all var(--velotax-transition-fast);
+  will-change: transform, box-shadow;
+}
+
+.velotax-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--velotax-shadow-xl);
+}
+
+.velotax-hover-glow {
+  transition: all var(--velotax-transition-fast);
+  will-change: box-shadow;
+}
+
+.velotax-hover-glow:hover {
+  box-shadow: 0 0 25px rgba(22, 52, 255, 0.4);
+}
+
+.velotax-hover-scale {
+  transition: all var(--velotax-transition-fast);
+  will-change: transform;
+}
+
+.velotax-hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Cards Padrão Nítidos */
+.velotax-card {
+  background: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-xl);
+  padding: var(--velotax-space-6);
+  box-shadow: var(--velotax-shadow-sm);
+  border: 1px solid var(--velotax-light-gray);
+  transition: all var(--velotax-transition-normal);
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+}
+
+.velotax-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(22, 52, 255, 0.15), transparent);
+  transition: left 0.6s ease;
+}
+
+.velotax-card:hover::before {
+  left: 100%;
+}
+
+.velotax-card:hover {
+  box-shadow: var(--velotax-shadow-xl);
+  transform: translateY(-3px);
+  border-color: var(--velotax-blue);
+}
+
+/* Botões Padrão Nítidos */
+.velotax-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-3) var(--velotax-space-6);
+  border-radius: var(--velotax-radius-lg);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--velotax-transition-fast);
+  cursor: pointer;
+  border: none;
+  font-size: 0.875rem;
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  font-family: 'Poppins', sans-serif;
+}
+
+.velotax-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.velotax-btn:hover::before {
+  left: 100%;
+}
+
+.velotax-btn-primary {
+  background: var(--velotax-blue);
+  color: var(--velotax-text-inverse);
+  box-shadow: var(--velotax-shadow-sm);
+}
+
+.velotax-btn-primary:hover {
+  background: var(--velotax-navy);
+  box-shadow: var(--velotax-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.velotax-btn-secondary {
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+  border: 1px solid var(--velotax-light-gray);
+}
+
+.velotax-btn-secondary:hover {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-blue);
+  color: var(--velotax-blue);
+  transform: translateY(-1px);
+}
+
+/* Inputs Padrão Nítidos */
+.velotax-input {
+  width: 100%;
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+  font-size: 0.875rem;
+  transition: all var(--velotax-transition-fast);
+  will-change: transform, box-shadow;
+  font-family: 'Poppins', sans-serif;
+}
+
+.velotax-input:focus {
+  outline: none;
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 4px rgba(22, 52, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Títulos Padrão */
+.velotax-title-1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  line-height: 1.2;
+  margin-bottom: var(--velotax-space-4);
+  font-family: 'Poppins', sans-serif;
+}
+
+.velotax-title-2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  line-height: 1.3;
+  margin-bottom: var(--velotax-space-3);
+  font-family: 'Poppins', sans-serif;
+}
+
+.velotax-title-3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  line-height: 1.4;
+  margin-bottom: var(--velotax-space-2);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Texto Padrão */
+.velotax-text-body {
+  font-size: 1rem;
+  color: var(--velotax-text-secondary);
+  line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+}
+
+.velotax-text-small {
+  font-size: 0.875rem;
+  color: var(--velotax-text-tertiary);
+  line-height: 1.5;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Grid System */
+.velotax-grid {
+  display: grid;
+  gap: var(--velotax-space-6);
+}
+
+.velotax-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.velotax-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.velotax-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 768px) {
+  .velotax-grid-2,
+  .velotax-grid-3,
+  .velotax-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+  .velotax-title-1 {
+    font-size: 2rem;
+  }
+  
+  .velotax-title-2 {
+    font-size: 1.75rem;
+  }
+  
+  .velotax-title-3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Scrollbar Personalizada Nítida */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--velotax-blue);
+  border-radius: var(--velotax-radius-full);
+  transition: background var(--velotax-transition-fast);
+  box-shadow: 0 2px 4px rgba(22, 52, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--velotax-navy);
+  box-shadow: 0 4px 8px rgba(22, 52, 255, 0.3);
+}
+
+/* Focus Visible */
+.velotax-focus-visible:focus-visible {
+  outline: 3px solid var(--velotax-blue);
+  outline-offset: 3px;
+}
+
+/* Animações de Entrada para Elementos */
+.velotax-animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.velotax-animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading States Nítidos */
+.velotax-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.velotax-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+/* Seleção de Texto */
+::selection {
+  background: rgba(22, 52, 255, 0.25);
+  color: var(--velotax-text-primary);
+}
+
+::-moz-selection {
+  background: rgba(22, 52, 255, 0.25);
+  color: var(--velotax-text-primary);
+}
+
+/* Otimizações de Performance */
+* {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Melhorias de Renderização */
+.velotax-card,
+.velotax-btn,
+.velotax-input {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Acessibilidade - WCAG 2.1 Compliance */
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip Links */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--velotax-blue);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+  --velotax-text-primary: #000000;
+  --velotax-text-secondary: #000000;
+  --velotax-bg-primary: #ffffff;
+  --velotax-bg-secondary: #ffffff;
+  --velotax-blue: #0000ff;
+  --velotax-success: #008000;
+  --velotax-warning: #ff8c00;
+  --velotax-error: #ff0000;
+}
+
+.high-contrast .metric-card,
+.high-contrast .dashboard-card,
+.high-contrast .status-section,
+.high-contrast .activity-section {
+  border: 2px solid var(--velotax-text-primary);
+}
+
+/* Large Text Mode */
+.large-text {
+  font-size: 1.2em;
+}
+
+.large-text h1 { font-size: 2.5rem; }
+.large-text h2 { font-size: 2rem; }
+.large-text h3 { font-size: 1.5rem; }
+.large-text .btn { padding: 16px 32px; }
+.large-text .metric-card-value { font-size: 3rem; }
+
+/* Reduced Motion */
+.reduced-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Focus Indicators */
+.btn:focus,
+.nav-link:focus,
+.metric-card:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid var(--velotax-blue);
+  outline-offset: 2px;
+}
+
+/* Keyboard Navigation */
+.keyboard-nav .btn:focus,
+.keyboard-nav .nav-link:focus {
+  background-color: var(--velotax-blue);
+  color: white;
+}
+
+/* ARIA Live Regions */
+[aria-live] {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* High Contrast Focus */
+.high-contrast .btn:focus,
+.high-contrast .nav-link:focus {
+  outline: 3px solid #000000;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Acessibilidade Mobile */
+@media (max-width: 768px) {
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .nav-link {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+  
+  .metric-card {
+    min-height: 120px;
+  }
+}

@@ -1,0 +1,221 @@
+/* Dropdown VeloIGP - Manual de Identidade Visual */
+
+.velotax-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.velotax-dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  background: var(--velotax-blue);
+  color: white;
+  border: 2px solid var(--velotax-blue);
+  border-radius: var(--velotax-radius-lg);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  outline: none;
+  text-decoration: none;
+}
+
+.velotax-dropdown-button:hover {
+  background: var(--velotax-navy);
+  border-color: var(--velotax-navy);
+  transform: translateY(-1px);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.velotax-dropdown-button:focus {
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.2);
+}
+
+.velotax-dropdown-button--outline {
+  background: transparent;
+  color: var(--velotax-blue);
+  border-color: var(--velotax-blue);
+}
+
+.velotax-dropdown-button--outline:hover {
+  background: var(--velotax-blue);
+  color: white;
+}
+
+.velotax-dropdown-button--open {
+  background: var(--velotax-navy);
+  border-color: var(--velotax-navy);
+}
+
+.velotax-dropdown-button--open.velotax-dropdown-button--outline {
+  background: var(--velotax-blue);
+  color: white;
+}
+
+.velotax-dropdown-menu {
+  position: absolute;
+  z-index: 50;
+  min-width: 12rem;
+  background: white;
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  box-shadow: var(--velotax-shadow-xl);
+  padding: var(--velotax-space-2);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all var(--velotax-transition-fast);
+  pointer-events: none;
+}
+
+.velotax-dropdown-menu--open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.velotax-dropdown-menu--bottom-start {
+  top: 100%;
+  left: 0;
+  margin-top: var(--velotax-space-2);
+}
+
+.velotax-dropdown-menu--bottom-end {
+  top: 100%;
+  right: 0;
+  margin-top: var(--velotax-space-2);
+}
+
+.velotax-dropdown-menu--top-start {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: var(--velotax-space-2);
+}
+
+.velotax-dropdown-menu--top-end {
+  bottom: 100%;
+  right: 0;
+  margin-bottom: var(--velotax-space-2);
+}
+
+.velotax-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+  width: 100%;
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  background: transparent;
+  color: var(--velotax-text-primary);
+  border: none;
+  border-radius: var(--velotax-radius-md);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  text-decoration: none;
+  text-align: left;
+}
+
+.velotax-dropdown-item:hover {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+}
+
+.velotax-dropdown-item:focus {
+  outline: none;
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+  box-shadow: 0 0 0 2px rgba(22, 52, 255, 0.1);
+}
+
+.velotax-dropdown-label {
+  flex: 1;
+  font-weight: 500;
+}
+
+.velotax-dropdown-divider {
+  height: 1px;
+  background: var(--velotax-light-gray);
+  margin: var(--velotax-space-2) 0;
+}
+
+/* Animações */
+.velotax-dropdown-menu {
+  animation: dropdownFadeIn 0.2s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.velotax-dropdown-item {
+  animation: itemFadeIn 0.15s ease-out;
+}
+
+@keyframes itemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .velotax-dropdown-menu {
+    min-width: 10rem;
+    max-width: calc(100vw - 2rem);
+  }
+  
+  .velotax-dropdown-button {
+    padding: var(--velotax-space-2) var(--velotax-space-3);
+    font-size: 0.8125rem;
+  }
+  
+  .velotax-dropdown-item {
+    padding: var(--velotax-space-2) var(--velotax-space-3);
+    font-size: 0.8125rem;
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .velotax-dropdown-menu {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-charcoal);
+  box-shadow: var(--velotax-shadow-xl);
+}
+
+[data-theme="dark"] .velotax-dropdown-item {
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .velotax-dropdown-item:hover {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+}
+
+[data-theme="dark"] .velotax-dropdown-item:focus {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+  box-shadow: 0 0 0 2px rgba(22, 52, 255, 0.1);
+}
+
+[data-theme="dark"] .velotax-dropdown-divider {
+  background: var(--velotax-charcoal);
+}
+
+
+

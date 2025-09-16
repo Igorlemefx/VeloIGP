@@ -1,0 +1,579 @@
+/* Sistema de Design VeloTax/VeloAcademy */
+/* Baseado nas identidades visuais das plataformas */
+
+:root {
+  /* === CORES PRIMÁRIAS VELOTAX === */
+  --velotax-primary: #2563eb;
+  --velotax-primary-dark: #1d4ed8;
+  --velotax-primary-light: #3b82f6;
+  --velotax-primary-50: #eff6ff;
+  --velotax-primary-100: #dbeafe;
+  --velotax-primary-200: #bfdbfe;
+  --velotax-primary-300: #93c5fd;
+  --velotax-primary-400: #60a5fa;
+  --velotax-primary-500: #3b82f6;
+  --velotax-primary-600: #2563eb;
+  --velotax-primary-700: #1d4ed8;
+  --velotax-primary-800: #1e40af;
+  --velotax-primary-900: #1e3a8a;
+
+  /* === CORES SECUNDÁRIAS === */
+  --velotax-secondary: #64748b;
+  --velotax-secondary-dark: #475569;
+  --velotax-secondary-light: #94a3b8;
+
+  /* === CORES DE STATUS === */
+  --velotax-success: #10b981;
+  --velotax-success-dark: #059669;
+  --velotax-success-light: #34d399;
+  --velotax-warning: #f59e0b;
+  --velotax-warning-dark: #d97706;
+  --velotax-warning-light: #fbbf24;
+  --velotax-error: #ef4444;
+  --velotax-error-dark: #dc2626;
+  --velotax-error-light: #f87171;
+  --velotax-info: #06b6d4;
+  --velotax-info-dark: #0891b2;
+  --velotax-info-light: #22d3ee;
+
+  /* === CORES NEUTRAS === */
+  --velotax-gray-50: #f8fafc;
+  --velotax-gray-100: #f1f5f9;
+  --velotax-gray-200: #e2e8f0;
+  --velotax-gray-300: #cbd5e1;
+  --velotax-gray-400: #94a3b8;
+  --velotax-gray-500: #64748b;
+  --velotax-gray-600: #475569;
+  --velotax-gray-700: #334155;
+  --velotax-gray-800: #1e293b;
+  --velotax-gray-900: #0f172a;
+
+  /* === CORES DE TEXTO === */
+  --velotax-text-primary: #0f172a;
+  --velotax-text-secondary: #475569;
+  --velotax-text-tertiary: #64748b;
+  --velotax-text-inverse: #ffffff;
+  --velotax-text-muted: #94a3b8;
+
+  /* === CORES DE FUNDO === */
+  --velotax-bg-primary: #ffffff;
+  --velotax-bg-secondary: #f8fafc;
+  --velotax-bg-tertiary: #f1f5f9;
+  --velotax-bg-dark: #0f172a;
+  --velotax-bg-card: #ffffff;
+  --velotax-bg-overlay: rgba(15, 23, 42, 0.5);
+
+  /* === CORES DE BORDA === */
+  --velotax-border-light: #e2e8f0;
+  --velotax-border-medium: #cbd5e1;
+  --velotax-border-dark: #94a3b8;
+  --velotax-border-focus: #3b82f6;
+
+  /* === SOMBRAS === */
+  --velotax-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --velotax-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --velotax-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --velotax-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --velotax-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --velotax-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* === GRADIENTES === */
+  --velotax-gradient-primary: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  --velotax-gradient-secondary: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+  --velotax-gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  --velotax-gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  --velotax-gradient-error: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+  --velotax-gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+
+  /* === TIPOGRAFIA === */
+  --velotax-font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  --velotax-font-mono: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+
+  /* === TAMANHOS DE FONTE === */
+  --velotax-text-xs: 0.75rem;    /* 12px */
+  --velotax-text-sm: 0.875rem;   /* 14px */
+  --velotax-text-base: 1rem;     /* 16px */
+  --velotax-text-lg: 1.125rem;   /* 18px */
+  --velotax-text-xl: 1.25rem;    /* 20px */
+  --velotax-text-2xl: 1.5rem;    /* 24px */
+  --velotax-text-3xl: 1.875rem;  /* 30px */
+  --velotax-text-4xl: 2.25rem;   /* 36px */
+  --velotax-text-5xl: 3rem;      /* 48px */
+  --velotax-text-6xl: 3.75rem;   /* 60px */
+
+  /* === PESOS DE FONTE === */
+  --velotax-font-thin: 100;
+  --velotax-font-light: 300;
+  --velotax-font-normal: 400;
+  --velotax-font-medium: 500;
+  --velotax-font-semibold: 600;
+  --velotax-font-bold: 700;
+  --velotax-font-extrabold: 800;
+  --velotax-font-black: 900;
+
+  /* === ESPAÇAMENTOS === */
+  --velotax-space-1: 0.25rem;    /* 4px */
+  --velotax-space-2: 0.5rem;     /* 8px */
+  --velotax-space-3: 0.75rem;    /* 12px */
+  --velotax-space-4: 1rem;       /* 16px */
+  --velotax-space-5: 1.25rem;    /* 20px */
+  --velotax-space-6: 1.5rem;     /* 24px */
+  --velotax-space-8: 2rem;       /* 32px */
+  --velotax-space-10: 2.5rem;    /* 40px */
+  --velotax-space-12: 3rem;      /* 48px */
+  --velotax-space-16: 4rem;      /* 64px */
+  --velotax-space-20: 5rem;      /* 80px */
+  --velotax-space-24: 6rem;      /* 96px */
+
+  /* === BORDAS === */
+  --velotax-radius-none: 0;
+  --velotax-radius-sm: 0.125rem;  /* 2px */
+  --velotax-radius-md: 0.375rem;  /* 6px */
+  --velotax-radius-lg: 0.5rem;    /* 8px */
+  --velotax-radius-xl: 0.75rem;   /* 12px */
+  --velotax-radius-2xl: 1rem;     /* 16px */
+  --velotax-radius-3xl: 1.5rem;   /* 24px */
+  --velotax-radius-full: 9999px;
+
+  /* === TRANSIÇÕES === */
+  --velotax-transition-fast: 150ms ease-out;
+  --velotax-transition-normal: 250ms ease-out;
+  --velotax-transition-slow: 350ms ease-out;
+  --velotax-transition-bounce: 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* === Z-INDEX === */
+  --velotax-z-dropdown: 1000;
+  --velotax-z-sticky: 1020;
+  --velotax-z-fixed: 1030;
+  --velotax-z-modal-backdrop: 1040;
+  --velotax-z-modal: 1050;
+  --velotax-z-popover: 1060;
+  --velotax-z-tooltip: 1070;
+  --velotax-z-toast: 1080;
+}
+
+/* === RESET E BASE === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--velotax-font-family);
+  font-size: var(--velotax-text-base);
+  font-weight: var(--velotax-font-normal);
+  line-height: 1.6;
+  color: var(--velotax-text-primary);
+  background-color: var(--velotax-bg-secondary);
+  overflow-x: hidden;
+}
+
+/* === TIPOGRAFIA === */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--velotax-font-bold);
+  line-height: 1.2;
+  color: var(--velotax-text-primary);
+  margin-bottom: var(--velotax-space-4);
+}
+
+h1 { font-size: var(--velotax-text-5xl); }
+h2 { font-size: var(--velotax-text-4xl); }
+h3 { font-size: var(--velotax-text-3xl); }
+h4 { font-size: var(--velotax-text-2xl); }
+h5 { font-size: var(--velotax-text-xl); }
+h6 { font-size: var(--velotax-text-lg); }
+
+p {
+  margin-bottom: var(--velotax-space-4);
+  color: var(--velotax-text-secondary);
+}
+
+a {
+  color: var(--velotax-primary);
+  text-decoration: none;
+  transition: color var(--velotax-transition-fast);
+}
+
+a:hover {
+  color: var(--velotax-primary-dark);
+}
+
+/* === COMPONENTES BASE === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-3) var(--velotax-space-6);
+  font-size: var(--velotax-text-sm);
+  font-weight: var(--velotax-font-medium);
+  line-height: 1;
+  border: 1px solid transparent;
+  border-radius: var(--velotax-radius-lg);
+  cursor: pointer;
+  transition: all var(--velotax-transition-normal);
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:focus {
+  outline: 2px solid var(--velotax-border-focus);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Variantes de botão */
+.btn-primary {
+  background: var(--velotax-gradient-primary);
+  color: var(--velotax-text-inverse);
+  box-shadow: var(--velotax-shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--velotax-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.btn-secondary {
+  background: var(--velotax-bg-primary);
+  color: var(--velotax-primary);
+  border-color: var(--velotax-border-medium);
+}
+
+.btn-secondary:hover {
+  background: var(--velotax-primary-50);
+  border-color: var(--velotax-primary);
+}
+
+.btn-success {
+  background: var(--velotax-gradient-success);
+  color: var(--velotax-text-inverse);
+}
+
+.btn-warning {
+  background: var(--velotax-gradient-warning);
+  color: var(--velotax-text-inverse);
+}
+
+.btn-error {
+  background: var(--velotax-gradient-error);
+  color: var(--velotax-text-inverse);
+}
+
+/* Tamanhos de botão */
+.btn-sm {
+  padding: var(--velotax-space-2) var(--velotax-space-4);
+  font-size: var(--velotax-text-xs);
+}
+
+.btn-lg {
+  padding: var(--velotax-space-4) var(--velotax-space-8);
+  font-size: var(--velotax-text-lg);
+}
+
+/* === CARDS === */
+.card {
+  background: var(--velotax-bg-primary);
+  border: 1px solid var(--velotax-border-light);
+  border-radius: var(--velotax-radius-xl);
+  box-shadow: var(--velotax-shadow-sm);
+  overflow: hidden;
+  transition: all var(--velotax-transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--velotax-shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  padding: var(--velotax-space-6);
+  border-bottom: 1px solid var(--velotax-border-light);
+  background: var(--velotax-bg-secondary);
+}
+
+.card-body {
+  padding: var(--velotax-space-6);
+}
+
+.card-footer {
+  padding: var(--velotax-space-6);
+  border-top: 1px solid var(--velotax-border-light);
+  background: var(--velotax-bg-secondary);
+}
+
+/* === FORMULÁRIOS === */
+.form-group {
+  margin-bottom: var(--velotax-space-6);
+}
+
+.form-label {
+  display: block;
+  font-size: var(--velotax-text-sm);
+  font-weight: var(--velotax-font-medium);
+  color: var(--velotax-text-primary);
+  margin-bottom: var(--velotax-space-2);
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  font-size: var(--velotax-text-base);
+  border: 1px solid var(--velotax-border-medium);
+  border-radius: var(--velotax-radius-lg);
+  background: var(--velotax-bg-primary);
+  color: var(--velotax-text-primary);
+  transition: all var(--velotax-transition-fast);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--velotax-border-focus);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right var(--velotax-space-3) center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: var(--velotax-space-10);
+}
+
+/* === ANIMAÇÕES === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Classes de animação */
+.animate-fade-in { animation: fadeIn 0.5s ease-out; }
+.animate-slide-in-up { animation: slideInUp 0.5s ease-out; }
+.animate-slide-in-down { animation: slideInDown 0.5s ease-out; }
+.animate-slide-in-left { animation: slideInLeft 0.5s ease-out; }
+.animate-slide-in-right { animation: slideInRight 0.5s ease-out; }
+.animate-scale-in { animation: scaleIn 0.3s ease-out; }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.animate-spin { animation: spin 1s linear infinite; }
+.animate-bounce { animation: bounce 1s infinite; }
+
+/* === UTILITÁRIOS === */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--velotax-space-4);
+}
+
+.grid {
+  display: grid;
+  gap: var(--velotax-space-6);
+}
+
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-bold { font-weight: var(--velotax-font-bold); }
+.font-semibold { font-weight: var(--velotax-font-semibold); }
+.font-medium { font-weight: var(--velotax-font-medium); }
+
+.text-primary { color: var(--velotax-primary); }
+.text-secondary { color: var(--velotax-text-secondary); }
+.text-success { color: var(--velotax-success); }
+.text-warning { color: var(--velotax-warning); }
+.text-error { color: var(--velotax-error); }
+
+.bg-primary { background-color: var(--velotax-primary); }
+.bg-secondary { background-color: var(--velotax-bg-secondary); }
+.bg-success { background-color: var(--velotax-success); }
+.bg-warning { background-color: var(--velotax-warning); }
+.bg-error { background-color: var(--velotax-error); }
+
+.rounded { border-radius: var(--velotax-radius-lg); }
+.rounded-lg { border-radius: var(--velotax-radius-xl); }
+.rounded-full { border-radius: var(--velotax-radius-full); }
+
+.shadow { box-shadow: var(--velotax-shadow-md); }
+.shadow-lg { box-shadow: var(--velotax-shadow-lg); }
+.shadow-xl { box-shadow: var(--velotax-shadow-xl); }
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--velotax-space-3);
+  }
+  
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  h1 { font-size: var(--velotax-text-4xl); }
+  h2 { font-size: var(--velotax-text-3xl); }
+  h3 { font-size: var(--velotax-text-2xl); }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid-cols-4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* === ACESSIBILIDADE === */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus-visible:focus {
+  outline: 2px solid var(--velotax-border-focus);
+  outline-offset: 2px;
+}
+
+/* === DARK MODE (Preparação) === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --velotax-bg-primary: #0f172a;
+    --velotax-bg-secondary: #1e293b;
+    --velotax-text-primary: #f8fafc;
+    --velotax-text-secondary: #cbd5e1;
+  }
+}
+
+
+

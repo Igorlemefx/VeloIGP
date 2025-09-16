@@ -1,0 +1,135 @@
+/* Error Boundary Styles */
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  font-family: 'Poppins', sans-serif;
+}
+
+.error-boundary-content {
+  background: var(--velotax-bg-primary);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: var(--velotax-shadow-xl);
+  border: 1px solid var(--velotax-border-light);
+  max-width: 500px;
+  width: 100%;
+}
+
+.error-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--velotax-error-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  animation: pulse 2s infinite;
+}
+
+.error-icon i {
+  font-size: 2.5rem;
+  color: var(--velotax-error);
+}
+
+.error-boundary-content h2 {
+  color: var(--velotax-text-primary);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.error-boundary-content p {
+  color: var(--velotax-text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-actions .btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--velotax-shadow-lg);
+}
+
+.error-details {
+  margin-top: 2rem;
+  text-align: left;
+  background: var(--velotax-bg-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid var(--velotax-border-light);
+}
+
+.error-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin-bottom: 1rem;
+}
+
+.error-details pre {
+  background: var(--velotax-bg-tertiary);
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--velotax-text-secondary);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .error-boundary {
+    padding: 1rem;
+  }
+  
+  .error-boundary-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .error-actions {
+    flex-direction: column;
+  }
+  
+  .error-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+

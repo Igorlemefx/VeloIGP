@@ -1,0 +1,108 @@
+# Configuração do Cursor.IA para VeloIGP
+
+## Estrutura da Planilha Google Sheets
+A planilha contém dados de chamadas telefônicas com as seguintes colunas:
+
+### Colunas Principais:
+- **Chamada**: Tipo de chamada (Atendida, Retida na URA, Abandonada)
+- **Audio E Transcrições**: Links para áudios e transcrições
+- **Operador**: Identificação do operador
+- **Data**: Data da chamada (formato DD/MM/YYYY)
+- **Hora**: Hora da chamada (formato HH:MM:SS)
+- **Data Atendimento**: Data do atendimento
+- **Hora Atendimento**: Hora do atendimento
+- **País**: País de origem
+- **DDD**: DDD da chamada
+- **Numero**: Número de telefone
+- **Fila**: Fila de atendimento
+
+### Tempos da Chamada:
+- **Tempo Na Ura**: Tempo na URA (formato MM:SS)
+- **Tempo De Espera**: Tempo de espera (formato MM:SS)
+- **Tempo Falado**: Tempo falado (formato MM:SS)
+- **Tempo Total**: Tempo total da chamada (formato MM:SS)
+
+### Status e Identificadores:
+- **Desconexão**: Status da desconexão
+- **Telefone Entrada**: Telefone de entrada
+- **Caminho U R A**: Caminho na URA
+- **Cpf/Cnpj**: CPF/CNPJ do cliente
+- **Pedido**: Número do pedido
+- **Id Ligação**: ID da ligação
+- **Id Ligação De Origem**: ID da ligação de origem
+- **I D Do Ticket**: ID do ticket
+- **Fluxo De Filas**: Fluxo de filas
+
+### Avaliações e Qualidade:
+- **Wh_quality_reason**: Motivo da qualidade
+- **Wh_humor_reason**: Motivo do humor
+- **Questionário De Qualidade**: Questionário de qualidade
+- **Pergunta2 1 PERGUNTA ATENDENTE**: Pergunta sobre atendente
+- **Pergunta2 2 PERGUNTA SOLUCAO**: Pergunta sobre solução
+
+### Métricas Calculadas:
+- **Dia**: Dia da semana
+- **qtde**: Quantidade
+- **Até 20 Seg**: Chamadas até 20 segundos
+- **Faixa**: Faixa de tempo
+- **Mês**: Mês da chamada
+- **TMA (FALADO**: TMA falado
+- **Tempo URA (seg**: Tempo URA em segundos
+- **TME (seg)**: TME em segundos
+- **TMA (seg)**: TMA em segundos
+- **Pergunta 1**: Pergunta 1
+- **Pergunta 2**: Pergunta 2
+
+## Configuração do MCP Server
+
+### Credenciais:
+- **Arquivo**: `C:\Users\Velotax Suporte\Downloads\ProjetoIGP\gcp-oauth.keys.json`
+- **Spreadsheet ID**: `1IBT4S1_saLE6XbalxWV-FjzPsTFuAaSknbdgKI1FMhM`
+- **API Key**: `AIzaSyA-BgGFBY8BTfwqkKlAB92ZM-jvMexmM_A`
+
+### Comandos MCP Disponíveis:
+- `mcp_TestSprite_testsprite_bootstrap_tests`: Inicializar testes
+- `mcp_TestSprite_testsprite_generate_code_summary`: Gerar resumo do código
+- `mcp_TestSprite_testsprite_generate_standardized_prd`: Gerar PRD padronizado
+- `mcp_TestSprite_testsprite_generate_frontend_test_plan`: Gerar plano de teste frontend
+- `mcp_TestSprite_testsprite_generate_backend_test_plan`: Gerar plano de teste backend
+- `mcp_TestSprite_testsprite_generate_code_and_execute`: Gerar e executar código
+
+## Processamento de Dados
+
+### Conversões Necessárias:
+1. **Datas**: Converter DD/MM/YYYY para formato ISO
+2. **Horas**: Converter HH:MM:SS para segundos
+3. **Tempos**: Converter MM:SS para segundos
+4. **Status**: Normalizar status de desconexão
+5. **URLs**: Validar links de áudio e transcrições
+
+### Métricas Principais:
+- Total de chamadas
+- Taxa de atendimento
+- Taxa de abandono
+- Tempo médio de espera
+- Tempo médio de atendimento
+- Satisfação média
+- Performance por operador
+
+### Filtros Disponíveis:
+- Por período (dia, semana, mês, ano)
+- Por operador
+- Por tipo de chamada
+- Por fila
+- Por país/DDD
+- Por status
+
+## Instruções para o Cursor.IA
+
+1. **Sempre use dados reais** da planilha, nunca simule
+2. **Valide os dados** antes de processar
+3. **Trate exceções** como #VALUE!, #REF!, campos vazios
+4. **Mantenha a performance** com cache e otimizações
+5. **Siga o padrão visual** da empresa Velotax
+6. **Use as cores oficiais** definidas no design system
+7. **Mantenha responsividade** para mobile e desktop
+8. **Implemente validações** em tempo real
+9. **Forneça feedback** visual para o usuário
+10. **Documente** todas as funcionalidades implementadas

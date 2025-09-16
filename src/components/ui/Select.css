@@ -1,0 +1,199 @@
+/* Select VeloIGP - Manual de Identidade Visual */
+
+.velotax-select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.velotax-select {
+  appearance: none;
+  background: var(--velotax-bg-tertiary);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  outline: none;
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
+.velotax-select:focus {
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+.velotax-select:hover:not(:disabled) {
+  border-color: var(--velotax-blue);
+}
+
+.velotax-select:disabled {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-light-gray);
+  color: var(--velotax-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.velotax-select--error {
+  border-color: var(--velotax-warning);
+}
+
+.velotax-select--error:focus {
+  border-color: var(--velotax-warning);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+/* Variantes */
+.velotax-select--outline {
+  background: transparent;
+  border: 2px solid var(--velotax-light-gray);
+}
+
+.velotax-select--filled {
+  background: var(--velotax-bg-secondary);
+  border: 2px solid transparent;
+}
+
+.velotax-select--filled:focus {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-blue);
+}
+
+/* Tamanhos */
+.velotax-select--sm {
+  padding: var(--velotax-space-2) var(--velotax-space-3);
+  font-size: 0.75rem;
+  min-height: 2rem;
+}
+
+.velotax-select--md {
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  font-size: 0.875rem;
+  min-height: 2.5rem;
+}
+
+.velotax-select--lg {
+  padding: var(--velotax-space-4) var(--velotax-space-5);
+  font-size: 1rem;
+  min-height: 3rem;
+}
+
+/* Ícone */
+.velotax-select-icon {
+  position: absolute;
+  right: var(--velotax-space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--velotax-text-secondary);
+  transition: color var(--velotax-transition-fast);
+}
+
+.velotax-select:focus + .velotax-select-icon {
+  color: var(--velotax-blue);
+}
+
+.velotax-select--error + .velotax-select-icon {
+  color: var(--velotax-warning);
+}
+
+.velotax-select:disabled + .velotax-select-icon {
+  color: var(--velotax-text-secondary);
+  opacity: 0.6;
+}
+
+/* Animações */
+.velotax-select {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .velotax-select--sm {
+    padding: var(--velotax-space-2);
+    font-size: 0.8125rem;
+    min-height: 1.875rem;
+  }
+  
+  .velotax-select--md {
+    padding: var(--velotax-space-2) var(--velotax-space-3);
+    font-size: 0.8125rem;
+    min-height: 2.25rem;
+  }
+  
+  .velotax-select--lg {
+    padding: var(--velotax-space-3) var(--velotax-space-4);
+    font-size: 0.875rem;
+    min-height: 2.75rem;
+  }
+  
+  .velotax-select-icon {
+    right: var(--velotax-space-2);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .velotax-select {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-charcoal);
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .velotax-select:focus {
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+[data-theme="dark"] .velotax-select:hover:not(:disabled) {
+  border-color: var(--velotax-blue);
+}
+
+[data-theme="dark"] .velotax-select:disabled {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-charcoal);
+  color: var(--velotax-text-secondary);
+}
+
+[data-theme="dark"] .velotax-select--outline {
+  background: transparent;
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .velotax-select--filled {
+  background: var(--velotax-bg-secondary);
+}
+
+[data-theme="dark"] .velotax-select--filled:focus {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-blue);
+}
+
+[data-theme="dark"] .velotax-select-icon {
+  color: var(--velotax-text-secondary);
+}
+
+[data-theme="dark"] .velotax-select:focus + .velotax-select-icon {
+  color: var(--velotax-blue);
+}
+
+[data-theme="dark"] .velotax-select--error + .velotax-select-icon {
+  color: var(--velotax-warning);
+}
+
+
+

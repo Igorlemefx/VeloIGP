@@ -1,0 +1,445 @@
+/* Advanced Operator Date Selector */
+.advanced-selector {
+  background: var(--velotax-bg-primary);
+  border: 1px solid var(--velotax-border-light);
+  border-radius: 16px;
+  box-shadow: var(--velotax-shadow-lg);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.advanced-selector--expanded {
+  box-shadow: var(--velotax-shadow-xl);
+}
+
+.advanced-selector--mobile {
+  margin-bottom: 1rem;
+  border-radius: 12px;
+}
+
+/* Header */
+.selector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--velotax-primary) 0%, var(--velotax-teal) 100%);
+  color: white;
+  cursor: pointer;
+}
+
+.selector-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.selector-title i {
+  font-size: 1.5rem;
+}
+
+.selector-toggle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.selector-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Conteúdo */
+.selector-content {
+  padding: 2rem;
+  background: var(--velotax-bg-primary);
+}
+
+.advanced-selector--mobile .selector-content {
+  padding: 1.5rem;
+}
+
+/* Seções */
+.selector-section {
+  margin-bottom: 2rem;
+}
+
+.selector-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0;
+}
+
+.section-header h3 i {
+  color: var(--velotax-primary);
+}
+
+.section-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Campo de busca */
+.search-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--velotax-text-secondary);
+  font-size: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  border: 2px solid var(--velotax-border-light);
+  border-radius: 12px;
+  font-size: 1rem;
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--velotax-primary);
+  box-shadow: 0 0 0 3px rgba(22, 22, 255, 0.1);
+}
+
+/* Lista de operadores */
+.operators-list {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--velotax-border-light);
+  border-radius: 12px;
+  background: var(--velotax-bg-secondary);
+}
+
+.operator-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--velotax-border-light);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.operator-item:last-child {
+  border-bottom: none;
+}
+
+.operator-item:hover {
+  background: var(--velotax-bg-tertiary);
+}
+
+.operator-item--selected {
+  background: rgba(22, 22, 255, 0.1);
+  border-left: 4px solid var(--velotax-primary);
+}
+
+.operator-avatar {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--velotax-bg-tertiary);
+  border-radius: 50%;
+  margin-right: 1rem;
+  color: var(--velotax-text-secondary);
+  font-size: 1.25rem;
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.status-indicator--online {
+  background: var(--velotax-success);
+}
+
+.status-indicator--busy {
+  background: var(--velotax-warning);
+}
+
+.status-indicator--offline {
+  background: var(--velotax-text-secondary);
+}
+
+.operator-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.operator-name {
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.operator-department {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.operator-performance {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--velotax-primary);
+  font-weight: 500;
+}
+
+.operator-checkbox {
+  color: var(--velotax-primary);
+  font-size: 1.25rem;
+}
+
+/* Resumo da seleção */
+.selection-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(22, 22, 255, 0.1);
+  border-radius: 8px;
+  margin-top: 1rem;
+  color: var(--velotax-primary);
+  font-weight: 500;
+}
+
+/* Presets de data */
+.date-presets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.preset-btn {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--velotax-border-light);
+  border-radius: 8px;
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.preset-btn:hover {
+  border-color: var(--velotax-primary);
+  background: rgba(22, 22, 255, 0.05);
+}
+
+.preset-btn--active {
+  border-color: var(--velotax-primary);
+  background: var(--velotax-primary);
+  color: white;
+}
+
+/* Range de data customizado */
+.custom-date-range {
+  margin-bottom: 1.5rem;
+}
+
+.date-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.date-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.date-input-group label {
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+  font-size: 0.875rem;
+}
+
+.date-input {
+  padding: 0.75rem;
+  border: 2px solid var(--velotax-border-light);
+  border-radius: 8px;
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: var(--velotax-primary);
+  box-shadow: 0 0 0 3px rgba(22, 22, 255, 0.1);
+}
+
+/* Range selecionado */
+.selected-range {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(22, 22, 255, 0.1);
+  border-radius: 8px;
+  color: var(--velotax-primary);
+  font-weight: 500;
+}
+
+.selected-range i {
+  font-size: 1.25rem;
+}
+
+/* Ações */
+.selector-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--velotax-border-light);
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.action-btn--primary {
+  background: var(--velotax-primary);
+  color: white;
+  flex: 1;
+}
+
+.action-btn--primary:hover {
+  background: var(--velotax-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--velotax-shadow-lg);
+}
+
+.action-btn--secondary {
+  background: var(--velotax-bg-secondary);
+  color: var(--velotax-text-primary);
+  border: 2px solid var(--velotax-border-light);
+}
+
+.action-btn--secondary:hover {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-primary);
+}
+
+.action-btn--large {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .selector-header {
+    padding: 1rem;
+  }
+  
+  .selector-title {
+    font-size: 1.125rem;
+  }
+  
+  .selector-content {
+    padding: 1rem;
+  }
+  
+  .section-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .date-inputs {
+    grid-template-columns: 1fr;
+  }
+  
+  .selector-actions {
+    flex-direction: column;
+  }
+  
+  .action-btn {
+    justify-content: center;
+  }
+  
+  .operators-list {
+    max-height: 200px;
+  }
+  
+  .operator-item {
+    padding: 0.75rem;
+  }
+  
+  .operator-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 0.75rem;
+  }
+  
+  .date-presets {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .date-presets {
+    grid-template-columns: 1fr;
+  }
+  
+  .preset-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+

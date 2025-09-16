@@ -1,0 +1,186 @@
+/* VeloigpCard VeloIGP - Manual de Identidade Visual */
+
+.velotax-card {
+  background: var(--velotax-bg-secondary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-6);
+  transition: all var(--velotax-transition-fast);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.velotax-card--elevated {
+  box-shadow: var(--velotax-shadow-md);
+  border-color: transparent;
+}
+
+.velotax-card--outlined {
+  background: transparent;
+  border-width: 2px;
+  border-color: var(--velotax-blue);
+}
+
+.velotax-card--filled {
+  background: var(--velotax-blue);
+  color: white;
+  border-color: var(--velotax-blue);
+}
+
+.velotax-card--filled * {
+  color: white;
+}
+
+.velotax-card--sm {
+  padding: var(--velotax-space-4);
+  border-radius: var(--velotax-radius-md);
+}
+
+.velotax-card--lg {
+  padding: var(--velotax-space-8);
+  border-radius: var(--velotax-radius-xl);
+}
+
+.velotax-card--clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.velotax-card--clickable:hover:not(.velotax-card--disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--velotax-shadow-lg);
+  border-color: var(--velotax-blue);
+}
+
+.velotax-card--clickable:focus:not(.velotax-card--disabled) {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.2);
+  border-color: var(--velotax-blue);
+}
+
+.velotax-card--clickable:active:not(.velotax-card--disabled) {
+  transform: translateY(0);
+  box-shadow: var(--velotax-shadow-sm);
+}
+
+.velotax-card--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Animações */
+.velotax-card {
+  animation: cardFadeIn 0.3s ease-out;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efeitos especiais */
+.velotax-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--velotax-blue);
+  opacity: 0;
+  transition: opacity var(--velotax-transition-fast);
+}
+
+.velotax-card--clickable:hover:not(.velotax-card--disabled)::before {
+  opacity: 1;
+}
+
+.velotax-card--filled::before {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .velotax-card {
+    padding: var(--velotax-space-4);
+  }
+  
+  .velotax-card--sm {
+    padding: var(--velotax-space-3);
+  }
+  
+  .velotax-card--lg {
+    padding: var(--velotax-space-6);
+  }
+  
+  .velotax-card--clickable:hover:not(.velotax-card--disabled) {
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 480px) {
+  .velotax-card {
+    padding: var(--velotax-space-3);
+    border-radius: var(--velotax-radius-md);
+  }
+  
+  .velotax-card--sm {
+    padding: var(--velotax-space-2);
+  }
+  
+  .velotax-card--lg {
+    padding: var(--velotax-space-4);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .velotax-card {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .velotax-card--elevated {
+  box-shadow: var(--velotax-shadow-md);
+}
+
+[data-theme="dark"] .velotax-card--outlined {
+  background: transparent;
+  border-color: var(--velotax-blue);
+}
+
+[data-theme="dark"] .velotax-card--clickable:hover:not(.velotax-card--disabled) {
+  border-color: var(--velotax-blue);
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .velotax-card {
+    animation: none;
+    transition: none;
+  }
+  
+  .velotax-card--clickable:hover,
+  .velotax-card--clickable:active {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .velotax-card {
+    border-width: 2px;
+  }
+  
+  .velotax-card--outlined {
+    border-width: 3px;
+  }
+}

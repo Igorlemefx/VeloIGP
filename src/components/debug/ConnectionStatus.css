@@ -1,0 +1,160 @@
+/* Componente de Status de Conexão */
+.connection-status {
+  background: var(--veloacademy-bg-primary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--veloacademy-shadow-md);
+  border: 1px solid var(--veloacademy-border-light);
+  margin-bottom: 2rem;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status-icon {
+  font-size: 1.5rem;
+  animation: pulse 2s infinite;
+}
+
+.status-text {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.refresh-btn {
+  padding: 0.5rem 1rem;
+  background: var(--veloacademy-gradient-primary);
+  color: var(--veloacademy-text-inverse);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background: var(--veloacademy-primary-dark);
+  transform: translateY(-1px);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spreadsheet-info {
+  background: var(--veloacademy-bg-secondary);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.spreadsheet-info h4 {
+  margin: 0 0 1rem 0;
+  color: var(--veloacademy-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-item .label {
+  font-size: 0.9rem;
+  color: var(--veloacademy-text-secondary);
+  font-weight: 500;
+}
+
+.info-item .value {
+  font-size: 1rem;
+  color: var(--veloacademy-text-primary);
+  font-weight: 600;
+}
+
+.error-details {
+  background: var(--veloacademy-error-light);
+  border: 1px solid var(--veloacademy-error);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.error-details h4 {
+  margin: 0 0 0.75rem 0;
+  color: var(--veloacademy-error);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.error-details p {
+  margin: 0;
+  color: var(--veloacademy-text-primary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.success-message {
+  background: var(--veloacademy-success-light);
+  border: 1px solid var(--veloacademy-success);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.success-message p {
+  margin: 0 0 0.5rem 0;
+  color: var(--veloacademy-text-primary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.success-message p:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .status-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+

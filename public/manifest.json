@@ -1,6 +1,7 @@
 {
   "short_name": "VeloIGP",
-  "name": "VeloIGP - Sistema de Análise 55PBX",
+  "name": "VeloIGP - Sistema de Telefonia Empresarial",
+  "description": "Sistema completo de monitoramento, análise e relatórios para telefonia empresarial",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,8 +9,9 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#667eea",
-  "background_color": "#f8f9fa"
+  "theme_color": "#007bff",
+  "background_color": "#ffffff",
+  "lang": "pt-BR"
 }

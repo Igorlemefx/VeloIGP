@@ -1,0 +1,365 @@
+/* Filtros Avançados VeloIGP - Manual de Identidade Visual */
+
+.advanced-filters {
+  background: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-xl);
+  box-shadow: var(--velotax-shadow-lg);
+  margin-bottom: var(--velotax-space-6);
+  overflow: hidden;
+}
+
+.filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--velotax-space-6);
+  background: var(--velotax-blue);
+  color: white;
+}
+
+.filters-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+}
+
+.filters-header h3 i {
+  font-size: 1.125rem;
+}
+
+.toggle-advanced-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-2) var(--velotax-space-4);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--velotax-radius-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+}
+
+.toggle-advanced-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.filters-content {
+  padding: var(--velotax-space-6);
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.filter-section {
+  margin-bottom: var(--velotax-space-6);
+  padding-bottom: var(--velotax-space-4);
+  border-bottom: 1px solid var(--velotax-light-gray);
+}
+
+.filter-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.filter-section h4 {
+  margin: 0 0 var(--velotax-space-4) 0;
+  color: var(--velotax-text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.filter-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--velotax-space-4);
+}
+
+.select-all-btn {
+  padding: var(--velotax-space-2) var(--velotax-space-3);
+  background: var(--velotax-teal);
+  color: white;
+  border: none;
+  border-radius: var(--velotax-radius-md);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  font-family: 'Poppins', sans-serif;
+}
+
+.select-all-btn:hover {
+  background: var(--velotax-blue);
+  transform: translateY(-1px);
+}
+
+.quick-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--velotax-space-4);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-2);
+}
+
+.filter-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+}
+
+.filter-select {
+  padding: var(--velotax-space-2) var(--velotax-space-3);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-md);
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+}
+
+.range-input {
+  flex: 1;
+  padding: var(--velotax-space-2) var(--velotax-space-3);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-md);
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  text-align: center;
+  transition: all var(--velotax-transition-fast);
+}
+
+.range-input:focus {
+  outline: none;
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+.range-inputs span {
+  color: var(--velotax-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--velotax-space-3);
+  max-height: 200px;
+  overflow-y: auto;
+  padding: var(--velotax-space-2);
+  background: var(--velotax-bg-tertiary);
+  border-radius: var(--velotax-radius-lg);
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  cursor: pointer;
+  padding: var(--velotax-space-2);
+  border-radius: var(--velotax-radius-md);
+  transition: all var(--velotax-transition-fast);
+}
+
+.checkbox-item:hover {
+  background: var(--velotax-bg-secondary);
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--velotax-blue);
+  cursor: pointer;
+}
+
+.checkbox-label {
+  font-size: 0.875rem;
+  color: var(--velotax-text-primary);
+  font-weight: 500;
+  user-select: none;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--velotax-space-4);
+  border-top: 2px solid var(--velotax-light-gray);
+  margin-top: var(--velotax-space-4);
+}
+
+.clear-filters-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  background: var(--velotax-warning);
+  color: white;
+  border: none;
+  border-radius: var(--velotax-radius-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+}
+
+.clear-filters-btn:hover {
+  background: var(--velotax-orange);
+  transform: translateY(-1px);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.filter-stats {
+  color: var(--velotax-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Animações */
+.filters-content {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.checkbox-item {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .filters-header {
+    flex-direction: column;
+    gap: var(--velotax-space-4);
+    text-align: center;
+  }
+  
+  .filters-content {
+    padding: var(--velotax-space-4);
+  }
+  
+  .quick-filters {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-actions {
+    flex-direction: column;
+    gap: var(--velotax-space-3);
+    text-align: center;
+  }
+  
+  .range-inputs {
+    flex-direction: column;
+    gap: var(--velotax-space-2);
+  }
+  
+  .range-inputs span {
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters-header {
+    padding: var(--velotax-space-4);
+  }
+  
+  .filters-header h3 {
+    font-size: 1.125rem;
+  }
+  
+  .toggle-advanced-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .filter-section-header {
+    flex-direction: column;
+    gap: var(--velotax-space-2);
+    align-items: stretch;
+  }
+  
+  .select-all-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .advanced-filters {
+  background: var(--velotax-bg-secondary);
+}
+
+[data-theme="dark"] .filter-section {
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .filter-select,
+[data-theme="dark"] .range-input {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-charcoal);
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .checkbox-grid {
+  background: var(--velotax-bg-tertiary);
+}
+
+[data-theme="dark"] .checkbox-item:hover {
+  background: var(--velotax-bg-secondary);
+}
+
+[data-theme="dark"] .filter-actions {
+  border-color: var(--velotax-charcoal);
+}

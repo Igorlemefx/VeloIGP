@@ -1,0 +1,342 @@
+/* Página de Configurações VeloIGP */
+
+.veloigp-config {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  color: #071a2f;
+}
+
+.config-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.config-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 0.5rem;
+}
+
+.config-header p {
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+.config-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Navegação por Abas */
+.config-tabs {
+  display: flex;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tab-button:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.tab-button.active {
+  background: white;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+.tab-button i {
+  font-size: 1rem;
+}
+
+/* Conteúdo das Abas */
+.config-content {
+  padding: 2rem;
+  min-height: 500px;
+}
+
+.config-section h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.config-section h3 i {
+  color: #007bff;
+  font-size: 1.1rem;
+}
+
+.config-group {
+  margin-bottom: 1.5rem;
+}
+
+.config-group label {
+  display: block;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.config-group input,
+.config-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.config-group input:focus,
+.config-group select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.checkbox-label {
+  display: flex !important;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-weight: 400 !important;
+  margin-bottom: 0 !important;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto !important;
+  margin: 0;
+  cursor: pointer;
+}
+
+.config-info {
+  background: #e0f2fe;
+  border: 1px solid #81d4fa;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0277bd;
+  font-size: 0.9rem;
+}
+
+.config-info i {
+  color: #0277bd;
+}
+
+/* Botões de Ação */
+.config-actions {
+  padding: 1.5rem 2rem;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #545b62;
+  transform: translateY(-1px);
+}
+
+.btn-warning {
+  background: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover:not(:disabled) {
+  background: #e0a800;
+  transform: translateY(-1px);
+}
+
+.btn-info {
+  background: #17a2b8;
+  color: white;
+}
+
+.btn-info:hover:not(:disabled) {
+  background: #138496;
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #c82333;
+  transform: translateY(-1px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .veloigp-config {
+    padding: 1rem;
+  }
+  
+  .config-header h1 {
+    font-size: 2rem;
+  }
+  
+  .config-tabs {
+    flex-direction: column;
+  }
+  
+  .tab-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .config-content {
+    padding: 1.5rem;
+  }
+  
+  .config-actions {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .config-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .config-content {
+    padding: 1rem;
+  }
+  
+  .config-section h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Tema Escuro */
+[data-theme="dark"] .veloigp-config {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .config-container {
+  background: #1e293b;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .config-tabs {
+  background: #334155;
+  border-bottom-color: #475569;
+}
+
+[data-theme="dark"] .tab-button {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .tab-button:hover {
+  background: #475569;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .tab-button.active {
+  background: #1e293b;
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .config-section h3 {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .config-group label {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .config-group input,
+[data-theme="dark"] .config-group select {
+  background: #334155;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .config-group input:focus,
+[data-theme="dark"] .config-group select:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+[data-theme="dark"] .config-actions {
+  background: #334155;
+  border-top-color: #475569;
+}

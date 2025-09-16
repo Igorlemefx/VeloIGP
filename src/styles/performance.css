@@ -1,0 +1,226 @@
+/* Estilos para Otimizações de Performance */
+
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: var(--velotax-bg-tertiary);
+  border-bottom: 1px solid var(--velotax-light-gray);
+  margin-bottom: 16px;
+  border-radius: 8px 8px 0 0;
+}
+
+.table-options {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.table-options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  cursor: pointer;
+}
+
+.table-options input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--velotax-blue);
+}
+
+.table-options select {
+  padding: 4px 8px;
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  margin-left: 8px;
+}
+
+.pagination-info {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  font-weight: 500;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--velotax-bg-tertiary);
+  border-top: 1px solid var(--velotax-light-gray);
+  margin-top: 16px;
+  border-radius: 0 0 8px 8px;
+}
+
+.pagination-btn {
+  padding: 8px 16px;
+  background: var(--velotax-blue);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: var(--velotax-navy);
+  transform: translateY(-1px);
+}
+
+.pagination-btn:disabled {
+  background: var(--velotax-light-gray);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading Spinner Otimizado */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: var(--velotax-text-secondary);
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--velotax-light-gray);
+  border-top: 3px solid var(--velotax-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Performance Indicators */
+.performance-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.performance-indicator.good {
+  background: rgba(34, 197, 94, 0.9);
+}
+
+.performance-indicator.warning {
+  background: rgba(245, 158, 11, 0.9);
+}
+
+.performance-indicator.critical {
+  background: rgba(239, 68, 68, 0.9);
+}
+
+/* Virtualization Styles */
+.virtualized-table {
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .table-controls {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .table-options {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .pagination-controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .performance-indicator {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 16px;
+  }
+}
+
+/* Memory Usage Indicator */
+.memory-usage {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+/* Smooth Transitions */
+.data-table-container {
+  transition: all 0.3s ease;
+}
+
+.table-wrapper {
+  transition: opacity 0.2s ease;
+}
+
+/* Optimized Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Will-change optimizations */
+.virtual-row,
+.pagination-btn,
+.table-options label {
+  will-change: transform;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation: none;
+  }
+  
+  .fade-in {
+    animation: none;
+  }
+  
+  .pagination-btn {
+    transition: none;
+  }
+}

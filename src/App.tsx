@@ -1,28 +1,55 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import VeloigpLayout from './components/VeloigpLayout';
-import VeloigpHome from './pages/VeloigpHome';
-import VeloigpDashboard from './pages/VeloigpDashboard';
-import VeloigpRealTime from './pages/VeloigpRealTime';
-import VeloigpReports from './pages/VeloigpReports';
-import VeloigpSpreadsheet from './pages/VeloigpSpreadsheet';
-import VeloigpConfig from './pages/VeloigpConfig';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { ThemeProvider } from './contexts/ThemeContext';
+import ErrorBoundary from './components/ErrorBoundary';
+import VeloigpHeader from './components/VeloigpHeader';
+import VeloigpStacked from './pages/VeloigpStacked';
+import MobileBottomNav from './components/MobileBottomNav';
+import PWAInstallPrompt from './components/ui/PWAInstallPrompt';
+import ConnectivityStatus from './components/ui/ConnectivityStatus';
+import ToastContainer from './components/ui/ToastContainer';
+import { useToast } from './hooks/useToast';
+import './styles/veloigp-global.css';
+import './styles/mobile-optimizations.css';
 
-const App: React.FC = () => {
+const AppContent = () => {
+  const location = useLocation();
+  const { toasts, removerToast } = useToast();
+  
+  const getCurrentPage = () => {
+    const path = location.pathname;
+    if (path === '/') return 'stacked';
+    return 'stacked';
+  };
+
   return (
-    <Router>
-      <VeloigpLayout>
-        <Routes>
-          <Route path="/" element={<VeloigpHome />} />
-          <Route path="/dashboard" element={<VeloigpDashboard />} />
-          <Route path="/planilhas" element={<VeloigpSpreadsheet />} />
-          <Route path="/relatorios" element={<VeloigpReports />} />
-          <Route path="/tempo-real" element={<VeloigpRealTime />} />
-          <Route path="/config" element={<VeloigpConfig />} />
-        </Routes>
-      </VeloigpLayout>
-    </Router>
+    <>
+      <ConnectivityStatus />
+      <VeloigpHeader currentPage={getCurrentPage()} />
+      <main>
+        <div className="container main-container">
+          <Routes>
+            <Route path="/" element={<VeloigpStacked />} />
+            <Route path="*" element={<VeloigpStacked />} />
+          </Routes>
+        </div>
+      </main>
+      <MobileBottomNav />
+      <PWAInstallPrompt />
+      <ToastContainer toasts={toasts} aoRemoverToast={removerToast} />
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <ErrorBoundary>
+      <ThemeProvider>
+        <Router>
+          <AppContent />
+        </Router>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 };
 

@@ -1,0 +1,611 @@
+/* Navbar VeloIGP - Manual de Identidade Visual */
+
+.velotax-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--velotax-light-gray);
+  box-shadow: var(--velotax-shadow-sm);
+  transition: all var(--velotax-transition-fast);
+  width: 100%;
+}
+
+/* Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: var(--velotax-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--velotax-shadow-sm);
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--velotax-radius-lg);
+  transition: all var(--velotax-transition-fast);
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--velotax-space-3) var(--velotax-space-6);
+  width: 100%;
+  margin: 0;
+  min-height: 60px;
+  max-width: none;
+  position: relative;
+}
+
+.navbar-section {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+}
+
+.navbar-section--left {
+  position: absolute;
+  left: var(--velotax-space-6);
+}
+
+.navbar-section--center {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-4);
+}
+
+.navbar-section--right {
+  position: absolute;
+  right: var(--velotax-space-6);
+}
+
+.navbar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-2) var(--velotax-space-2);
+  color: var(--velotax-text-primary);
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--velotax-radius-md);
+  transition: all var(--velotax-transition-fast);
+  position: relative;
+}
+
+.navbar-item:hover {
+  color: var(--velotax-blue);
+  background: rgba(22, 52, 255, 0.05);
+}
+
+.navbar-item--current {
+  color: var(--velotax-blue);
+  background: rgba(22, 52, 255, 0.1);
+}
+
+.navbar-item--current::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: var(--velotax-blue);
+  border-radius: 1px;
+}
+
+.navbar-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--velotax-light-gray);
+  margin: 0 var(--velotax-space-4);
+}
+
+.navbar-spacer {
+  flex: 1;
+}
+
+.navbar-label {
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+}
+
+/* Mobile Menu */
+.navbar-mobile-toggle {
+  display: none;
+}
+
+.mobile-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--velotax-space-2);
+  color: var(--velotax-text-primary);
+  background: transparent;
+  border: none;
+  border-radius: var(--velotax-radius-md);
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+}
+
+.mobile-menu-button:hover {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+}
+
+.mobile-menu-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  animation: overlayFadeIn 0.2s ease-out;
+}
+
+.mobile-menu-panel {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 50;
+  width: 100%;
+  max-width: 24rem;
+  background: var(--velotax-bg-primary);
+  border-left: 1px solid var(--velotax-light-gray);
+  box-shadow: var(--velotax-shadow-xl);
+  overflow-y: auto;
+  animation: panelSlideIn 0.3s ease-out;
+}
+
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--velotax-space-6);
+  border-bottom: 1px solid var(--velotax-light-gray);
+}
+
+.mobile-menu-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+}
+
+.mobile-menu-logo .logo-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--velotax-blue);
+  border-radius: var(--velotax-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.125rem;
+}
+
+.mobile-menu-logo .logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+}
+
+.mobile-menu-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--velotax-space-2);
+  color: var(--velotax-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--velotax-radius-md);
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+}
+
+.mobile-menu-close:hover {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-text-primary);
+}
+
+.mobile-menu-close-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.mobile-menu-content {
+  padding: var(--velotax-space-6);
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--velotax-space-2);
+}
+
+.mobile-menu-link {
+  display: block;
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  color: var(--velotax-text-primary);
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--velotax-radius-lg);
+  transition: all var(--velotax-transition-fast);
+}
+
+.mobile-menu-link:hover {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+}
+
+.mobile-menu-link--current {
+  background: rgba(22, 52, 255, 0.1);
+  color: var(--velotax-blue);
+  font-weight: 600;
+}
+
+.mobile-menu-link i {
+  width: 20px;
+  text-align: center;
+  margin-right: var(--velotax-space-3);
+}
+
+.mobile-menu-footer {
+  margin-top: var(--velotax-space-6);
+  padding-top: var(--velotax-space-4);
+  border-top: 1px solid var(--velotax-light-gray);
+}
+
+.mobile-theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+  width: 100%;
+  padding: var(--velotax-space-3) var(--velotax-space-4);
+  color: var(--velotax-text-primary);
+  background: transparent;
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+}
+
+.mobile-theme-toggle:hover {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-blue);
+  color: var(--velotax-blue);
+}
+
+.mobile-theme-toggle i {
+  width: 20px;
+  text-align: center;
+}
+
+/* Animações */
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes panelSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.navbar-item {
+  animation: itemFadeIn 0.2s ease-out;
+}
+
+@keyframes itemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .navbar-section:not(.navbar-mobile-toggle) {
+    display: none;
+  }
+  
+  .navbar-mobile-toggle {
+    display: block;
+  }
+  
+  .navbar-container {
+    padding: var(--velotax-space-4);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: var(--velotax-space-3);
+  }
+  
+  .mobile-menu-panel {
+    max-width: 100%;
+  }
+  
+  .mobile-menu-header {
+    padding: var(--velotax-space-4);
+  }
+  
+  .mobile-menu-content {
+    padding: var(--velotax-space-4);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .velotax-navbar {
+  background: rgba(39, 42, 48, 0.98);
+  border-bottom-color: var(--velotax-charcoal);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .navbar-item {
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .navbar-item:hover {
+  color: var(--velotax-blue);
+  background: rgba(22, 52, 255, 0.1);
+}
+
+[data-theme="dark"] .navbar-item--current {
+  color: var(--velotax-blue);
+  background: rgba(22, 52, 255, 0.2);
+}
+
+[data-theme="dark"] .navbar-divider {
+  background: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .mobile-menu-button {
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .mobile-menu-button:hover {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+}
+
+[data-theme="dark"] .mobile-menu-panel {
+  background: var(--velotax-bg-primary);
+  border-left-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .mobile-menu-header {
+  border-bottom-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .mobile-menu-close {
+  color: var(--velotax-text-secondary);
+}
+
+[data-theme="dark"] .mobile-menu-close:hover {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .mobile-menu-link {
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .mobile-menu-link:hover {
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-blue);
+}
+
+/* Acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus states */
+.navbar-item:focus,
+.mobile-menu-button:focus,
+.mobile-menu-close:focus,
+.mobile-menu-link:focus {
+  outline: 2px solid var(--velotax-blue);
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .navbar {
+    padding: var(--velotax-space-2) var(--velotax-space-3);
+  }
+  
+  .logo {
+    gap: var(--velotax-space-2);
+  }
+  
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .logo-text {
+    font-size: 1.25rem;
+  }
+  
+  .mobile-menu-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.125rem;
+  }
+  
+  .mobile-menu-panel {
+    width: 280px;
+  }
+  
+  .mobile-menu-header {
+    padding: var(--velotax-space-3);
+  }
+  
+  .mobile-menu-logo {
+    gap: var(--velotax-space-2);
+  }
+  
+  .mobile-menu-logo .logo-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .mobile-menu-logo .logo-text {
+    font-size: 1.125rem;
+  }
+  
+  .mobile-menu-close {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+  
+  .mobile-menu-content {
+    padding: var(--velotax-space-3);
+  }
+  
+  .mobile-menu-links {
+    gap: var(--velotax-space-1);
+  }
+  
+  .mobile-menu-link {
+    padding: var(--velotax-space-3) var(--velotax-space-2);
+    font-size: 0.875rem;
+    gap: var(--velotax-space-2);
+  }
+  
+  .mobile-menu-link i {
+    font-size: 1rem;
+    width: 20px;
+  }
+  
+  .mobile-menu-footer {
+    padding: var(--velotax-space-3) 0 0 0;
+  }
+  
+  .mobile-theme-toggle {
+    padding: var(--velotax-space-2) var(--velotax-space-3);
+    font-size: 0.875rem;
+    gap: var(--velotax-space-2);
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .navbar {
+    padding: var(--velotax-space-2);
+  }
+  
+  .logo-text {
+    font-size: 1.125rem;
+  }
+  
+  .mobile-menu-panel {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border-left: none;
+  }
+  
+  .mobile-menu-header {
+    padding: var(--velotax-space-4) var(--velotax-space-3);
+  }
+  
+  .mobile-menu-content {
+    padding: var(--velotax-space-4) var(--velotax-space-3);
+  }
+  
+  .mobile-menu-link {
+    padding: var(--velotax-space-4) var(--velotax-space-3);
+    font-size: 1rem;
+  }
+}
+
+/* Touch optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .navbar-item,
+  .mobile-menu-button,
+  .mobile-menu-close,
+  .mobile-menu-link,
+  .mobile-theme-toggle {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .mobile-menu-link {
+    padding: var(--velotax-space-4) var(--velotax-space-3);
+  }
+}

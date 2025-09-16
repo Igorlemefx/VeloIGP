@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "google-sheets": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-google-sheets"
+      ],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\Velotax Suporte\\Downloads\\ProjetoIGP\\gcp-oauth.keys.json"
+      }
+    }
+  }
+}

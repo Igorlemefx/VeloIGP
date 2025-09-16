@@ -1,0 +1,108 @@
+/* PWA Install Prompt */
+.pwa-install-prompt {
+  position: fixed;
+  bottom: var(--velotax-space-4);
+  left: var(--velotax-space-4);
+  right: var(--velotax-space-4);
+  z-index: 1000;
+  animation: slideInUp 0.3s ease-out;
+}
+
+.pwa-install-content {
+  background: var(--velotax-bg-primary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-4);
+  box-shadow: var(--velotax-shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+}
+
+.pwa-install-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--velotax-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.pwa-install-text {
+  flex: 1;
+}
+
+.pwa-install-text h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-1) 0;
+}
+
+.pwa-install-text p {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.pwa-install-actions {
+  display: flex;
+  gap: var(--velotax-space-2);
+  flex-shrink: 0;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .pwa-install-prompt {
+    left: var(--velotax-space-2);
+    right: var(--velotax-space-2);
+    bottom: var(--velotax-space-2);
+  }
+  
+  .pwa-install-content {
+    padding: var(--velotax-space-3);
+    gap: var(--velotax-space-2);
+  }
+  
+  .pwa-install-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .pwa-install-text h3 {
+    font-size: 0.875rem;
+  }
+  
+  .pwa-install-text p {
+    font-size: 0.75rem;
+  }
+  
+  .pwa-install-actions {
+    flex-direction: column;
+    gap: var(--velotax-space-1);
+  }
+  
+  .pwa-install-actions .btn {
+    padding: var(--velotax-space-1) var(--velotax-space-2);
+    font-size: 0.75rem;
+  }
+}
+
+

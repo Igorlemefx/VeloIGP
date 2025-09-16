@@ -1,0 +1,297 @@
+/* Dashboard em Tempo Real - VeloIGP */
+
+.realtime-dashboard {
+  background: var(--velotax-bg-secondary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-xl);
+  padding: var(--velotax-space-6);
+  margin-bottom: var(--velotax-space-6);
+  box-shadow: var(--velotax-shadow-sm);
+  font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--velotax-space-6);
+  padding-bottom: var(--velotax-space-4);
+  border-bottom: 2px solid var(--velotax-light-gray);
+}
+
+.header-left h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  margin: 0 0 var(--velotax-space-2) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+}
+
+.header-left h2 i {
+  color: var(--velotax-blue);
+  font-size: 1.25rem;
+}
+
+.header-left p {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  margin: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-4);
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-2) var(--velotax-space-3);
+  background: var(--velotax-bg-tertiary);
+  border-radius: var(--velotax-radius-lg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+}
+
+.status-indicator i {
+  font-size: 0.75rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  background: var(--velotax-blue);
+  color: white;
+  border: none;
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-2) var(--velotax-space-4);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background: var(--velotax-navy);
+  transform: translateY(-1px);
+  box-shadow: var(--velotax-shadow-sm);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.refresh-btn i.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--velotax-space-4);
+  margin-bottom: var(--velotax-space-6);
+}
+
+.metric-card {
+  background: var(--velotax-bg-primary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-xl);
+  padding: var(--velotax-space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-4);
+  transition: all var(--velotax-transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--velotax-shadow-lg);
+  border-color: var(--velotax-blue);
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--velotax-gradient-primary);
+}
+
+.metric-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--velotax-radius-lg);
+  background: var(--velotax-gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.metric-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--velotax-text-secondary);
+  margin-bottom: var(--velotax-space-1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--velotax-text-primary);
+  margin-bottom: var(--velotax-space-1);
+  line-height: 1;
+  font-family: 'Courier New', monospace;
+}
+
+.metric-trend {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-1);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--velotax-teal);
+}
+
+.metric-trend i {
+  font-size: 0.625rem;
+}
+
+.dashboard-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--velotax-space-4);
+  border-top: 1px solid var(--velotax-light-gray);
+  font-size: 0.75rem;
+  color: var(--velotax-text-secondary);
+}
+
+.last-update,
+.alerts-count {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-1);
+}
+
+.last-update i,
+.alerts-count i {
+  font-size: 0.625rem;
+  color: var(--velotax-blue);
+}
+
+.alerts-count i {
+  color: var(--velotax-orange);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .realtime-dashboard {
+    padding: var(--velotax-space-4);
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--velotax-space-4);
+  }
+
+  .header-right {
+    justify-content: space-between;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: var(--velotax-space-3);
+  }
+
+  .metric-card {
+    padding: var(--velotax-space-3);
+  }
+
+  .metric-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--velotax-space-2);
+  }
+}
+
+/* Animações */
+.metric-card {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tema escuro */
+@media (prefers-color-scheme: dark) {
+  .realtime-dashboard {
+    --velotax-bg-primary: #1a1a1a;
+    --velotax-bg-secondary: #2d2d2d;
+    --velotax-bg-tertiary: #3d3d3d;
+    --velotax-text-primary: #ffffff;
+    --velotax-text-secondary: #cccccc;
+    --velotax-light-gray: #4d4d4d;
+  }
+}
+
+

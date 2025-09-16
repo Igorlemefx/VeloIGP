@@ -1,0 +1,339 @@
+/* Gráficos Interativos VeloIGP - Manual de Identidade Visual */
+
+.interactive-charts {
+  background: var(--velotax-bg-secondary);
+  border-radius: var(--velotax-radius-xl);
+  box-shadow: var(--velotax-shadow-lg);
+  padding: var(--velotax-space-6);
+  margin-bottom: var(--velotax-space-6);
+}
+
+.charts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--velotax-space-6);
+  padding-bottom: var(--velotax-space-4);
+  border-bottom: 2px solid var(--velotax-light-gray);
+}
+
+.charts-header h3 {
+  margin: 0;
+  color: var(--velotax-text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+}
+
+.charts-header h3 i {
+  color: var(--velotax-blue);
+  font-size: 1.125rem;
+}
+
+.chart-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-3);
+}
+
+.chart-type-select {
+  padding: var(--velotax-space-2) var(--velotax-space-4);
+  border: 2px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  background: var(--velotax-bg-tertiary);
+  color: var(--velotax-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+}
+
+.chart-type-select:focus {
+  outline: none;
+  border-color: var(--velotax-blue);
+  box-shadow: 0 0 0 3px rgba(22, 52, 255, 0.1);
+}
+
+.refresh-chart-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--velotax-space-2);
+  padding: var(--velotax-space-2) var(--velotax-space-4);
+  background: var(--velotax-blue);
+  color: white;
+  border: none;
+  border-radius: var(--velotax-radius-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--velotax-transition-fast);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+}
+
+.refresh-chart-btn:hover {
+  background: var(--velotax-navy);
+  transform: translateY(-1px);
+  box-shadow: var(--velotax-shadow-md);
+}
+
+.chart-container {
+  background: white;
+  border-radius: var(--velotax-radius-lg);
+  padding: var(--velotax-space-4);
+  box-shadow: var(--velotax-shadow-sm);
+  margin-bottom: var(--velotax-space-4);
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: var(--velotax-text-secondary);
+}
+
+.chart-loading .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--velotax-light-gray);
+  border-top: 4px solid var(--velotax-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--velotax-space-4);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.chart-loading p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.chart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: var(--velotax-text-secondary);
+}
+
+.chart-empty i {
+  font-size: 3rem;
+  color: var(--velotax-light-gray);
+  margin-bottom: var(--velotax-space-4);
+}
+
+.chart-empty p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.chart-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: var(--velotax-space-4);
+  background: var(--velotax-bg-tertiary);
+  border-radius: var(--velotax-radius-lg);
+  border: 1px solid var(--velotax-light-gray);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--velotax-space-2);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--velotax-text-secondary);
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  color: var(--velotax-text-primary);
+  font-weight: 700;
+}
+
+/* Estilos para os gráficos Recharts */
+.recharts-wrapper {
+  font-family: 'Poppins', sans-serif;
+}
+
+.recharts-cartesian-axis-tick-value {
+  font-size: 0.75rem;
+  font-weight: 500;
+  fill: var(--velotax-text-secondary);
+}
+
+.recharts-legend-item-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--velotax-text-primary);
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.recharts-tooltip-content {
+  background: var(--velotax-bg-secondary);
+  border: 1px solid var(--velotax-light-gray);
+  border-radius: var(--velotax-radius-lg);
+  box-shadow: var(--velotax-shadow-lg);
+}
+
+.recharts-tooltip-label {
+  color: var(--velotax-text-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.recharts-tooltip-item {
+  color: var(--velotax-text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Animações */
+.chart-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.refresh-chart-btn i {
+  transition: transform var(--velotax-transition-fast);
+}
+
+.refresh-chart-btn:hover i {
+  transform: rotate(180deg);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .charts-header {
+    flex-direction: column;
+    gap: var(--velotax-space-4);
+    text-align: center;
+  }
+  
+  .chart-controls {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .chart-container {
+    padding: var(--velotax-space-2);
+    min-height: 300px;
+  }
+  
+  .chart-stats {
+    flex-direction: column;
+    gap: var(--velotax-space-3);
+  }
+  
+  .stat-item {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .interactive-charts {
+    padding: var(--velotax-space-4);
+  }
+  
+  .charts-header h3 {
+    font-size: 1.125rem;
+  }
+  
+  .chart-type-select,
+  .refresh-chart-btn {
+    font-size: 0.75rem;
+    padding: var(--velotax-space-2) var(--velotax-space-3);
+  }
+  
+  .chart-container {
+    min-height: 250px;
+  }
+  
+  .chart-empty i {
+    font-size: 2rem;
+  }
+  
+  .chart-empty p {
+    font-size: 0.875rem;
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .interactive-charts {
+  background: var(--velotax-bg-secondary);
+}
+
+[data-theme="dark"] .charts-header {
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .chart-type-select {
+  background: var(--velotax-bg-tertiary);
+  border-color: var(--velotax-charcoal);
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .chart-container {
+  background: var(--velotax-bg-tertiary);
+}
+
+[data-theme="dark"] .chart-stats {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .recharts-cartesian-axis-tick-value {
+  fill: var(--velotax-text-secondary);
+}
+
+[data-theme="dark"] .recharts-legend-item-text {
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .recharts-tooltip-content {
+  background: var(--velotax-bg-secondary);
+  border-color: var(--velotax-charcoal);
+}
+
+[data-theme="dark"] .recharts-tooltip-label {
+  color: var(--velotax-text-primary);
+}
+
+[data-theme="dark"] .recharts-tooltip-item {
+  color: var(--velotax-text-secondary);
+}
+
+
+

@@ -1,0 +1,56 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bgGradient512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1616ff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0f0fcc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a99;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="phoneGradient512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5f5f5;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="screenGradient512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1616ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a99;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="256" fill="url(#bgGradient512)"/>
+  
+  <!-- Main phone icon -->
+  <rect x="128" y="96" width="256" height="320" rx="32" fill="url(#phoneGradient512)" stroke="#1616ff" stroke-width="4"/>
+  
+  <!-- Phone screen -->
+  <rect x="144" y="128" width="224" height="160" rx="16" fill="url(#screenGradient512)"/>
+  
+  <!-- Screen content lines -->
+  <rect x="168" y="144" width="176" height="12" fill="white" rx="6"/>
+  <rect x="168" y="168" width="128" height="12" fill="white" rx="6"/>
+  <rect x="168" y="192" width="152" height="12" fill="white" rx="6"/>
+  <rect x="168" y="216" width="104" height="12" fill="white" rx="6"/>
+  <rect x="168" y="240" width="136" height="12" fill="white" rx="6"/>
+  
+  <!-- Phone details -->
+  <rect x="192" y="320" width="128" height="16" fill="#1616ff" rx="8"/>
+  <rect x="224" y="352" width="64" height="12" fill="#1616ff" rx="6"/>
+  
+  <!-- VeloIGP text -->
+  <text x="256" y="420" font-family="Arial, sans-serif" font-size="64" font-weight="bold" text-anchor="middle" fill="white">VeloIGP</text>
+  <text x="256" y="460" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white" opacity="0.8">Dashboard Telefonia</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="96" cy="96" r="12" fill="white" opacity="0.2"/>
+  <circle cx="416" cy="96" r="12" fill="white" opacity="0.2"/>
+  <circle cx="96" cy="416" r="12" fill="white" opacity="0.2"/>
+  <circle cx="416" cy="416" r="12" fill="white" opacity="0.2"/>
+  
+  <!-- Additional decorative circles -->
+  <circle cx="64" cy="256" r="8" fill="white" opacity="0.15"/>
+  <circle cx="448" cy="256" r="8" fill="white" opacity="0.15"/>
+  <circle cx="256" cy="64" r="8" fill="white" opacity="0.15"/>
+  <circle cx="256" cy="448" r="8" fill="white" opacity="0.15"/>
+</svg>
+
+

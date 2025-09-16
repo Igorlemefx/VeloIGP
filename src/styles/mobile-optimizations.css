@@ -1,0 +1,251 @@
+/* Mobile Optimizations - VeloIGP */
+
+/* Base Mobile Styles */
+@media (max-width: 768px) {
+  /* Melhorar performance de scroll */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Otimizar renderização */
+  .card, .btn, .mobile-nav-item {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Reduzir animações em dispositivos de baixo desempenho */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Touch targets otimizados */
+  .btn, .mobile-nav-item, .touch-optimized {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 16px;
+  }
+
+  /* Melhorar legibilidade */
+  body {
+    font-size: 16px; /* Evitar zoom automático no iOS */
+    line-height: 1.5;
+  }
+
+  /* Otimizar containers */
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Cards responsivos */
+  .card {
+    margin-bottom: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Grid responsivo */
+  .grid {
+    gap: 16px;
+  }
+
+  .grid-cols-1 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Typography mobile */
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+  /* Ainda mais compacto */
+  .container {
+    padding: 0 12px;
+  }
+
+  .card {
+    margin-bottom: 12px;
+    padding: 16px;
+  }
+
+  /* Typography extra small */
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+  }
+
+  /* Botões mais compactos */
+  .btn {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  /* Navegação mobile mais compacta */
+  .mobile-bottom-nav {
+    padding: 8px 0;
+  }
+
+  .mobile-nav-item {
+    padding: 8px 4px;
+  }
+
+  .mobile-nav-label {
+    font-size: 10px;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  /* Ajustar para landscape */
+  .mobile-bottom-nav {
+    display: none; /* Ocultar em landscape */
+  }
+
+  .navbar {
+    padding: 8px 16px;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Melhorar feedback visual */
+  .btn:hover, .mobile-nav-item:hover {
+    transform: scale(0.98);
+  }
+
+  .btn:active, .mobile-nav-item:active {
+    transform: scale(0.95);
+  }
+
+  /* Remover hover states desnecessários */
+  .card:hover {
+    transform: none;
+  }
+
+  /* Melhorar área de toque */
+  input, select, textarea {
+    min-height: 44px;
+    font-size: 16px; /* Evitar zoom no iOS */
+  }
+
+  /* Links mais acessíveis */
+  a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Performance Optimizations */
+@media (max-width: 768px) {
+  /* Reduzir sombras complexas */
+  .card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Simplificar gradientes */
+  .gradient-bg {
+    background: var(--velotax-primary);
+  }
+
+  /* Otimizar imagens */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Reduzir animações complexas */
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Lazy loading */
+  .lazy-load {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .lazy-load.loaded {
+    opacity: 1;
+  }
+}
+
+/* Dark Mode Mobile */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+  .card {
+    background: var(--velotax-bg-secondary);
+    border: 1px solid var(--velotax-border-light);
+  }
+
+  .mobile-bottom-nav {
+    background: var(--velotax-bg-primary);
+    border-top: 1px solid var(--velotax-border-light);
+  }
+}
+
+/* High DPI Displays */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* Otimizar para telas de alta resolução */
+  .logo-img, .icon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Accessibility Mobile */
+@media (max-width: 768px) {
+  /* Melhorar contraste */
+  .text-muted {
+    color: var(--velotax-text-secondary);
+  }
+
+  /* Focar elementos */
+  .btn:focus, .mobile-nav-item:focus {
+    outline: 2px solid var(--velotax-primary);
+    outline-offset: 2px;
+  }
+
+  /* Melhorar leitura */
+  .content {
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+}
