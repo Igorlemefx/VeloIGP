@@ -132,6 +132,8 @@ const VeloigpManualReports: React.FC = () => {
   useEffect(() => {
     if (processedData && processedData.length > 0 && isInitialLoad) {
       console.log('🔄 Processando dados automaticamente...');
+      console.log('📊 Dados para processar:', processedData.length, 'linhas');
+      console.log('📋 Primeira linha:', processedData[0]);
       processRawData();
     }
   }, [processedData, isInitialLoad, processRawData]);

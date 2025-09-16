@@ -260,6 +260,11 @@ export class MCPGoogleSheetsService {
         processedRow._rowIndex = index + 1;
         processedRow._timestamp = new Date().toISOString();
 
+        // Log das primeiras 3 linhas para debug
+        if (index < 3) {
+          console.log(`📝 Linha ${index + 1} processada:`, processedRow);
+        }
+
         return processedRow;
       });
 

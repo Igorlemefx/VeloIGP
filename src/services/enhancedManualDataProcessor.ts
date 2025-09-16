@@ -75,52 +75,48 @@ export class EnhancedManualDataProcessor {
         console.log('🔍 Primeiras 3 linhas para debug:', rawData.slice(0, 3));
         console.log('🔍 Chaves da primeira linha:', Object.keys(rawData[0]));
         
-        const processed = rawData
-          .filter((row: any) => {
-            // Verificar se tem dados mínimos
-            const hasData = row.Chamada && row.Operador && row.Data;
-            console.log(`🔍 Verificando linha: Chamada="${row.Chamada}", Operador="${row.Operador}", Data="${row.Data}" -> ${hasData}`);
-            return hasData;
-          })
-          .map((row: any, index: number) => {
-            // Mapear campos conforme manual usando nomes das colunas
-            const mappedRow: ManualDataRow = {
-              data: row.Data || '', // D - Data
-              nomeAtendente: row.Operador || '', // C - Nome do Atendente
-              tempoAtendimento: this.parseTimeToSeconds(row['Tempo Falado'] || ''), // N - Tempo de Atendimento
-              avaliacaoAtendente: this.parseRating(row['Pergunta 1'] || ''), // AB - Avaliação do Atendente
-              avaliacaoSolucao: this.parseRating(row['Pergunta 2'] || ''), // AC - Avaliação da Solução
-              contagemChamadas: row.Chamada || '', // A - Contagem das chamadas
-              desconexaoChamada: row.Desconexao || '' // P - Desconexão da chamada
-            };
+        // Mapear todas as linhas sem filtro primeiro
+        const allProcessed = rawData.map((row: any, index: number) => {
+          // Mapear campos conforme manual - tentar diferentes nomes de colunas
+          const mappedRow: ManualDataRow = {
+            data: row['Data'] || row['data'] || row['DATA'] || '', // D - Data
+            nomeAtendente: row['Operador'] || row['operador'] || row['OPERADOR'] || row['Nome do Atendente'] || '', // C - Nome do Atendente
+            tempoAtendimento: this.parseTimeToSeconds(row['Tempo Falado'] || row['tempo falado'] || row['TEMPO FALADO'] || ''), // N - Tempo de Atendimento
+            avaliacaoAtendente: this.parseRating(row['Pergunta 1'] || row['pergunta 1'] || row['PERGUNTA 1'] || row['Avaliação Atendente'] || ''), // AB - Avaliação do Atendente
+            avaliacaoSolucao: this.parseRating(row['Pergunta 2'] || row['pergunta 2'] || row['PERGUNTA 2'] || row['Avaliação Solução'] || ''), // AC - Avaliação da Solução
+            contagemChamadas: row['Chamada'] || row['chamada'] || row['CHAMADA'] || row['Contagem das chamadas'] || '', // A - Contagem das chamadas
+            desconexaoChamada: row['Desconexao'] || row['desconexao'] || row['DESCONEXAO'] || row['Desconexão da chamada'] || '' // P - Desconexão da chamada
+          };
 
-            // Log das primeiras 5 linhas para debug
-            if (index < 5) {
-              console.log(`📝 Linha ${index + 1}:`, {
-                data: mappedRow.data,
-                operador: mappedRow.nomeAtendente,
-                chamada: mappedRow.contagemChamadas,
-                tempo: mappedRow.tempoAtendimento
-              });
-            }
+          // Log das primeiras 5 linhas para debug
+          if (index < 5) {
+            console.log(`📝 Linha ${index + 1} mapeada:`, {
+              data: mappedRow.data,
+              operador: mappedRow.nomeAtendente,
+              chamada: mappedRow.contagemChamadas,
+              tempo: mappedRow.tempoAtendimento
+            });
+          }
 
-            return mappedRow;
-          })
-          .filter((row, index) => {
-            const chamada = row.contagemChamadas?.toString().toLowerCase().trim();
-            const isAtendida = chamada === 'atendidas' || 
-                              chamada === 'atendida' || 
-                              chamada === 'atendido' ||
-                              chamada === 'answered' ||
-                              chamada === 'atendida com sucesso' ||
-                              chamada === 'concluída';
-            
-            // Log apenas das primeiras 10 para não poluir o console
-            if (index < 10) {
-              console.log(`🔍 Verificando chamada: "${row.contagemChamadas}" -> "${chamada}" -> ${isAtendida}`);
-            }
-            return isAtendida;
-          }); // Apenas chamadas atendidas
+          return mappedRow;
+        });
+
+        // Agora filtrar apenas chamadas atendidas
+        const processed = allProcessed.filter((row, index) => {
+          const chamada = row.contagemChamadas?.toString().toLowerCase().trim();
+          const isAtendida = chamada === 'atendidas' || 
+                            chamada === 'atendida' || 
+                            chamada === 'atendido' ||
+                            chamada === 'answered' ||
+                            chamada === 'atendida com sucesso' ||
+                            chamada === 'concluída';
+          
+          // Log apenas das primeiras 10 para não poluir o console
+          if (index < 10) {
+            console.log(`🔍 Verificando chamada: "${row.contagemChamadas}" -> "${chamada}" -> ${isAtendida}`);
+          }
+          return isAtendida;
+        });
 
         console.log('✅ Dados processados:', processed.length, 'chamadas atendidas');
         return processed;
