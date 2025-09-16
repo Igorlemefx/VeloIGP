@@ -57,7 +57,13 @@ const IndicatorsSection: React.FC<IndicatorsSectionProps> = memo(({
             icon={<i className="fas fa-phone"></i>}
             title="Total de Ligações"
             subtitle={indicadoresGerais.calculations?.totalLigacoes.formatted || indicadoresGerais.totalLigacoesAtendidas.toLocaleString('pt-BR')}
-          />
+          >
+            <div className="metric-content">
+              <span className="metric-value">
+                {indicadoresGerais.calculations?.totalLigacoes.formatted || indicadoresGerais.totalLigacoesAtendidas.toLocaleString('pt-BR')}
+              </span>
+            </div>
+          </PremiumCard>
           
           <PremiumCard
             variant="gradient"
@@ -65,7 +71,13 @@ const IndicatorsSection: React.FC<IndicatorsSectionProps> = memo(({
             icon={<i className="fas fa-clock"></i>}
             title="Tempo Médio"
             subtitle={indicadoresGerais.calculations?.tempoMedio.formatted || `${(indicadoresGerais.tempoMedioAtendimento / 60).toFixed(1)}min`}
-          />
+          >
+            <div className="metric-content">
+              <span className="metric-value">
+                {indicadoresGerais.calculations?.tempoMedio.formatted || `${(indicadoresGerais.tempoMedioAtendimento / 60).toFixed(1)}min`}
+              </span>
+            </div>
+          </PremiumCard>
           
           <PremiumCard
             variant="gradient"
@@ -73,7 +85,13 @@ const IndicatorsSection: React.FC<IndicatorsSectionProps> = memo(({
             icon={<i className="fas fa-star"></i>}
             title="Avaliação Atendimento"
             subtitle={`${indicadoresGerais.calculations?.avaliacaoAtendimento.formatted || indicadoresGerais.avaliacaoAtendimento.toFixed(1)}/5`}
-          />
+          >
+            <div className="metric-content">
+              <span className="metric-value">
+                {indicadoresGerais.calculations?.avaliacaoAtendimento.formatted || indicadoresGerais.avaliacaoAtendimento.toFixed(1)}/5
+              </span>
+            </div>
+          </PremiumCard>
           
           <PremiumCard
             variant="gradient"
@@ -81,7 +99,13 @@ const IndicatorsSection: React.FC<IndicatorsSectionProps> = memo(({
             icon={<i className="fas fa-check-circle"></i>}
             title="Avaliação Solução"
             subtitle={`${indicadoresGerais.calculations?.avaliacaoSolucao.formatted || indicadoresGerais.avaliacaoSolucao.toFixed(1)}/5`}
-          />
+          >
+            <div className="metric-content">
+              <span className="metric-value">
+                {indicadoresGerais.calculations?.avaliacaoSolucao.formatted || indicadoresGerais.avaliacaoSolucao.toFixed(1)}/5
+              </span>
+            </div>
+          </PremiumCard>
         </div>
       </div>
 

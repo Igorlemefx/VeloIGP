@@ -3,7 +3,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import VirtualizedTable from '../components/VirtualizedTable';
 import AdvancedExport from '../components/export/AdvancedExport';
 import AdvancedFilters from '../components/filters/AdvancedFilters';
-import InteractiveCharts from '../components/charts/InteractiveCharts';
+// import InteractiveCharts from '../components/charts/InteractiveCharts'; // Removido - dependência de recharts
 import AdvancedSpreadsheetFilters from '../components/planilha/AdvancedSpreadsheetFilters';
 import SpreadsheetExporter from '../components/planilha/SpreadsheetExporter';
 import SimpleFunctionalLoading from '../components/ui/SimpleFunctionalLoading';
@@ -287,11 +287,10 @@ const VeloigpSpreadsheet: React.FC = () => {
               )}
 
               {/* Gráficos Interativos */}
-              <InteractiveCharts
-                data={filteredData}
-                headers={data?.currentSheet?.headers || []}
-                type="overview"
-              />
+              <div className="chart-placeholder">
+                <h4>Gráficos de Análise</h4>
+                <p>Componente de gráficos temporariamente indisponível</p>
+              </div>
             </div>
           </div>
         )}
@@ -334,11 +333,10 @@ const VeloigpSpreadsheet: React.FC = () => {
               </div>
 
               {/* Gráfico de Operadores */}
-              <InteractiveCharts
-                data={filteredData}
-                headers={data?.currentSheet?.headers || []}
-                type="operators"
-              />
+              <div className="chart-placeholder">
+                <h4>Gráficos de Operadores</h4>
+                <p>Componente de gráficos temporariamente indisponível</p>
+              </div>
             </div>
           </div>
         )}
@@ -381,11 +379,10 @@ const VeloigpSpreadsheet: React.FC = () => {
               </div>
 
               {/* Gráfico de Períodos */}
-              <InteractiveCharts
-                data={filteredData}
-                headers={data?.currentSheet?.headers || []}
-                type="periods"
-              />
+              <div className="chart-placeholder">
+                <h4>Gráficos de Períodos</h4>
+                <p>Componente de gráficos temporariamente indisponível</p>
+              </div>
             </div>
           </div>
         )}
