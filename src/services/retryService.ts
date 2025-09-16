@@ -69,7 +69,7 @@ export class RetryService {
   // Método específico para APIs com timeout
   static async executeWithTimeout<T>(
     operation: () => Promise<T>,
-    timeoutMs: number = 15000, // Aumentado para 15 segundos
+    timeoutMs: number = 30000, // Aumentado para 30 segundos
     retryOptions: RetryOptions = {}
   ): Promise<T> {
     return this.execute(async () => {

@@ -33,6 +33,9 @@ const OperatorProfileSelector: React.FC<OperatorProfileSelectorProps> = ({
 
   // Filtrar e ordenar operadores
   const filteredOperators = useMemo(() => {
+    console.log('🔍 OperatorProfileSelector - Operadores recebidos:', operators.length);
+    console.log('🔍 Primeiros 3 operadores:', operators.slice(0, 3));
+    
     return operators
       .filter(op => 
         op.nomeAtendente.toLowerCase().includes(searchTerm.toLowerCase())

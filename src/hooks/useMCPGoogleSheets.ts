@@ -254,10 +254,12 @@ export const useMCPGoogleSheets = (): UseMCPGoogleSheetsReturn => {
     }
   }, [isInitialized, initialize, processDataForAnalysis]);
 
-  // Inicializar automaticamente
+  // Inicializar automaticamente apenas uma vez
   useEffect(() => {
-    initialize();
-  }, [initialize]);
+    if (!isInitialized && !isLoading) {
+      initialize();
+    }
+  }, []); // Removido initialize da dependência para evitar loop
 
   // Carregar dados automaticamente após inicialização
   useEffect(() => {

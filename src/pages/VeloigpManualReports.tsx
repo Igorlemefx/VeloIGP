@@ -61,7 +61,7 @@ const VeloigpManualReports: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Inicializar MCP Service automaticamente
+  // Inicializar MCP Service automaticamente apenas uma vez
   useEffect(() => {
     const initializeSystem = async () => {
       console.log('🚀 Iniciando sistema VeloIGP...');
@@ -85,8 +85,11 @@ const VeloigpManualReports: React.FC = () => {
       }
     };
 
-    initializeSystem();
-  }, [isInitialized, isLoading, error, processedData, initialize]);
+    // Só inicializar uma vez
+    if (!isInitialized && !isLoading) {
+      initializeSystem();
+    }
+  }, []); // Removido dependências para evitar loop
 
   const processRawData = useCallback(async () => {
     if (!processedData) {
@@ -605,13 +608,19 @@ const VeloigpManualReports: React.FC = () => {
           {/* Seletor de Perfil de Operadores */}
           {showOperatorSelector && (
             <div className="operator-profile-selector-container">
-              <OperatorProfileSelector
-                operators={indicadoresOperadores}
-                selectedOperator={selectedOperator}
-                onSelectOperator={handleSelectOperator}
-                onViewProfile={handleViewOperatorDetails}
-                onClose={() => setShowOperatorSelector(false)}
-              />
+              {(() => {
+                console.log('🔍 VeloigpManualReports - Passando operadores para seletor:', indicadoresOperadores.length);
+                console.log('🔍 Primeiros 3 operadores para seletor:', indicadoresOperadores.slice(0, 3));
+                return (
+                  <OperatorProfileSelector
+                    operators={indicadoresOperadores}
+                    selectedOperator={selectedOperator}
+                    onSelectOperator={handleSelectOperator}
+                    onViewProfile={handleViewOperatorDetails}
+                    onClose={() => setShowOperatorSelector(false)}
+                  />
+                );
+              })()}
             </div>
           )}
 
