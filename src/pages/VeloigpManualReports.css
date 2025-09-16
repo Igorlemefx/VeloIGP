@@ -1042,12 +1042,19 @@
 }
 
 /* Operator Selector Container */
-.operator-selector-container {
+.operator-selector-container,
+.operator-profile-selector-container {
   margin-bottom: 2rem;
   padding: 1.5rem;
   background: var(--background-color);
   border-radius: 12px;
   border: 1px solid var(--border-color);
+}
+
+.operator-profile-selector-container {
+  padding: 0;
+  background: transparent;
+  border: none;
 }
 
 /* Selected Operator Styles */

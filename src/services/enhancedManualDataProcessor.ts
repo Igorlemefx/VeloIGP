@@ -184,7 +184,8 @@ export class EnhancedManualDataProcessor {
   }
 
   /**
-   * Calcular indicadores gerais usando motores individuais
+   * Calcular indicadores gerais seguindo EXATAMENTE o manual
+   * Manual: Data=D, Nome=C, Tempo=N, Avaliação Atendente=AB, Avaliação Solução=AC, Chamadas=A (só Atendidas)
    */
   calculateIndicadoresGerais(data: ManualDataRow[], filtro: FiltroPeriodo): IndicadoresGerais {
     console.log(`📊 Calculando indicadores gerais para ${filtro.label}...`);
@@ -203,25 +204,79 @@ export class EnhancedManualDataProcessor {
       };
     }
 
-    // Usar motores de cálculo individuais para precisão
+    // CÁLCULO 1: Total de ligações atendidas (Soma das chamadas "Atendidas")
+    const totalLigacoes = dadosFiltrados.length; // Já filtrado apenas "Atendidas"
+
+    // CÁLCULO 2: Tempo médio de atendimento (Média simples do "Tempo Falado")
+    const temposValidos = dadosFiltrados
+      .map(row => row.tempoAtendimento)
+      .filter(tempo => tempo > 0);
+    
+    const tempoMedio = temposValidos.length > 0 
+      ? temposValidos.reduce((sum, tempo) => sum + tempo, 0) / temposValidos.length
+      : 0;
+
+    // CÁLCULO 3: Avaliação do atendimento (Média simples da "Pergunta 1")
+    const avaliacoesAtendimento = dadosFiltrados
+      .map(row => row.avaliacaoAtendente)
+      .filter(avaliacao => avaliacao > 0);
+    
+    const avaliacaoAtendimento = avaliacoesAtendimento.length > 0
+      ? avaliacoesAtendimento.reduce((sum, aval) => sum + aval, 0) / avaliacoesAtendimento.length
+      : 0;
+
+    // CÁLCULO 4: Avaliação da solução (Média simples da "Pergunta 2")
+    const avaliacoesSolucao = dadosFiltrados
+      .map(row => row.avaliacaoSolucao)
+      .filter(avaliacao => avaliacao > 0);
+    
+    const avaliacaoSolucao = avaliacoesSolucao.length > 0
+      ? avaliacoesSolucao.reduce((sum, aval) => sum + aval, 0) / avaliacoesSolucao.length
+      : 0;
+
+    // Usar motores de cálculo para formatação precisa
     const calculations = CalculationEngineFactory.calculateAll(dadosFiltrados);
 
     const resultado: IndicadoresGerais = {
-      totalLigacoesAtendidas: calculations.totalLigacoes.value,
-      tempoMedioAtendimento: calculations.tempoMedio.value,
-      avaliacaoAtendimento: calculations.avaliacaoAtendimento.value,
-      avaliacaoSolucao: calculations.avaliacaoSolucao.value,
+      totalLigacoesAtendidas: totalLigacoes,
+      tempoMedioAtendimento: tempoMedio,
+      avaliacaoAtendimento: avaliacaoAtendimento,
+      avaliacaoSolucao: avaliacaoSolucao,
       periodo: filtro,
-      calculations
+      calculations: {
+        totalLigacoes: {
+          value: totalLigacoes,
+          formatted: totalLigacoes.toLocaleString('pt-BR'),
+          precision: 0,
+          isValid: totalLigacoes >= 0
+        },
+        tempoMedio: {
+          value: tempoMedio,
+          formatted: this.formatTime(tempoMedio),
+          precision: 2,
+          isValid: tempoMedio >= 0
+        },
+        avaliacaoAtendimento: {
+          value: avaliacaoAtendimento,
+          formatted: avaliacaoAtendimento.toFixed(1),
+          precision: 1,
+          isValid: avaliacaoAtendimento >= 0 && avaliacaoAtendimento <= 5
+        },
+        avaliacaoSolucao: {
+          value: avaliacaoSolucao,
+          formatted: avaliacaoSolucao.toFixed(1),
+          precision: 1,
+          isValid: avaliacaoSolucao >= 0 && avaliacaoSolucao <= 5
+        }
+      }
     };
 
-    console.log('✅ Indicadores gerais calculados:', {
-      totalLigacoes: calculations.totalLigacoes.formatted,
-      tempoMedio: calculations.tempoMedio.formatted,
-      avaliacaoAtendimento: calculations.avaliacaoAtendimento.formatted,
-      avaliacaoSolucao: calculations.avaliacaoSolucao.formatted,
-      isValid: calculations.totalLigacoes.isValid && calculations.tempoMedio.isValid && 
-               calculations.avaliacaoAtendimento.isValid && calculations.avaliacaoSolucao.isValid
+    console.log('✅ Indicadores gerais calculados (conforme manual):', {
+      totalLigacoes: resultado.totalLigacoesAtendidas,
+      tempoMedio: resultado.tempoMedioAtendimento,
+      avaliacaoAtendimento: resultado.avaliacaoAtendimento,
+      avaliacaoSolucao: resultado.avaliacaoSolucao,
+      dadosProcessados: dadosFiltrados.length
     });
 
     return resultado;
@@ -338,6 +393,20 @@ export class EnhancedManualDataProcessor {
     if (isNaN(rating) || rating < 0 || rating > 5) return 0;
     
     return rating;
+  }
+
+  /**
+   * Formatar tempo em minutos para HH:MM:SS ou MM:SS
+   */
+  private formatTime(minutes: number): string {
+    const hours = Math.floor(minutes / 60);
+    const mins = Math.floor(minutes % 60);
+    const secs = Math.floor((minutes % 1) * 60);
+    
+    if (hours > 0) {
+      return `${hours}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   }
 
   /**

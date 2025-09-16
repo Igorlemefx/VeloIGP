@@ -3,7 +3,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import { useToast } from '../hooks/useToast';
 import { useMCPGoogleSheets } from '../hooks/useMCPGoogleSheets';
 import { EnhancedManualDataProcessor, ManualDataRow, FiltroPeriodo, IndicadoresGerais, IndicadoresOperador } from '../services/enhancedManualDataProcessor';
-import OperatorSelector from '../components/operators/OperatorSelector';
+import OperatorProfileSelector from '../components/operators/OperatorProfileSelector';
 import PremiumButton from '../components/ui/PremiumButton';
 import PremiumCard from '../components/ui/PremiumCard';
 import './VeloigpManualReports.css';
@@ -228,6 +228,9 @@ const VeloigpManualReports: React.FC = () => {
   const toggleOperatorSelector = () => {
     setShowOperatorSelector(!showOperatorSelector);
     setShowOperatorProfile(false);
+    if (!showOperatorSelector) {
+      showSuccess('Seletor de Operadores', 'Seletor de operadores aberto');
+    }
   };
 
   const closeOperatorProfile = () => {
@@ -573,20 +576,15 @@ const VeloigpManualReports: React.FC = () => {
         </div>
         
         <div className="section-content">
-          {/* Seletor de Operadores */}
+          {/* Seletor de Perfil de Operadores */}
           {showOperatorSelector && (
-            <div className="operator-selector-container">
-              <OperatorSelector
-                operators={indicadoresOperadores.map(op => ({
-                  nome: op.nomeAtendente,
-                  totalChamadas: op.totalLigacoesAtendidas,
-                  tempoMedio: op.tempoMedioAtendimento,
-                  avaliacao: op.avaliacaoAtendimento,
-                  isValid: true
-                }))}
+            <div className="operator-profile-selector-container">
+              <OperatorProfileSelector
+                operators={indicadoresOperadores}
                 selectedOperator={selectedOperator}
                 onSelectOperator={handleSelectOperator}
-                onViewDetails={handleViewOperatorDetails}
+                onViewProfile={handleViewOperatorDetails}
+                onClose={() => setShowOperatorSelector(false)}
               />
             </div>
           )}
