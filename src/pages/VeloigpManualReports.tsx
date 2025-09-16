@@ -16,7 +16,8 @@ const VeloigpManualReports: React.FC = () => {
     isLoading, 
     error, 
     processedData, 
-    processDataForAnalysis 
+    processDataForAnalysis,
+    initialize
   } = useMCPGoogleSheets();
 
   const [rawData, setRawData] = useState<ManualDataRow[]>([]);
@@ -70,7 +71,7 @@ const VeloigpManualReports: React.FC = () => {
         // Inicializar MCP Service se não estiver inicializado
         if (!isInitialized && !isLoading) {
           console.log('🔄 Inicializando MCP Google Sheets Service...');
-          await processDataForAnalysis();
+          await initialize();
         } else if (isInitialized && processedData && processedData.length > 0) {
           console.log('✅ MCP já inicializado e dados disponíveis');
         } else if (isLoading) {
@@ -85,7 +86,7 @@ const VeloigpManualReports: React.FC = () => {
     };
 
     initializeSystem();
-  }, [isInitialized, isLoading, error, processedData, processDataForAnalysis]);
+  }, [isInitialized, isLoading, error, processedData, initialize]);
 
   const processRawData = useCallback(async () => {
     if (!processedData) {

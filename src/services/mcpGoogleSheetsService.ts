@@ -54,18 +54,23 @@ export class MCPGoogleSheetsService {
   async readSpreadsheet(range: string = 'A:AN'): Promise<MCPResponse> {
     try {
       const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.config.spreadsheetId}/values/${range}?key=${this.config.apiKey}`;
+      console.log('🌐 Fazendo requisição para:', url);
       
       const response = await fetch(url);
+      console.log('📡 Resposta recebida:', response.status, response.statusText);
       
       if (!response.ok) {
         const errorText = await response.text();
+        console.error('❌ Erro na API:', response.status, errorText);
         throw new Error(`Erro na API (${response.status}): ${errorText}`);
       }
 
       const data = await response.json();
       const values = data.values || [];
+      console.log('📊 Dados recebidos da API:', values.length, 'linhas');
       
       if (values.length === 0) {
+        console.warn('⚠️ Planilha vazia ou sem dados');
         return {
           success: false,
           error: 'Planilha vazia ou sem dados no range especificado',
@@ -76,6 +81,8 @@ export class MCPGoogleSheetsService {
       // Processar dados
       const headers = values[0];
       const dataRows = values.slice(1);
+      console.log('📋 Headers encontrados:', headers);
+      console.log('📈 Primeiras 3 linhas de dados:', dataRows.slice(0, 3));
       
       const processedData = {
         headers,
@@ -85,12 +92,14 @@ export class MCPGoogleSheetsService {
         lastUpdated: new Date().toISOString()
       };
 
+      console.log('✅ Dados processados com sucesso:', processedData);
       return {
         success: true,
         data: processedData,
         timestamp: new Date()
       };
     } catch (error: any) {
+      console.error('❌ Erro ao ler planilha:', error);
       return {
         success: false,
         error: `Erro ao ler planilha: ${error.message}`,

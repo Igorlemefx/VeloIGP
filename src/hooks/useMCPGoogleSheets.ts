@@ -79,6 +79,10 @@ export const useMCPGoogleSheets = (): UseMCPGoogleSheetsReturn => {
         setIsInitialized(true);
         setLastUpdate(new Date());
         console.log('✅ MCP Google Sheets Service inicializado:', response.data);
+        
+        // Após inicializar, carregar dados automaticamente
+        console.log('🔄 Carregando dados da planilha...');
+        await readSpreadsheet();
       } else {
         setError(response.error || 'Erro desconhecido ao inicializar MCP Service');
         console.error('❌ Erro ao inicializar MCP Service:', response.error);
