@@ -36,31 +36,6 @@ export const useMCPGoogleSheets = (): UseMCPGoogleSheetsReturn => {
   const [metrics, setMetrics] = useState<any | null>(null);
   const [headers, setHeaders] = useState<string[] | null>(null);
 
-  // Inicializar o serviço MCP
-  const initialize = useCallback(async () => {
-    console.log('🔄 Iniciando MCP Google Sheets Service...');
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const response: MCPResponse = await mcpGoogleSheetsService.initialize();
-      
-      if (response.success) {
-        setIsInitialized(true);
-        setLastUpdate(new Date());
-        console.log('✅ MCP Google Sheets Service inicializado:', response.data);
-      } else {
-        setError(response.error || 'Erro desconhecido ao inicializar MCP Service');
-        console.error('❌ Erro ao inicializar MCP Service:', response.error);
-      }
-    } catch (err: any) {
-      setError(`Erro ao inicializar MCP Service: ${err.message}`);
-      console.error('❌ Erro ao inicializar MCP Service:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
   // Ler dados da planilha
   const readSpreadsheet = useCallback(async (range: string = 'A:AN') => {
     if (!isInitialized) {
@@ -90,6 +65,31 @@ export const useMCPGoogleSheets = (): UseMCPGoogleSheetsReturn => {
       setIsLoading(false);
     }
   }, [isInitialized]);
+
+  // Inicializar o serviço MCP
+  const initialize = useCallback(async () => {
+    console.log('🔄 Iniciando MCP Google Sheets Service...');
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response: MCPResponse = await mcpGoogleSheetsService.initialize();
+      
+      if (response.success) {
+        setIsInitialized(true);
+        setLastUpdate(new Date());
+        console.log('✅ MCP Google Sheets Service inicializado:', response.data);
+      } else {
+        setError(response.error || 'Erro desconhecido ao inicializar MCP Service');
+        console.error('❌ Erro ao inicializar MCP Service:', response.error);
+      }
+    } catch (err: any) {
+      setError(`Erro ao inicializar MCP Service: ${err.message}`);
+      console.error('❌ Erro ao inicializar MCP Service:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   // Ler dados de uma aba específica
   const readSheet = useCallback(async (sheetName: string, range?: string) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import { useToast } from '../hooks/useToast';
 import { useMCPGoogleSheets } from '../hooks/useMCPGoogleSheets';
@@ -31,7 +31,7 @@ const VeloigpManualReports: React.FC = () => {
   const [showOperatorSelector, setShowOperatorSelector] = useState(false);
   const [showOperatorProfile, setShowOperatorProfile] = useState(false);
 
-  const processor = new EnhancedManualDataProcessor();
+  const processor = useMemo(() => new EnhancedManualDataProcessor(), []);
   const geraisRef = useRef<HTMLDivElement>(null);
   const operadoresRef = useRef<HTMLDivElement>(null);
 
@@ -60,29 +60,27 @@ const VeloigpManualReports: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Carregamento automático quando o componente monta
+  // Inicializar MCP Service automaticamente
   useEffect(() => {
-    console.log('🚀 Iniciando carregamento automático...');
-    if (processedData && processedData.length > 0) {
-      console.log('🔄 Processando dados conforme manual VeloIGP...');
-      processRawData();
-    } else if (isLoading) {
-      console.log('⏳ Aguardando carregamento da planilha...');
-    } else if (error) {
-      console.log('❌ Erro no carregamento:', error);
-      setIsInitialLoad(false);
-    }
-  }, [processedData, isLoading, error]);
+    const initializeSystem = async () => {
+      console.log('🚀 Iniciando sistema VeloIGP...');
+      
+      try {
+        // Inicializar MCP Service se não estiver inicializado
+        if (!isInitialized && !isLoading) {
+          console.log('🔄 Inicializando MCP Google Sheets Service...');
+          await processDataForAnalysis();
+        }
+      } catch (err) {
+        console.error('❌ Erro na inicialização:', err);
+        setIsInitialLoad(false);
+      }
+    };
 
-  // Processar dados automaticamente quando carregados
-  useEffect(() => {
-    if (processedData && processedData.length > 0 && isInitialLoad) {
-      console.log('🔄 Processando dados automaticamente...');
-      processRawData();
-    }
-  }, [processedData, isInitialLoad]);
+    initializeSystem();
+  }, [isInitialized, isLoading, processDataForAnalysis]);
 
-  const processRawData = async () => {
+  const processRawData = useCallback(async () => {
     if (!processedData) return;
 
     setIsProcessing(true);
@@ -110,48 +108,17 @@ const VeloigpManualReports: React.FC = () => {
     } finally {
       setIsProcessing(false);
     }
-  };
+  }, [processedData, processor, showSuccess, showError]);
 
-  // Calcular indicadores quando filtro muda
+  // Processar dados automaticamente quando carregados
   useEffect(() => {
-    if (rawData.length > 0 && filtroSelecionado) {
-      calculateIndicators();
+    if (processedData && processedData.length > 0 && isInitialLoad) {
+      console.log('🔄 Processando dados automaticamente...');
+      processRawData();
     }
-  }, [rawData, filtroSelecionado]);
+  }, [processedData, isInitialLoad, processRawData]);
 
-  // Auto-selecionar filtro com dados se "Ontem" estiver vazio
-  useEffect(() => {
-    if (rawData.length > 0 && filtros.length > 0 && indicadoresGerais?.totalLigacoesAtendidas === 0) {
-      console.log('🔄 Tentando outros filtros pois "Ontem" está vazio...');
-      
-      // Tentar "Semana" se "Ontem" estiver vazio
-      if (filtroSelecionado?.tipo === 'ontem') {
-        const semanaFilter = filtros.find(f => f.tipo === 'semana');
-        if (semanaFilter) {
-          console.log('📅 Mudando para filtro "Semana"');
-          setFiltroSelecionado(semanaFilter);
-        }
-      }
-      // Tentar "Mês" se "Semana" estiver vazio
-      else if (filtroSelecionado?.tipo === 'semana') {
-        const mesFilter = filtros.find(f => f.tipo === 'mes');
-        if (mesFilter) {
-          console.log('📅 Mudando para filtro "Mês"');
-          setFiltroSelecionado(mesFilter);
-        }
-      }
-      // Tentar "Ano" se "Mês" estiver vazio
-      else if (filtroSelecionado?.tipo === 'mes') {
-        const anoFilter = filtros.find(f => f.tipo === 'ano');
-        if (anoFilter) {
-          console.log('📅 Mudando para filtro "Ano"');
-          setFiltroSelecionado(anoFilter);
-        }
-      }
-    }
-  }, [indicadoresGerais, filtros, filtroSelecionado, rawData]);
-
-  const calculateIndicators = () => {
+  const calculateIndicators = useCallback(() => {
     if (!filtroSelecionado) {
       console.log('⚠️ Nenhum filtro selecionado');
       return;
@@ -202,7 +169,46 @@ const VeloigpManualReports: React.FC = () => {
       console.error('❌ Erro ao calcular indicadores:', err);
       showError('Erro no Cálculo', `Erro ao processar dados: ${err.message}`);
     }
-  };
+  }, [filtroSelecionado, rawData, processor, showSuccess, showError, filtros]);
+
+  // Calcular indicadores quando filtro muda
+  useEffect(() => {
+    if (rawData.length > 0 && filtroSelecionado) {
+      calculateIndicators();
+    }
+  }, [rawData, filtroSelecionado, calculateIndicators]);
+
+  // Auto-selecionar filtro com dados se "Ontem" estiver vazio
+  useEffect(() => {
+    if (rawData.length > 0 && filtros.length > 0 && indicadoresGerais?.totalLigacoesAtendidas === 0) {
+      console.log('🔄 Tentando outros filtros pois "Ontem" está vazio...');
+      
+      // Tentar "Semana" se "Ontem" estiver vazio
+      if (filtroSelecionado?.tipo === 'ontem') {
+        const semanaFilter = filtros.find(f => f.tipo === 'semana');
+        if (semanaFilter) {
+          console.log('📅 Mudando para filtro "Semana"');
+          setFiltroSelecionado(semanaFilter);
+        }
+      }
+      // Tentar "Mês" se "Semana" estiver vazio
+      else if (filtroSelecionado?.tipo === 'semana') {
+        const mesFilter = filtros.find(f => f.tipo === 'mes');
+        if (mesFilter) {
+          console.log('📅 Mudando para filtro "Mês"');
+          setFiltroSelecionado(mesFilter);
+        }
+      }
+      // Tentar "Ano" se "Mês" estiver vazio
+      else if (filtroSelecionado?.tipo === 'mes') {
+        const anoFilter = filtros.find(f => f.tipo === 'ano');
+        if (anoFilter) {
+          console.log('📅 Mudando para filtro "Ano"');
+          setFiltroSelecionado(anoFilter);
+        }
+      }
+    }
+  }, [indicadoresGerais, filtros, filtroSelecionado, rawData]);
 
   const handleFiltroChange = (filtro: FiltroPeriodo) => {
     setFiltroSelecionado(filtro);
