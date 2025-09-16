@@ -56,11 +56,16 @@ export class EnhancedManualDataProcessor {
    */
   processRawData(rawData: any[]): ManualDataRow[] {
     try {
-      console.log('🔄 Processando dados brutos da planilha...');
-      console.log('📊 Dados recebidos:', rawData?.length || 0, 'linhas');
+      // Logs apenas em desenvolvimento
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔄 Processando dados brutos da planilha...');
+        console.log('📊 Dados recebidos:', rawData?.length || 0, 'linhas');
+      }
       
       if (!rawData || rawData.length === 0) {
-        console.log('⚠️ Nenhum dado para processar');
+        if (process.env.NODE_ENV === 'development') {
+          console.log('⚠️ Nenhum dado para processar');
+        }
         return [];
       }
 
