@@ -595,76 +595,164 @@ const VeloigpManualReports: React.FC = () => {
               <p>Processando dados dos operadores...</p>
             </div>
           ) : indicadoresOperadores.length > 0 ? (
-            <div className="operadores-grid">
-              {indicadoresOperadores
-                .filter(op => !selectedOperator || op.nomeAtendente === selectedOperator)
-                .map((operador, index) => (
-                <div key={index} className={`operador-card ${selectedOperator === operador.nomeAtendente ? 'selected' : ''}`}>
-                  <div className="operador-header">
-                    <h3>{operador.nomeAtendente}</h3>
-                    {selectedOperator === operador.nomeAtendente && (
-                      <span className="selected-badge">
-                        <i className="fas fa-check-circle"></i>
-                        Selecionado
-                      </span>
-                    )}
-                  </div>
-                  
-                  <div className="operador-metrics">
-                    <div className="metric">
-                      <span className="metric-label">Total de Chamadas:</span>
-                      <span className="metric-value">
-                        {operador.calculations?.totalLigacoes.formatted || operador.totalLigacoesAtendidas.toLocaleString('pt-BR')}
-                      </span>
-                    </div>
+            <div className="operadores-section">
+              {selectedOperator ? (
+                // Mostrar apenas o operador selecionado
+                <div className="selected-operator-detail">
+                  {(() => {
+                    const operador = indicadoresOperadores.find(op => op.nomeAtendente === selectedOperator);
+                    if (!operador) return null;
                     
-                    <div className="metric">
-                      <span className="metric-label">Tempo Médio:</span>
-                      <span className="metric-value">
-                        {operador.calculations?.tempoMedio.formatted || `${(operador.tempoMedioAtendimento / 60).toFixed(1)}min`}
-                      </span>
-                    </div>
-                    
-                    <div className="metric">
-                      <span className="metric-label">Avaliação Atendimento:</span>
-                      <span className="metric-value">
-                        {operador.calculations?.avaliacaoAtendimento.formatted || operador.avaliacaoAtendimento.toFixed(1)}/5
-                      </span>
-                    </div>
-                    
-                    <div className="metric">
-                      <span className="metric-label">Avaliação Solução:</span>
-                      <span className="metric-value">
-                        {operador.calculations?.avaliacaoSolucao.formatted || operador.avaliacaoSolucao.toFixed(1)}/5
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="operador-chart">
-                    <div className="chart-bars">
-                      <div className="chart-bar">
-                        <span className="bar-label">Volume</span>
-                        <div className="bar-container">
-                          <div 
-                            className="bar-fill volume"
-                            style={{ width: `${Math.min(operador.totalLigacoesAtendidas / 10 * 100, 100)}%` }}
-                          ></div>
+                    return (
+                      <div className="operador-card selected">
+                        <div className="operador-header">
+                          <h3>{operador.nomeAtendente}</h3>
+                          <span className="selected-badge">
+                            <i className="fas fa-check-circle"></i>
+                            Operador Selecionado
+                          </span>
+                        </div>
+                        
+                        <div className="operador-metrics">
+                          <div className="metric">
+                            <span className="metric-label">Total de Chamadas:</span>
+                            <span className="metric-value">
+                              {operador.calculations?.totalLigacoes.formatted || operador.totalLigacoesAtendidas.toLocaleString('pt-BR')}
+                            </span>
+                          </div>
+                          
+                          <div className="metric">
+                            <span className="metric-label">Tempo Médio:</span>
+                            <span className="metric-value">
+                              {operador.calculations?.tempoMedio.formatted || `${(operador.tempoMedioAtendimento / 60).toFixed(1)}min`}
+                            </span>
+                          </div>
+                          
+                          <div className="metric">
+                            <span className="metric-label">Avaliação Atendimento:</span>
+                            <span className="metric-value">
+                              {operador.calculations?.avaliacaoAtendimento.formatted || operador.avaliacaoAtendimento.toFixed(1)}/5
+                            </span>
+                          </div>
+                          
+                          <div className="metric">
+                            <span className="metric-label">Avaliação Solução:</span>
+                            <span className="metric-value">
+                              {operador.calculations?.avaliacaoSolucao.formatted || operador.avaliacaoSolucao.toFixed(1)}/5
+                            </span>
+                          </div>
+                        </div>
+                        
+                        <div className="operador-chart">
+                          <div className="chart-bars">
+                            <div className="chart-bar">
+                              <span className="bar-label">Volume</span>
+                              <div className="bar-container">
+                                <div 
+                                  className="bar-fill volume"
+                                  style={{ width: `${Math.min(operador.totalLigacoesAtendidas / 10 * 100, 100)}%` }}
+                                ></div>
+                              </div>
+                            </div>
+                            
+                            <div className="chart-bar">
+                              <span className="bar-label">Qualidade</span>
+                              <div className="bar-container">
+                                <div 
+                                  className="bar-fill quality"
+                                  style={{ width: `${((operador.avaliacaoAtendimento + operador.avaliacaoSolucao) / 2 / 5) * 100}%` }}
+                                ></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="operador-actions">
+                          <PremiumButton
+                            onClick={() => setSelectedOperator(null)}
+                            variant="outline"
+                            size="md"
+                            icon={<i className="fas fa-arrow-left"></i>}
+                          >
+                            Voltar para Todos
+                          </PremiumButton>
                         </div>
                       </div>
-                      
-                      <div className="chart-bar">
-                        <span className="bar-label">Qualidade</span>
-                        <div className="bar-container">
-                          <div 
-                            className="bar-fill quality"
-                            style={{ width: `${((operador.avaliacaoAtendimento + operador.avaliacaoSolucao) / 2 / 5) * 100}%` }}
-                          ></div>
-                        </div>
+                    );
+                  })()}
+                </div>
+              ) : (
+                // Mostrar resumo dos operadores
+                <div className="operadores-summary">
+                  <div className="summary-header">
+                    <h3>
+                      <i className="fas fa-users"></i>
+                      Resumo dos Operadores
+                    </h3>
+                    <p>Total de {indicadoresOperadores.length} operadores ativos no período</p>
+                  </div>
+                  
+                  <div className="operadores-stats">
+                    <div className="stat-card">
+                      <div className="stat-icon">
+                        <i className="fas fa-phone"></i>
                       </div>
+                      <div className="stat-content">
+                        <span className="stat-value">
+                          {indicadoresOperadores.reduce((sum, op) => sum + op.totalLigacoesAtendidas, 0).toLocaleString('pt-BR')}
+                        </span>
+                        <span className="stat-label">Total de Chamadas</span>
+                      </div>
+                    </div>
+                    
+                    <div className="stat-card">
+                      <div className="stat-icon">
+                        <i className="fas fa-star"></i>
+                      </div>
+                      <div className="stat-content">
+                        <span className="stat-value">
+                          {(indicadoresOperadores.reduce((sum, op) => sum + op.avaliacaoAtendimento, 0) / indicadoresOperadores.length).toFixed(1)}
+                        </span>
+                        <span className="stat-label">Avaliação Média</span>
+                      </div>
+                    </div>
+                    
+                    <div className="stat-card">
+                      <div className="stat-icon">
+                        <i className="fas fa-trophy"></i>
+                      </div>
+                      <div className="stat-content">
+                        <span className="stat-value">
+                          {indicadoresOperadores.filter(op => op.avaliacaoAtendimento >= 4.5).length}
+                        </span>
+                        <span className="stat-label">Top Performers</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="top-operators">
+                    <h4>Top 5 Operadores</h4>
+                    <div className="top-list">
+                      {indicadoresOperadores
+                        .sort((a, b) => b.totalLigacoesAtendidas - a.totalLigacoesAtendidas)
+                        .slice(0, 5)
+                        .map((operador, index) => (
+                        <div key={operador.nomeAtendente} className="top-operator-item">
+                          <div className="rank">#{index + 1}</div>
+                          <div className="operator-info">
+                            <span className="name">{operador.nomeAtendente}</span>
+                            <span className="calls">{operador.totalLigacoesAtendidas} chamadas</span>
+                          </div>
+                          <div className="rating">
+                            <i className="fas fa-star"></i>
+                            {operador.avaliacaoAtendimento.toFixed(1)}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
-              ))}
+              )}
             </div>
           ) : rawData.length === 0 ? (
             <div className="no-data-state">

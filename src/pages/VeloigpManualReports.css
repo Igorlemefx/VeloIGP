@@ -1057,6 +1057,258 @@
   border: none;
 }
 
+/* Operadores Section */
+.operadores-section {
+  margin-top: 2rem;
+}
+
+/* Selected Operator Detail */
+.selected-operator-detail {
+  margin-bottom: 2rem;
+}
+
+.selected-operator-detail .operador-card {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.operador-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Operadores Summary */
+.operadores-summary {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.summary-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.summary-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.summary-header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Operadores Stats */
+.operadores-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Top Operators */
+.top-operators {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.top-operators h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.top-operators h4::before {
+  content: "🏆";
+  font-size: 1.1rem;
+}
+
+.top-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.top-operator-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.top-operator-item:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-color);
+  transform: translateX(4px);
+}
+
+.rank {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.operator-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.operator-info .name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.operator-info .calls {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.2;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #fbbf24;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .operadores-summary {
+    padding: 1.5rem;
+  }
+  
+  .operadores-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .stat-card {
+    padding: 1rem;
+  }
+  
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .stat-value {
+    font-size: 1.3rem;
+  }
+  
+  .top-operator-item {
+    padding: 0.75rem;
+  }
+  
+  .rank {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+  
+  .operador-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Tema Escuro */
+[data-theme="dark"] .operadores-summary {
+  background: var(--card-bg-dark);
+}
+
+[data-theme="dark"] .stat-card {
+  background: var(--bg-secondary-dark);
+}
+
+[data-theme="dark"] .top-operators {
+  background: var(--bg-secondary-dark);
+}
+
+[data-theme="dark"] .top-operator-item {
+  background: var(--card-bg-dark);
+}
+
 /* Selected Operator Styles */
 .operador-card.selected {
   border-color: var(--primary-color);
